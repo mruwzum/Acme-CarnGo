@@ -50,7 +50,7 @@ public class Message extends DomainEntity {
         this.body = body;
     }
     @Past
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     public Date getSentDate() {
         return sentDate;
     }

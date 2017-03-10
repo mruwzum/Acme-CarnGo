@@ -140,7 +140,7 @@
 	<!--<bean id="trip1" class="domain.Trip">-->
 		<!--<property name="title" value="title1" />-->
 		<!--<property name="description" value="description1" />-->
-		<!--<property name="tripDate" value="2016/04/23 23:00:12"/>-->
+		<!--<property name="tripDate" value="2017/04/23 23:00:12"/>-->
 		<!--<property name="originAddress" value="origen1" />-->
 		<!--<property name="destinationAddress" value="destination1" />-->
 		<!--<property name="coordXValue" value="200.0" />-->
@@ -177,88 +177,7 @@
 </bean>
 	<!-- /Application-->
 
-	<!-- Comment -->
-	<bean id="comment1" class="domain.Comment">
-		<property name="title" value="title1" />
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text1" />
-		<property name="numberOfStars" value="2" />
-		<property name="objectiveId" value="26"/>
-		<property name="owner" value="customer3"/>
-	</bean>
-	<bean id="comment2" class="domain.Comment">
-		<property name="title" value="title2"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text2"/>
-		<property name="numberOfStars" value="2"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer2"/>
-	</bean>
-	<bean id="comment3" class="domain.Comment">
-		<property name="title" value="title3"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text3"/>
-		<property name="numberOfStars" value="1"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer4"/>
-	</bean>
-	<bean id="comment4" class="domain.Comment">
-		<property name="title" value="title4"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text4"/>
-		<property name="numberOfStars" value="4"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer5"/>
-	</bean>
-	<bean id="comment5" class="domain.Comment">
-		<property name="title" value="title5"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text5"/>
-		<property name="numberOfStars" value="4"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer1"/>
-	</bean>
-	<bean id="comment6" class="domain.Comment">
-		<property name="title" value="title6"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text6"/>
-		<property name="numberOfStars" value="1"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer3"/>
-	</bean>
-	<bean id="comment7" class="domain.Comment">
-		<property name="title" value="title7"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text7"/>
-		<property name="numberOfStars" value="2"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer1"/>
-	</bean>
-	<bean id="comment8" class="domain.Comment">
-		<property name="title" value="title8"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text8"/>
-		<property name="numberOfStars" value="3"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer2"/>
-	</bean>
-	<bean id="comment9" class="domain.Comment">
-		<property name="title" value="title9"/>
-		<property name="postedMoment" value="2016/04/23 23:00:12"/>
-		<property name="text" value="text9"/>
-		<property name="numberOfStars" value="3"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer4"/>
-	</bean>
-	<bean id="comment10" class="domain.Comment">
-		<property name="title" value="title10"/>
-		<property name="postedMoment" value="2016/05/23 23:00:12"/>
-		<property name="text" value="text10"/>
-		<property name="numberOfStars" value="3"/>
-		<property name="objectiveId" value="29"/>
-		<property name="owner" value="customer5"/>
-	</bean>
-	<!-- /Comment-->
+
 	<!-- Administrator -->
 
 	<bean id="administrator1" class="domain.Administrator">
@@ -365,12 +284,62 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="customer4" class="domain.Customer">
+	<property name="name" value="Customer4Name" />
+	<property name="surname" value="Customer4Surname" />
+	<property name="email" value="Customer4Email@gmail.com"/>
+	<property name="phone" value="+23-34564563456"/>
+	<property name="userAccount" ref="userAccountCustomer4" />
+	<property name="comment">
+		<list>
+			<ref bean="comment3"/>
+		</list>
+	</property>
+	<property name="offers">
+		<list>
+			<ref bean="offer3"/>
+		</list>
+	</property>
+	<property name="requests">
+		<list>
+			<ref bean="request3"/>
+		</list>
+	</property>
+</bean>
+	<bean id="customer5" class="domain.Customer">
+		<property name="name" value="Customer5Name" />
+		<property name="surname" value="Customer5Surname" />
+		<property name="email" value="Customer5Email@gmail.com"/>
+		<property name="phone" value="+23-34564563456"/>
+		<property name="userAccount" ref="userAccountCustomer5" />
+		<property name="comment">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="offers">
+			<list>
+				<ref bean="offer3"/>
+			</list>
+		</property>
+		<property name="requests">
+			<list>
+				<ref bean="request3"/>
+			</list>
+		</property>
+	</bean>
 	<!-- /Administrator-->
 
 
 	<!-- Offer -->
 	<bean id="offer1" class="domain.Offer">
-		<property name="owner" value="customer1" />
+		<property name="title" value="title1" />
+		<property name="description" value="description1" />
+		<property name="tripDate" value="2017/05/23 23:00:12"/>
+		<property name="originAddress" value="origen1" />
+		<property name="destinationAddress" value="destination1" />
+
+		<property name="owner" ref="customer1" />
 		<property name="comment">
 			<list>
 				<ref bean="comment4"/>
@@ -384,7 +353,12 @@
 		</property>
 	</bean>
 	<bean id="offer2" class="domain.Offer">
-		<property name="owner" value="customer2" />
+		<property name="title" value="title1" />
+		<property name="description" value="description1" />
+		<property name="tripDate" value="2017/05/23 23:00:12"/>
+		<property name="originAddress" value="origen1" />
+		<property name="destinationAddress" value="destination1" />
+		<property name="owner" ref="customer2" />
 		<property name="comment">
 			<list>
 				<ref bean="comment3"/>
@@ -398,7 +372,12 @@
 
 	</bean>
 	<bean id="offer3" class="domain.Offer">
-		<property name="owner" value="customer3" />
+		<property name="title" value="title1" />
+		<property name="description" value="description1" />
+		<property name="tripDate" value="2017/05/23 23:00:12"/>
+		<property name="originAddress" value="origen1" />
+		<property name="destinationAddress" value="destination1" />
+		<property name="owner" ref="customer3" />
 		<property name="comment">
 			<list>
 				<ref bean="comment10"/>
@@ -415,7 +394,13 @@
 	<!-- /Offer -->
 	<!-- Request -->
 	<bean id="request1" class="domain.Request">
-		<property name="owner" value="customer2" />
+		<property name="title" value="title1" />
+		<property name="description" value="description1" />
+		<property name="tripDate" value="2017/04/23 23:00:12"/>
+		<property name="originAddress" value="origen1" />
+		<property name="destinationAddress" value="destination1" />
+		<property name="banned" value="false"/>
+		<property name="owner" ref="customer2" />
 		<property name="comment">
 			<list>
 				<ref bean="comment9"/>
@@ -430,7 +415,13 @@
 		</property>
 	</bean>
 	<bean id="request2" class="domain.Request">
-		<property name="owner" value="customer1" />
+		<property name="title" value="title2" />
+		<property name="description" value="description2" />
+		<property name="tripDate" value="2017/05/23 23:00:12"/>
+		<property name="originAddress" value="origen2" />
+		<property name="destinationAddress" value="destination2" />
+		<property name="banned" value="true"/>
+		<property name="owner" ref="customer2" />
 		<property name="comment">
 			<list>
 				<ref bean="comment7"/>
@@ -444,7 +435,13 @@
 		</property>
 	</bean>
 	<bean id="request3" class="domain.Request">
-		<property name="owner" value="customer3" />
+		<property name="title" value="title3" />
+		<property name="description" value="description3" />
+		<property name="tripDate" value="2017/04/13 23:00:12"/>
+		<property name="originAddress" value="origen3" />
+		<property name="destinationAddress" value="destination1" />
+		<property name="banned" value="false"/>
+		<property name="owner" ref="customer3" />
 		<property name="comment">
 			<list>
 				<ref bean="comment6"/>
@@ -462,89 +459,170 @@
 
 
 	<!-- /Request -->
-
+	<!-- Comment -->
+	<bean id="comment1" class="domain.Comment">
+		<property name="title" value="title1" />
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text1" />
+		<property name="numberOfStars" value="2" />
+		<property name="objectiveId" value="26"/>
+		<property name="owner" ref="customer3"/>
+	</bean>
+	<bean id="comment2" class="domain.Comment">
+		<property name="title" value="title2"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text2"/>
+		<property name="numberOfStars" value="2"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer2"/>
+	</bean>
+	<bean id="comment3" class="domain.Comment">
+		<property name="title" value="title3"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text3"/>
+		<property name="numberOfStars" value="1"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer4"/>
+	</bean>
+	<bean id="comment4" class="domain.Comment">
+		<property name="title" value="title4"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text4"/>
+		<property name="numberOfStars" value="4"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer5"/>
+	</bean>
+	<bean id="comment5" class="domain.Comment">
+		<property name="title" value="title5"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text5"/>
+		<property name="numberOfStars" value="4"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer1"/>
+	</bean>
+	<bean id="comment6" class="domain.Comment">
+		<property name="title" value="title6"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text6"/>
+		<property name="numberOfStars" value="1"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer3"/>
+	</bean>
+	<bean id="comment7" class="domain.Comment">
+		<property name="title" value="title7"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text7"/>
+		<property name="numberOfStars" value="2"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer1"/>
+	</bean>
+	<bean id="comment8" class="domain.Comment">
+		<property name="title" value="title8"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text8"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer2"/>
+	</bean>
+	<bean id="comment9" class="domain.Comment">
+		<property name="title" value="title9"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text9"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer4"/>
+	</bean>
+	<bean id="comment10" class="domain.Comment">
+		<property name="title" value="title10"/>
+		<property name="postedMoment" value="2017/05/23 23:00:12"/>
+		<property name="text" value="text10"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" ref="customer5"/>
+	</bean>
+	<!-- /Comment-->
 
 
 	<!-- Message -->
 	<bean id="message1" class="domain.Message">
 		<property name="subject" value="title1" />
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text1" />
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer1"/>
-		<property name="sender" value="customer2"/>
+		<property name="recipient" ref="customer1"/>
+		<property name="sender" ref="customer2"/>
 	</bean>
 	<bean id="message2" class="domain.Message">
 		<property name="subject" value="title2"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text2"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer5"/>
-		<property name="sender" value="customer2"/>
+		<property name="recipient" ref="customer5"/>
+		<property name="sender" ref="customer2"/>
 	</bean>
 	<bean id="message3" class="domain.Message">
 		<property name="subject" value="title3"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text3"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer1"/>
-		<property name="sender" value="customer5"/>
+		<property name="recipient" ref="customer1"/>
+		<property name="sender" ref="customer5"/>
 	</bean>
 	<bean id="message4" class="domain.Message">
 		<property name="subject" value="title4"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text4"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer2"/>
-		<property name="sender" value="customer5"/>
+		<property name="recipient" ref="customer2"/>
+		<property name="sender" ref="customer5"/>
 	</bean>
 	<bean id="message5" class="domain.Message">
 		<property name="subject" value="title5"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text5"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer2"/>
-		<property name="sender" value="customer4"/>
+		<property name="recipient" ref="customer2"/>
+		<property name="sender" ref="customer4"/>
 	</bean>
 	<bean id="message6" class="domain.Message">
 		<property name="subject" value="title6"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text6"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer4"/>
-		<property name="sender" value="customer1"/>
+		<property name="recipient" ref="customer4"/>
+		<property name="sender" ref="customer1"/>
 	</bean>
 	<bean id="message7" class="domain.Message">
 		<property name="subject" value="title7"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text7"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer5"/>
-		<property name="sender" value="customer2"/>
+		<property name="recipient" ref="customer5"/>
+		<property name="sender" ref="customer2"/>
 	</bean>
 	<bean id="message8" class="domain.Message">
 		<property name="subject" value="title8"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text8"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer1"/>
-		<property name="sender" value="customer3"/>
+		<property name="recipient" ref="customer1"/>
+		<property name="sender" ref="customer3"/>
 	</bean>
 	<bean id="message9" class="domain.Message">
 		<property name="subject" value="title9"/>
-		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="sentDate" value="2017/04/23 23:00:12"/>
 		<property name="body" value="text9"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer3"/>
-		<property name="sender" value="customer4"/>
+		<property name="recipient" ref="customer3"/>
+		<property name="sender" ref="customer4"/>
 	</bean>
 	<bean id="message10" class="domain.Message">
 		<property name="subject" value="title10"/>
-		<property name="sentDate" value="2016/05/23 23:00:12"/>
+		<property name="sentDate" value="2017/05/23 23:00:12"/>
 		<property name="body" value="text10"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="recipient" value="customer5"/>
-		<property name="sender" value="customer4"/>
+		<property name="recipient" ref="customer5"/>
+		<property name="sender" ref="customer4"/>
 	</bean>
 	<!-- /Message-->
 
