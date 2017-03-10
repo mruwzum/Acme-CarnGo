@@ -10,11 +10,13 @@ import java.util.Collection;
 @Access(AccessType.PROPERTY)
 public class Request extends Trip{
 
-    // Attributes ------------------------------------------------------------
-    private RequestStatus status;
+
 
     // Relationships ---------------------------------------------------------
     public Collection<Comment> comments;
+    public Customer owner;
+    public Collection<Application> applications;
+
 
 
     //Constructor
@@ -22,13 +24,6 @@ public class Request extends Trip{
         super();
     }
 
-    public RequestStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(RequestStatus status) {
-        this.status = status;
-    }
 
 
     @Override
@@ -40,5 +35,22 @@ public class Request extends Trip{
     @Override
     public void setComment(Collection<Comment> comment) {
         this.comments=comment;
+    }
+
+    @OneToOne(optional = false)
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
+    }
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Application.class)
+    public Collection<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Collection<Application> applications) {
+        this.applications = applications;
     }
 }

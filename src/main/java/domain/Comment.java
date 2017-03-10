@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -20,6 +21,7 @@ public class Comment extends DomainEntity {
     private String title, text;
     private Date postedMoment;
     private int numberOfStars, objectiveId;
+    private Actor owner;
 
 
     //Constructor
@@ -72,5 +74,15 @@ public class Comment extends DomainEntity {
 
     public void setObjectiveId(int objectiveId) {
         this.objectiveId = objectiveId;
+    }
+
+    @NotNull
+    @OneToOne(optional = false)
+    public Actor getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Actor owner) {
+        this.owner = owner;
     }
 }

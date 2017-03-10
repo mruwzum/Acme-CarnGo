@@ -11,7 +11,10 @@ import java.util.Collection;
 public class Customer extends Actor{
 
     // Relationships ---------------------------------------------------------
-    public Collection<Comment> comments;
+
+
+    public Collection<Offer> offers;
+    public Collection<Request> requests;
 
 
     //Constructor
@@ -20,15 +23,22 @@ public class Customer extends Actor{
     }
 
 
-    @Override
-    @OneToMany(cascade = CascadeType.PERSIST)
-    public Collection<Comment> getComment() {
-        return comments;
+
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Offer.class)
+    public Collection<Offer> getOffers() {
+        return offers;
     }
 
-    @Override
-    public void setComment(Collection<Comment> comment) {
-        this.comments=comment;
+    public void setOffers(Collection<Offer> offers) {
+        this.offers = offers;
     }
 
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Request.class)
+    public Collection<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(Collection<Request> requests) {
+        this.requests = requests;
+    }
 }

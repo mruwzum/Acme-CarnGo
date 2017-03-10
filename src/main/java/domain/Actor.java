@@ -25,6 +25,8 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     private String email;
     private String phone;
     private UserAccount userAccount;
+    public Collection<Comment> comments;
+
 
     // Relationships ---------------------------------------------------------
 
@@ -89,6 +91,17 @@ public abstract  class Actor extends DomainEntity implements Commentable {
 
     public void setMessages(Collection<Message> messages) {
         this.messages = messages;
+    }
+
+    @Override
+    @OneToMany(cascade = CascadeType.PERSIST)
+    public Collection<Comment> getComment() {
+        return comments;
+    }
+
+    @Override
+    public void setComment(Collection<Comment> comment) {
+        this.comments=comment;
     }
 }
 
