@@ -62,7 +62,7 @@ public abstract class Trip extends DomainEntity implements Commentable {
         this.destinationAddress = destinationAddress;
     }
 
-    @NotBlank
+
     @Temporal(TemporalType.DATE)
     public Date getTripDate() {
         return tripDate;
