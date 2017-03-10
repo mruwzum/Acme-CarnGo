@@ -18,21 +18,67 @@
 	
 	<!-- User accounts -->
 
-	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+	<bean id="userAccountAdministrator1" class="security.UserAccount">
+		<property name="username" value="administrator1" />
+		<property name="password" value="d5cee333abe432891a0de57d0ee38713" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
+					<property name="authority" value="ADMINISTRATOR" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="customer" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+	<bean id="userAccountAdministrator2" class="security.UserAccount">
+		<property name="username" value="administrator2" />
+		<property name="password" value="82954495ff7e2a735ed2192c35b2cd00" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountAdministrator3" class="security.UserAccount">
+		<property name="username" value="administrator3" />
+		<property name="password" value="d1849d15043d73506d6a7523a1661e2d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccountAdministrator4" class="security.UserAccount">
+		<property name="username" value="administrator4" />
+		<property name="password" value="3ce013337481d5af81e21bf6791a574e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR"/>
+				</bean>
+			</list>
+		</property>
+	</bean>	<bean id="userAccountAdministrator5" class="security.UserAccount">
+	<property name="username" value="administrator5" />
+	<property name="password" value="f2ec5fdcc58bcb002270a11f6bb2a9b3" />
+	<property name="authorities">
+		<list>
+			<bean class="security.Authority">
+				<property name="authority" value="ADMINISTRATOR"/>
+			</bean>
+		</list>
+	</property>
+</bean>
+
+
+	<bean id="userAccountCustomer1" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -42,21 +88,466 @@
 		</property>
 	</bean>
 
-	<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="super" />
-		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
+	<bean id="userAccountCustomer2" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
 		<property name="authorities">
 			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
 				<bean class="security.Authority">
 					<property name="authority" value="CUSTOMER" />
 				</bean>
 			</list>
 		</property>
 	</bean>
-	
-	<!-- Other domain beans come here -->	
-	
+
+	<bean id="userAccountCustomer3" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="033f7f6121501ae98285ad77f216d5e7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccountCustomer4" class="security.UserAccount">
+		<property name="username" value="customer4" />
+		<property name="password" value="55feb130be438e686ad6a80d12dd8f44" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccountCustomer5" class="security.UserAccount">
+		<property name="username" value="customer5" />
+		<property name="password" value="9e8486cdd435beda9a60806dd334d964" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Other domain beans come here -->
+
+	<!--&lt;!&ndash; Trip &ndash;&gt;-->
+	<!--<bean id="trip1" class="domain.Trip">-->
+		<!--<property name="title" value="title1" />-->
+		<!--<property name="description" value="description1" />-->
+		<!--<property name="tripDate" value="2016/04/23 23:00:12"/>-->
+		<!--<property name="originAddress" value="origen1" />-->
+		<!--<property name="destinationAddress" value="destination1" />-->
+		<!--<property name="coordXValue" value="200.0" />-->
+		<!--<property name="coordYValue" value="-26.0"/>-->
+		<!--<property name="coordXL" value="e"/>-->
+		<!--<property name="coordYL" value="f"/>-->
+		<!---->
+		<!--<property name="banned" value="false"/>-->
+	<!--</bean>-->
+
+	<!--&lt;!&ndash; /Trip &ndash;&gt;-->
+
+
+
+
+	<!-- Application -->
+	<bean id="application1" class="domain.Application">
+		<property name="requestStatus" value="ACCEPTED"/>
+	</bean>
+	<bean id="application2" class="domain.Application">
+		<property name="requestStatus" value="ACCEPTED"/>
+	</bean>
+	<bean id="application3" class="domain.Application">
+		<property name="requestStatus" value="PENDING"/>
+	</bean>
+	<bean id="application4" class="domain.Application">
+		<property name="requestStatus" value="DENIED"/>
+	</bean>
+	<bean id="application5" class="domain.Application">
+		<property name="requestStatus" value="DENIED"/>
+	</bean>
+	<bean id="application6" class="domain.Application">
+	<property name="requestStatus" value="DENIED"/>
+</bean>
+	<!-- /Application-->
+
+	<!-- Comment -->
+	<bean id="comment1" class="domain.Comment">
+		<property name="title" value="title1" />
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text1" />
+		<property name="numberOfStars" value="2" />
+		<property name="objectiveId" value="26"/>
+		<property name="owner" value="customer3"/>
+	</bean>
+	<bean id="comment2" class="domain.Comment">
+		<property name="title" value="title2"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text2"/>
+		<property name="numberOfStars" value="2"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer2"/>
+	</bean>
+	<bean id="comment3" class="domain.Comment">
+		<property name="title" value="title3"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text3"/>
+		<property name="numberOfStars" value="1"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer4"/>
+	</bean>
+	<bean id="comment4" class="domain.Comment">
+		<property name="title" value="title4"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text4"/>
+		<property name="numberOfStars" value="4"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer5"/>
+	</bean>
+	<bean id="comment5" class="domain.Comment">
+		<property name="title" value="title5"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text5"/>
+		<property name="numberOfStars" value="4"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer1"/>
+	</bean>
+	<bean id="comment6" class="domain.Comment">
+		<property name="title" value="title6"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text6"/>
+		<property name="numberOfStars" value="1"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer3"/>
+	</bean>
+	<bean id="comment7" class="domain.Comment">
+		<property name="title" value="title7"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text7"/>
+		<property name="numberOfStars" value="2"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer1"/>
+	</bean>
+	<bean id="comment8" class="domain.Comment">
+		<property name="title" value="title8"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text8"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer2"/>
+	</bean>
+	<bean id="comment9" class="domain.Comment">
+		<property name="title" value="title9"/>
+		<property name="postedMoment" value="2016/04/23 23:00:12"/>
+		<property name="text" value="text9"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer4"/>
+	</bean>
+	<bean id="comment10" class="domain.Comment">
+		<property name="title" value="title10"/>
+		<property name="postedMoment" value="2016/05/23 23:00:12"/>
+		<property name="text" value="text10"/>
+		<property name="numberOfStars" value="3"/>
+		<property name="objectiveId" value="29"/>
+		<property name="owner" value="customer5"/>
+	</bean>
+	<!-- /Comment-->
+	<!-- Administrator -->
+
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Administrator1Name" />
+		<property name="surname" value="Administrator1Surname" />
+		<property name="email" value="Administrator1Email@gmail.com"/>
+		<property name="phone" value="+23-6234456456"/>
+		<property name="userAccount" ref="userAccountAdministrator1" />
+	</bean>
+	<bean id="administrator2" class="domain.Administrator">
+		<property name="name" value="Administrator2Name" />
+		<property name="surname" value="Administrator2Surname" />
+		<property name="email" value="Administrator2Email@gmail.com"/>
+		<property name="phone" value="+23-534745767"/>
+		<property name="userAccount" ref="userAccountAdministrator2" />
+	</bean>
+	<bean id="administrator3" class="domain.Administrator">
+		<property name="name" value="Administrator3Name" />
+		<property name="surname" value="Administrator3Surname" />
+		<property name="email" value="Administrator3Email@gmail.com"/>
+		<property name="phone" value="+23-32464536754"/>
+		<property name="userAccount" ref="userAccountAdministrator3" />
+	</bean>
+	<bean id="administrator4" class="domain.Administrator">
+		<property name="name" value="Administrator4Name" />
+		<property name="surname" value="Administrator4Surname" />
+		<property name="email" value="Administrator4Email@gmail.com"/>
+		<property name="phone" value="+23-32464536754"/>
+		<property name="userAccount" ref="userAccountAdministrator4" />
+	</bean>
+	<bean id="administrator5" class="domain.Administrator">
+		<property name="name" value="Administrator5Name" />
+		<property name="surname" value="Administrator5Surname" />
+		<property name="email" value="Administrator5Email@gmail.com"/>
+		<property name="phone" value="+23-32464536754"/>
+		<property name="userAccount" ref="userAccountAdministrator5" />
+	</bean>
+
+
+	<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Customer1Name" />
+		<property name="surname" value="Customer1Surname" />
+		<property name="email" value="Customer1Email@gmail.com"/>
+		<property name="phone" value="+23-4536435655"/>
+		<property name="userAccount" ref="userAccountCustomer1" />
+		<property name="comment">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="offers">
+			<list>
+				<ref bean="offer1"/>
+			</list>
+		</property>
+		<property name="requests">
+			<list>
+				<ref bean="request1"/>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Customer2Name" />
+		<property name="surname" value="Customer2Surname" />
+		<property name="email" value="Customer2Email@gmail.com"/>
+		<property name="phone" value="+23-324523452345"/>
+		<property name="userAccount" ref="userAccountCustomer2" />
+		<property name="comment">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="offers">
+			<list>
+				<ref bean="offer2"/>
+			</list>
+		</property>
+		<property name="requests">
+			<list>
+				<ref bean="request2"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="customer3" class="domain.Customer">
+		<property name="name" value="Customer3Name" />
+		<property name="surname" value="Customer3Surname" />
+		<property name="email" value="Customer3Email@gmail.com"/>
+		<property name="phone" value="+23-34564563456"/>
+		<property name="userAccount" ref="userAccountCustomer3" />
+		<property name="comment">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="offers">
+			<list>
+				<ref bean="offer3"/>
+			</list>
+		</property>
+		<property name="requests">
+			<list>
+				<ref bean="request3"/>
+			</list>
+		</property>
+	</bean>
+	<!-- /Administrator-->
+
+
+	<!-- Offer -->
+	<bean id="offer1" class="domain.Offer">
+		<property name="owner" value="customer1" />
+		<property name="comment">
+			<list>
+				<ref bean="comment4"/>
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application4"/>
+
+			</list>
+		</property>
+	</bean>
+	<bean id="offer2" class="domain.Offer">
+		<property name="owner" value="customer2" />
+		<property name="comment">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application5"/>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="offer3" class="domain.Offer">
+		<property name="owner" value="customer3" />
+		<property name="comment">
+			<list>
+				<ref bean="comment10"/>
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application6"/>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- /Offer -->
+	<!-- Request -->
+	<bean id="request1" class="domain.Request">
+		<property name="owner" value="customer2" />
+		<property name="comment">
+			<list>
+				<ref bean="comment9"/>
+				<ref bean="comment8"/>
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application1"/>
+
+			</list>
+		</property>
+	</bean>
+	<bean id="request2" class="domain.Request">
+		<property name="owner" value="customer1" />
+		<property name="comment">
+			<list>
+				<ref bean="comment7"/>
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application2"/>
+
+			</list>
+		</property>
+	</bean>
+	<bean id="request3" class="domain.Request">
+		<property name="owner" value="customer3" />
+		<property name="comment">
+			<list>
+				<ref bean="comment6"/>
+
+			</list>
+		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application3"/>
+
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- /Request -->
+
+
+
+	<!-- Message -->
+	<bean id="message1" class="domain.Message">
+		<property name="subject" value="title1" />
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text1" />
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer1"/>
+		<property name="sender" value="customer2"/>
+	</bean>
+	<bean id="message2" class="domain.Message">
+		<property name="subject" value="title2"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text2"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer5"/>
+		<property name="sender" value="customer2"/>
+	</bean>
+	<bean id="message3" class="domain.Message">
+		<property name="subject" value="title3"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text3"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer1"/>
+		<property name="sender" value="customer5"/>
+	</bean>
+	<bean id="message4" class="domain.Message">
+		<property name="subject" value="title4"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text4"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer2"/>
+		<property name="sender" value="customer5"/>
+	</bean>
+	<bean id="message5" class="domain.Message">
+		<property name="subject" value="title5"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text5"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer2"/>
+		<property name="sender" value="customer4"/>
+	</bean>
+	<bean id="message6" class="domain.Message">
+		<property name="subject" value="title6"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text6"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer4"/>
+		<property name="sender" value="customer1"/>
+	</bean>
+	<bean id="message7" class="domain.Message">
+		<property name="subject" value="title7"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text7"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer5"/>
+		<property name="sender" value="customer2"/>
+	</bean>
+	<bean id="message8" class="domain.Message">
+		<property name="subject" value="title8"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text8"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer1"/>
+		<property name="sender" value="customer3"/>
+	</bean>
+	<bean id="message9" class="domain.Message">
+		<property name="subject" value="title9"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text9"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer3"/>
+		<property name="sender" value="customer4"/>
+	</bean>
+	<bean id="message10" class="domain.Message">
+		<property name="subject" value="title10"/>
+		<property name="sentDate" value="2016/05/23 23:00:12"/>
+		<property name="body" value="text10"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="recipient" value="customer5"/>
+		<property name="sender" value="customer4"/>
+	</bean>
+	<!-- /Message-->
+
+
+
 </beans>

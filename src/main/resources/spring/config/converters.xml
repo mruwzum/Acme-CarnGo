@@ -22,6 +22,20 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
+		<!-- Actor -->
+		<bean class="converters.ActorToStringConverter"/>
+		<bean class="converters.StringToActorConverter"/>
+
+		<!-- Administrator -->
+		<bean class="converters.AdministratorToStringConverter"/>
+		<bean class="converters.StringToAdministratorConverter"/>
+		<!-- Comment -->
+		<bean class="converters.CommentToStringConverter"/>
+		<bean class="converters.StringToCommentConverter"/>
+
+		<!--Date -->
+		<bean class="converters.DateToStringConverter"/>
+		<bean class="converters.StringToDateConverter"/>
 	</util:list>
 	
 </beans>
