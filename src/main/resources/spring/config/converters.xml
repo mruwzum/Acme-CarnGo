@@ -36,6 +36,28 @@
 		<!--Date -->
 		<bean class="converters.DateToStringConverter"/>
 		<bean class="converters.StringToDateConverter"/>
+
+		<!-- Application -->
+		<bean class="converters.ApplicationToStringConverter"/>
+		<bean class="converters.StringToApplicationConverter"/>
+
+		<!-- Customer -->
+		<bean class="converters.CustomerToStringConverter"/>
+		<bean class="converters.StringToCustomerConverter"/>
+
+		<!-- Message -->
+		<bean class="converters.MessageToStringConverter"/>
+		<bean class="converters.StringToMessageConverter"/>
+
+		<!-- Offer -->
+		<bean class="converters.OfferToStringConverter"/>
+		<bean class="converters.StringToOfferConverter"/>
+		<!-- Request -->
+		<bean class="converters.RequestToStringConverter"/>
+		<bean class="converters.StringToRequestConverter"/>
+
+
+
 	</util:list>
 	
 </beans>
