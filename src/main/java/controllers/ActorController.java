@@ -1,7 +1,7 @@
 package controllers;
 
 
-import domain.Administrator;
+import domain.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -10,39 +10,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.AdministratorService;
+import services.ActorService;
 
 import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/administrator")
-public class AdministratorController extends AbstractController {
+@RequestMapping("/actor")
+public class ActorController extends AbstractController {
 	
 	//Services ----------------------------------------------------------------
-
-
-    @Autowired
-    private AdministratorService administratorService;
-
+	
+	@Autowired
+	private ActorService actorService;
 	
 	//Constructors----------------------------------------------
 	
-	public AdministratorController(){
+	public ActorController(){
 		super();
 	}
-	
+
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
-	public ModelAndView administratorList() {
+	public ModelAndView actorList() {
 		
 		ModelAndView result;
-		Collection<Administrator> administrators;
+		Collection<Actor> actors;
 		
-		administrators = administratorService.findAll();
-		result = new ModelAndView("administrator/list");
-		result.addObject("administrators", administrators);
-		result.addObject("requestURI","administrator/list.do");
+		actors = actorService.findAll();
+		result = new ModelAndView("actor/list");
+		result.addObject("actors", actors);
+		result.addObject("requestURI","actor/list.do");
 		
 		return result;
 	}
@@ -54,55 +52,53 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView create(){
 		
 		ModelAndView result;
+		//TODO mirar como crear actores ahora que son abstractos.
+		//Actor actor = actorService.create();
+		//result = createEditModelAndView(actor);
 		
-		Administrator administrator = administratorService.create();
-		result = createEditModelAndView(administrator);
-		
-		return result;
+		return null;
 
 		}
 	
 	 // Edition ---------------------------------------------------------
     
     @RequestMapping(value="/edit", method=RequestMethod.GET)
-    public ModelAndView edit(@RequestParam int administratorId){
+    public ModelAndView edit(@RequestParam int actorId){
         ModelAndView result;
-        Administrator administrator;
+        Actor actor;
          
-        administrator= administratorService.findOne(administratorId);
-        Assert.notNull(administrator);
-        result= createEditModelAndView(administrator);
+        actor= actorService.findOne(actorId);
+        Assert.notNull(actor);
+        result= createEditModelAndView(actor);
          
         return result;
     }
-
-
      
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
-    public ModelAndView save(@Valid Administrator administrator, BindingResult binding){
+    public ModelAndView save(@Valid Actor actor, BindingResult binding){
         ModelAndView result;
          
         if(binding.hasErrors()){
-            result= createEditModelAndView(administrator);
+            result= createEditModelAndView(actor);
         }else{
             try{
-                administratorService.save(administrator);
-                result= new ModelAndView("redirect:list.do");
+                actorService.save(actor);
+                result= new ModelAndView("/profile.do");
             }catch(Throwable oops){
-                result= createEditModelAndView(administrator, "administrator.commit.error");
+                result= createEditModelAndView(actor, "actor.commit.error");
             }
         }
         return result;
     }
      
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="delete")
-    public ModelAndView delete(Administrator administrator){
+    public ModelAndView delete(Actor actor){
         ModelAndView result;
         try{
-            administratorService.delete(administrator);
+            actorService.delete(actor);
             result=new ModelAndView("redirect:list.do");
         }catch(Throwable oops){
-            result= createEditModelAndView(administrator, "administrator.commit.error");
+            result= createEditModelAndView(actor, "actor.commit.error");
         }
          
         return result;   
@@ -110,19 +106,19 @@ public class AdministratorController extends AbstractController {
 	
 	// Ancillary methods ------------------------------------------------
     
-    protected ModelAndView createEditModelAndView(Administrator administrator){
+    protected ModelAndView createEditModelAndView(Actor actor){
         ModelAndView result;
          
-        result= createEditModelAndView(administrator, null);
+        result= createEditModelAndView(actor, null);
          
         return result;
     }
      
-    protected ModelAndView createEditModelAndView(Administrator administrator, String message){
+    protected ModelAndView createEditModelAndView(Actor actor, String message){
     	ModelAndView result;
     	
-        result= new ModelAndView("administrator/edit");
-        result.addObject("administrator", administrator);
+        result= new ModelAndView("actor/edit");
+        result.addObject("actor", actor);
         result.addObject("message", message);
          
         return result;

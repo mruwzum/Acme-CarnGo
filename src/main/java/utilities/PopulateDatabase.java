@@ -10,22 +10,20 @@
 
 package utilities;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.persistence.Entity;
-
+import domain.DomainEntity;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import utilities.internal.DatabaseUtil;
 import utilities.internal.EclipseConsole;
 import utilities.internal.ThrowablePrinter;
-import domain.DomainEntity;
+
+import javax.persistence.Entity;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class PopulateDatabase {
 
@@ -131,9 +129,7 @@ public class PopulateDatabase {
 			System.out.printf("> %s", name);
 			databaseUtil.persist(entity);
 			System.out.printf(": %s%n", entity.toString());
-			// TODO: print the entity using SchemaPrinter.  This should get a map in which 
-			// every persisted entity is mapped onto the corresponding bean name in the 
-			// PopulateDatabase.xml file; otherwise traceability will be a nightmare.
+
 		}
 		databaseUtil.closeTransaction();
 		System.out.println();

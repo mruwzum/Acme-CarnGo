@@ -1,7 +1,7 @@
 package controllers;
 
 
-import domain.Customer;
+import domain.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -10,45 +10,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.CustomerService;
+import services.RequestService;
 
 import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/customer")
-public class CustomerController extends AbstractController {
+@RequestMapping("/request")
+public class RequestController extends AbstractController {
 
 	//Services ----------------------------------------------------------------
 
 	@Autowired
-	private CustomerService customerService;
+	private RequestService requestService;
 
 
 
 
 	//Constructors----------------------------------------------
 
-	public CustomerController(){
+	public RequestController(){
 		super();
 	}
-
-    protected static ModelAndView createEditModelAndView(Customer customer) {
+	
+    protected static ModelAndView createEditModelAndView(Request request) {
         ModelAndView result;
 
-        result= createEditModelAndView(customer, null);
+        result= createEditModelAndView(request, null);
 
         return result;
     }
-
-
+	
+	
 	//Create Method -----------------------------------------------------------
-
-    protected static ModelAndView createEditModelAndView(Customer customer, String message) {
+	
+    protected static ModelAndView createEditModelAndView(Request request, String message) {
         ModelAndView result;
 
-        result= new ModelAndView("customer/edit");
-        result.addObject("customer", customer);
+        result= new ModelAndView("request/edit");
+        result.addObject("request", request);
         result.addObject("message", message);
 
         return result;
@@ -58,15 +58,15 @@ public class CustomerController extends AbstractController {
 
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
-	public ModelAndView commentList() {
+	public ModelAndView requestList() {
 
 		ModelAndView result;
-		Collection<Customer> customers;
+		Collection<Request> requests;
 
-        customers = customerService.findAll();
-		result = new ModelAndView("customer/list");
-		result.addObject("customers", customers);
-		result.addObject("requestURI","customer/list.do");
+        requests = requestService.findAll();
+		result = new ModelAndView("request/list");
+		result.addObject("requests", requests);
+		result.addObject("requestURI","request/list.do");
 
 		return result;
 	}
@@ -76,8 +76,8 @@ public class CustomerController extends AbstractController {
 
         ModelAndView result;
 
-		Customer customer = customerService.create();
-        result = createEditModelAndView(customer);
+		Request request = requestService.create();
+        result = createEditModelAndView(request);
 
 		return result;
 
@@ -87,41 +87,41 @@ public class CustomerController extends AbstractController {
 
 
     @RequestMapping(value="/edit", method=RequestMethod.GET)
-    public ModelAndView edit(@RequestParam int customerId){
+    public ModelAndView edit(@RequestParam int requestId){
         ModelAndView result;
-        Customer customer;
+        Request request;
 
-        customer= customerService.findOne(customerId);
-        Assert.notNull(customer);
-        result= createEditModelAndView(customer);
+        request= requestService.findOne(requestId);
+        Assert.notNull(request);
+        result= createEditModelAndView(request);
 
         return result;
     }
 
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
-    public ModelAndView save(@Valid Customer customer, BindingResult binding){
+    public ModelAndView save(@Valid Request request, BindingResult binding){
         ModelAndView result;
         if (!binding.hasErrors()) {
-            result= createEditModelAndView(customer);
+            result= createEditModelAndView(request);
         }else{
             try{
-                customerService.save(customer);
+                requestService.save(request);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
-                result= createEditModelAndView(customer, "customer.commit.error");
+                result= createEditModelAndView(request, "request.commit.error");
             }
         }
         return result;
     }
 
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="delete")
-    public ModelAndView delete(Customer customer){
+    public ModelAndView delete(Request request){
         ModelAndView result;
         try{
-            customerService.delete(customer);
+            requestService.delete(request);
             result=new ModelAndView("redirect:list.do");
         }catch(Throwable oops){
-            result= createEditModelAndView(customer, "customer.commit.error");
+            result= createEditModelAndView(request, "request.commit.error");
         }
 
         return result;
