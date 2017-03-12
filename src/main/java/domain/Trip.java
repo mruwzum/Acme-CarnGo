@@ -19,6 +19,12 @@ public abstract class Trip extends DomainEntity implements Commentable {
     private Double coordXValue, coordYValue;
     private char coordXL, coordYL;
     private boolean banned;
+    public Customer owner;
+
+    //Relationship
+    public Collection<Comment> comments;
+    public Collection<Application> applications;
+
 
 
     //Constructor
@@ -114,5 +120,35 @@ public abstract class Trip extends DomainEntity implements Commentable {
         this.banned = banned;
     }
 
+    @ManyToOne
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
+    }
+
+
+    @Override
+    @OneToMany(cascade = CascadeType.PERSIST)
+    public Collection<Comment> getComment() {
+        return comments;
+    }
+
+    @Override
+    public void setComment(Collection<Comment> comment) {
+        this.comments=comment;
+    }
+
+
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Application.class)
+    public Collection<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Collection<Application> applications) {
+        this.applications = applications;
+    }
 
 }

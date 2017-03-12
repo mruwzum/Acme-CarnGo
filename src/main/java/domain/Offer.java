@@ -10,10 +10,11 @@ import java.util.Collection;
 @Access(AccessType.PROPERTY)
 public class Offer extends Trip{
 
+
+    public Customer ownerO;
+
     // Relationships ---------------------------------------------------------
-    public Collection<Comment> comments;
-    public Customer owner;
-    Collection<Application> applications;
+
 
 
     //Constructor
@@ -22,34 +23,12 @@ public class Offer extends Trip{
     }
 
 
-    @Override
-    @OneToMany(cascade = CascadeType.PERSIST)
-    public Collection<Comment> getComment() {
-        return comments;
+    @ManyToOne
+    public Customer getOwnerO() {
+        return ownerO;
     }
 
-    @Override
-    public void setComment(Collection<Comment> comment) {
-        this.comments=comment;
+    public void setOwnerO(Customer ownerO) {
+        this.ownerO = ownerO;
     }
-
-    @OneToOne(optional = false)
-    public Customer getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Customer owner) {
-        this.owner = owner;
-    }
-
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Application.class)
-    public Collection<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(Collection<Application> applications) {
-        this.applications = applications;
-    }
-
-
 }

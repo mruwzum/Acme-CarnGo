@@ -69,7 +69,7 @@ public class Message extends DomainEntity {
     }
 
     @NotNull
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST, targetEntity = Actor.class)
+    @ManyToOne
     public Actor getSender() {
         return sender;
     }
@@ -79,7 +79,7 @@ public class Message extends DomainEntity {
     }
 
     @NotNull
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST, targetEntity = Actor.class)
+    @ManyToOne
     public Actor getRecipient() {
         return recipient;
     }

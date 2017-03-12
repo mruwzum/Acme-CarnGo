@@ -24,7 +24,7 @@ public class Customer extends Actor{
 
 
 
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Offer.class)
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Offer.class, mappedBy = "ownerO")
     public Collection<Offer> getOffers() {
         return offers;
     }
@@ -33,7 +33,7 @@ public class Customer extends Actor{
         this.offers = offers;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Request.class)
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Request.class, mappedBy = "ownerR")
     public Collection<Request> getRequests() {
         return requests;
     }

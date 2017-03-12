@@ -74,7 +74,7 @@ public class Comment extends DomainEntity {
     }
 
     @NotNull
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne
     public Actor getOwner() {
         return owner;
     }

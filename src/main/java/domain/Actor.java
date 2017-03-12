@@ -30,7 +30,9 @@ public abstract  class Actor extends DomainEntity implements Commentable {
 
     // Relationships ---------------------------------------------------------
 
-    private Collection<Message> messages;
+    private Collection<Message> sendMessages;
+    private Collection<Message> recivedMessages;
+
 
     // Constructors -----------------------------------------------------------
     public Actor() {
@@ -84,17 +86,9 @@ public abstract  class Actor extends DomainEntity implements Commentable {
         this.userAccount = userAccount;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    public Collection<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Collection<Message> messages) {
-        this.messages = messages;
-    }
 
     @Override
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Comment.class, mappedBy = "owner")
     public Collection<Comment> getComment() {
         return comments;
     }
@@ -102,6 +96,24 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     @Override
     public void setComment(Collection<Comment> comment) {
         this.comments=comment;
+    }
+
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class, mappedBy = "sender")
+    public Collection<Message> getSendMessages() {
+        return sendMessages;
+    }
+
+    public void setSendMessages(Collection<Message> sendMessages) {
+        this.sendMessages = sendMessages;
+    }
+
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class, mappedBy = "recipient")
+    public Collection<Message> getRecivedMessages() {
+        return recivedMessages;
+    }
+
+    public void setRecivedMessages(Collection<Message> recivedMessages) {
+        this.recivedMessages = recivedMessages;
     }
 }
 
