@@ -22,10 +22,22 @@
 		<value>/views/misc/tiles.xml</value>		
 		<value>/views/security/tiles.xml</value>
 		<value>/views/welcome/tiles.xml</value>
-		
+
+		<!-- Administrator -->
 		<value>/views/administrator/tiles.xml</value>
+		<!-- Customer -->
 		<value>/views/customer/tiles.xml</value>
-		<value>/views/profile/tiles.xml</value>
+		<!-- Application -->
+		<value>/views/application/tiles.xml</value>
+		<!-- Comment -->
+		<value>/views/comment/tiles.xml</value>
+		<!-- Message -->
+		<value>/views/message/tiles.xml</value>
+		<!-- Rquest -->
+		<value>/views/request/tiles.xml</value>
+		<!-- Offer -->
+		<value>/views/offer/tiles.xml</value>
+
 	</util:list>
 
 </beans>

@@ -22,10 +22,25 @@
 		<value>/views/misc/messages</value>
 		<value>/views/security/messages</value>		
 		<value>/views/welcome/messages</value>
-		
+
+
+
+		<!-- Administrator -->
 		<value>/views/administrator/messages</value>
+		<!-- Application -->
+		<value>/views/application/messages</value>
+		<!-- Customer -->
 		<value>/views/customer/messages</value>
-		<value>/views/profile/messages</value>
+		<!-- Comment -->
+		<value>/views/comment/messages</value>
+		<!-- Message -->
+		<value>/views/message/messages</value>
+		<!-- Offer -->
+		<value>/views/offer/messages</value>
+		<!-- Request -->
+		<value>/views/request/messages</value>
+
+
 	</util:list>
 
 </beans>

@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
 
-/**
- * Created by daviddelatorre on 10/3/17.
- */
 
 @Entity
 @Access(AccessType.PROPERTY)
