@@ -31,7 +31,7 @@ public class AdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("administrator/action-1");
-
+		
 		return result;
 	}
 

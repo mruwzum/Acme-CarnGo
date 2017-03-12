@@ -19,7 +19,6 @@ public abstract class Trip extends DomainEntity implements Commentable {
     private Double coordXValue, coordYValue;
     private char coordXL, coordYL;
     private boolean banned;
-    public Customer owner;
 
     //Relationship
     public Collection<Comment> comments;
@@ -118,15 +117,6 @@ public abstract class Trip extends DomainEntity implements Commentable {
 
     public void setBanned(boolean banned) {
         this.banned = banned;
-    }
-
-    @ManyToOne
-    public Customer getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Customer owner) {
-        this.owner = owner;
     }
 
 
