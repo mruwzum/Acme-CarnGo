@@ -10,9 +10,9 @@
  * http://www.tdg-seville.info/License.html
  -->
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
 	
@@ -388,7 +388,7 @@
 		<property name="originAddress" value="origen1" />
 		<property name="destinationAddress" value="destination1" />
 
-		<property name="owner" ref="customer1" />
+        <property name="ownerO" ref="customer1"/>
 		<property name="comment">
 			<list>
 
@@ -407,7 +407,7 @@
 		<property name="tripDate" value="2017/05/23 23:00:12"/>
 		<property name="originAddress" value="origen1" />
 		<property name="destinationAddress" value="destination1" />
-		<property name="owner" ref="customer2" />
+        <property name="ownerO" ref="customer2"/>
 		<property name="comment">
 			<list>
 
@@ -426,7 +426,7 @@
 		<property name="tripDate" value="2017/05/23 23:00:12"/>
 		<property name="originAddress" value="origen1" />
 		<property name="destinationAddress" value="destination1" />
-		<property name="owner" ref="customer3" />
+        <property name="ownerO" ref="customer3"/>
 		<property name="comment">
 			<list>
 
@@ -449,7 +449,7 @@
 		<property name="originAddress" value="origen1" />
 		<property name="destinationAddress" value="destination1" />
 		<property name="banned" value="false"/>
-		<property name="owner" ref="customer2" />
+        <property name="ownerR" ref="customer2"/>
 		<property name="comment">
 			<list>
 
@@ -469,7 +469,7 @@
 		<property name="originAddress" value="origen2" />
 		<property name="destinationAddress" value="destination2" />
 		<property name="banned" value="true"/>
-		<property name="owner" ref="customer2" />
+        <property name="ownerR" ref="customer2"/>
 		<property name="comment">
 			<list>
 			</list>
@@ -488,7 +488,7 @@
 		<property name="originAddress" value="origen3" />
 		<property name="destinationAddress" value="destination1" />
 		<property name="banned" value="false"/>
-		<property name="owner" ref="customer3" />
+        <property name="ownerR" ref="customer3"/>
 		<property name="comment">
 			<list>
 
@@ -549,88 +549,88 @@
 	<!-- /Comment-->
 
 
-	<!--&lt;!&ndash; Message &ndash;&gt;-->
-	<!--<bean id="message1" class="domain.Message">-->
-		<!--<property name="subject" value="title1" />-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text1" />-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer1"/>-->
-		<!--<property name="sender" ref="customer2"/>-->
-	<!--</bean>-->
-	<!--<bean id="message2" class="domain.Message">-->
-		<!--<property name="subject" value="title2"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text2"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer5"/>-->
-		<!--<property name="sender" ref="customer2"/>-->
-	<!--</bean>-->
-	<!--<bean id="message3" class="domain.Message">-->
-		<!--<property name="subject" value="title3"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text3"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer1"/>-->
-		<!--<property name="sender" ref="customer5"/>-->
-	<!--</bean>-->
-	<!--<bean id="message4" class="domain.Message">-->
-		<!--<property name="subject" value="title4"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text4"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer2"/>-->
-		<!--<property name="sender" ref="customer5"/>-->
-	<!--</bean>-->
-	<!--<bean id="message5" class="domain.Message">-->
-		<!--<property name="subject" value="title5"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text5"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer2"/>-->
-		<!--<property name="sender" ref="customer4"/>-->
-	<!--</bean>-->
-	<!--<bean id="message6" class="domain.Message">-->
-		<!--<property name="subject" value="title6"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text6"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer4"/>-->
-		<!--<property name="sender" ref="customer1"/>-->
-	<!--</bean>-->
-	<!--<bean id="message7" class="domain.Message">-->
-		<!--<property name="subject" value="title7"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text7"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer5"/>-->
-		<!--<property name="sender" ref="customer2"/>-->
-	<!--</bean>-->
-	<!--<bean id="message8" class="domain.Message">-->
-		<!--<property name="subject" value="title8"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text8"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer1"/>-->
-		<!--<property name="sender" ref="customer3"/>-->
-	<!--</bean>-->
-	<!--<bean id="message9" class="domain.Message">-->
-		<!--<property name="subject" value="title9"/>-->
-		<!--<property name="sentDate" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="body" value="text9"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer3"/>-->
-		<!--<property name="sender" ref="customer4"/>-->
-	<!--</bean>-->
-	<!--<bean id="message10" class="domain.Message">-->
-		<!--<property name="subject" value="title10"/>-->
-		<!--<property name="sentDate" value="2017/05/23 23:00:12"/>-->
-		<!--<property name="body" value="text10"/>-->
-		<!--<property name="attachments" value="sdfasdfsdfsdfsd"/>-->
-		<!--<property name="recipient" ref="customer5"/>-->
-		<!--<property name="sender" ref="customer4"/>-->
-	<!--</bean>-->
-	<!--&lt;!&ndash; /Message&ndash;&gt;-->
+    <!-- Message -->
+    <bean id="message1" class="domain.Message">
+        <property name="subject" value="title1"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text1"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer1"/>
+        <property name="sender" ref="customer2"/>
+    </bean>
+    <bean id="message2" class="domain.Message">
+        <property name="subject" value="title2"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text2"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer5"/>
+        <property name="sender" ref="customer2"/>
+    </bean>
+    <bean id="message3" class="domain.Message">
+        <property name="subject" value="title3"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text3"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer1"/>
+        <property name="sender" ref="customer5"/>
+    </bean>
+    <bean id="message4" class="domain.Message">
+        <property name="subject" value="title4"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text4"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer2"/>
+        <property name="sender" ref="customer5"/>
+    </bean>
+    <bean id="message5" class="domain.Message">
+        <property name="subject" value="title5"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text5"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer2"/>
+        <property name="sender" ref="customer4"/>
+    </bean>
+    <bean id="message6" class="domain.Message">
+        <property name="subject" value="title6"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text6"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer4"/>
+        <property name="sender" ref="customer1"/>
+    </bean>
+    <bean id="message7" class="domain.Message">
+        <property name="subject" value="title7"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text7"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer5"/>
+        <property name="sender" ref="customer2"/>
+    </bean>
+    <bean id="message8" class="domain.Message">
+        <property name="subject" value="title8"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text8"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer1"/>
+        <property name="sender" ref="customer3"/>
+    </bean>
+    <bean id="message9" class="domain.Message">
+        <property name="subject" value="title9"/>
+        <property name="sentDate" value="2016/04/23 23:00:12"/>
+        <property name="body" value="text9"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer3"/>
+        <property name="sender" ref="customer4"/>
+    </bean>
+    <bean id="message10" class="domain.Message">
+        <property name="subject" value="title10"/>
+        <property name="sentDate" value="2017/01/23 23:00:12"/>
+        <property name="body" value="text10"/>
+        <property name="attachments" value="sdfasdfsdfsdfsd"/>
+        <property name="recipient" ref="customer5"/>
+        <property name="sender" ref="customer4"/>
+    </bean>
+    <!-- /Message-->
 
 
 
