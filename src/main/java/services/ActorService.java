@@ -106,6 +106,7 @@ public class ActorService {
 
         u.setUserAccount(userAccount);
 
+        Assert.notNull(u.getUserAccount().getAuthorities(),"asdads");
 	Customer resu = customerService.save(u);
         return resu;
 }

@@ -58,8 +58,13 @@
 
 		<!--Allows a customer to create a trip offer-->
 		<security:intercept-url pattern="/offer/create.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/offer/edit.do" access="hasRole('CUSTOMER')"/>
+
 		<!--Allows a customer to create a request for a trip-->
 		<security:intercept-url pattern="/request/create.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/request/edit.do" access="hasRole('CUSTOMER')"/>
+
+
 
 
 
