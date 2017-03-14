@@ -17,7 +17,6 @@
     <form:hidden path="id"/>
     <form:hidden path="banned"/>
     <form:hidden path="ownerO"/>
-    <form:hidden path="comments"/>
     <form:hidden path="applications"/>
 
 

@@ -65,10 +65,10 @@
 		<security:intercept-url pattern="/request/edit.do" access="hasRole('CUSTOMER')"/>
 
 
-
-
-
-
+		<!--Allows a customer to list all the offers-->
+		<security:intercept-url pattern="/offer/list.do" access="hasRole('CUSTOMER')"/>
+		<!--Allows a customer to list all the requests-->
+		<security:intercept-url pattern="/request/list.do" access="hasRole('CUSTOMER')"/>
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
