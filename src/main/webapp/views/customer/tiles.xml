@@ -25,5 +25,8 @@
 		<put-attribute name="title" value="customers: List " />
 		<put-attribute name="body" value="/views/customer/list.jsp" />
 	</definition>
-	
+	<definition name="customer/register" extends="master.page">
+		<put-attribute name="title" value="customers: Register"/>
+		<put-attribute name="body" value="/views/customer/register.jsp"/>
+	</definition>
 </tiles-definitions>

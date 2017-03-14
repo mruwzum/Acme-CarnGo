@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ActorService;
 import services.CustomerService;
 
 import javax.validation.Valid;
@@ -24,7 +25,8 @@ public class CustomerController extends AbstractController {
 	@Autowired
 	private CustomerService customerService;
 
-
+    @Autowired
+    private ActorService actorService;
 
 
 	//Constructors----------------------------------------------
@@ -47,7 +49,7 @@ public class CustomerController extends AbstractController {
     protected static ModelAndView createEditModelAndView(Customer customer, String message) {
         ModelAndView result;
 
-        result= new ModelAndView("customer/edit");
+        result = new ModelAndView("customer/register");
         result.addObject("customer", customer);
         result.addObject("message", message);
 
@@ -55,6 +57,28 @@ public class CustomerController extends AbstractController {
 
     }
 
+
+    protected static ModelAndView createEditModelAndView2(Customer customer) {
+        ModelAndView result;
+
+        result = createEditModelAndView2(customer, null);
+
+        return result;
+    }
+
+
+    //Create Method -----------------------------------------------------------
+
+    protected static ModelAndView createEditModelAndView2(Customer customer, String message) {
+        ModelAndView result;
+
+        result = new ModelAndView("customer/register");
+        result.addObject("customer", customer);
+        result.addObject("message", message);
+
+        return result;
+
+    }
 
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
@@ -83,7 +107,17 @@ public class CustomerController extends AbstractController {
 
 		}
 
-	// Ancillary methods ------------------------------------------------
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register() {
+
+        ModelAndView result;
+        Customer customer = customerService.create();
+        result = createEditModelAndView(customer);
+
+        return result;
+
+    }
+    // Ancillary methods ------------------------------------------------
 
 
     @RequestMapping(value="/edit", method=RequestMethod.GET)
@@ -98,6 +132,14 @@ public class CustomerController extends AbstractController {
         return result;
     }
 
+
+    @RequestMapping(value = "/finishRegistration", method = RequestMethod.POST, params = "save")
+    public ModelAndView saveRegistration(@Valid Customer customer) {
+        ModelAndView result;
+        actorService.registerAsCustomer(customer);
+        result = new ModelAndView("redirect:list.do");
+        return result;
+    }
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Customer customer, BindingResult binding){
         ModelAndView result;

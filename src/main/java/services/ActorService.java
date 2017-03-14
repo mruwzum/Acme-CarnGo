@@ -1,10 +1,13 @@
 package services;
 
 import domain.Actor;
+import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import repositories.ActorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
@@ -21,8 +24,9 @@ public class ActorService {
 	private ActorRepository actorRepository;
     @Autowired
     private UserAccountService userAccountService;
-
-    // Supporting services -----------------------
+	@Autowired
+	private CustomerService customerService;
+	// Supporting services -----------------------
 
     // Constructor -------------------------------
     public ActorService() {
@@ -87,5 +91,24 @@ public class ActorService {
         return result;
     }
 
+	public Actor registerAsCustomer(Customer u) {
+		Assert.notNull(u);
+		Authority autoh = new Authority();
+		autoh.setAuthority("CUSTOMER");
+		UserAccount res = new UserAccount();
+		res.addAuthority(autoh);
+		res.setUsername(u.getUserAccount().getUsername());
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
+		String hash = encoder.encodePassword(u.getUserAccount().getPassword(), null);
+		res.setPassword(hash);
+		UserAccount userAccount = userAccountService.save(res);
+
+
+		u.setUserAccount(userAccount);
+
+		Customer resu = customerService.save(u);
+		return resu;
+	}
 
 }
