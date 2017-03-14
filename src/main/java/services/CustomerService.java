@@ -1,11 +1,14 @@
 package services;
 
+import domain.Actor;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.CustomerRepository;
+import security.LoginService;
+import security.UserAccount;
 
 import java.util.Collection;
 
@@ -65,7 +68,27 @@ public class CustomerService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
+    public Customer findByPrincipal() {
+        Customer result;
+        UserAccount userAccount;
 
+        userAccount = LoginService.getPrincipal();
+        Assert.notNull(userAccount);
+        result = findByUserAccount(userAccount);
+        Assert.notNull(result);
+
+        return result;
+    }
+
+    private Customer findByUserAccount(UserAccount userAccount) {
+        Assert.notNull(userAccount);
+
+        Customer result;
+
+        result = customerRepository.findByUserAccountId(userAccount.getId());
+
+        return result;
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /**
@@ -23,6 +24,7 @@ public class Offer extends Trip{
     }
 
 
+    @NotNull
     @ManyToOne
     public Customer getOwnerO() {
         return ownerO;

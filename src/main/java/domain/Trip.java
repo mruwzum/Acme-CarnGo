@@ -3,6 +3,7 @@ package domain;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
 
@@ -68,6 +69,8 @@ public abstract class Trip extends DomainEntity implements Commentable {
     }
 
 
+
+    @NotNull
     @Temporal(TemporalType.DATE)
     public Date getTripDate() {
         return tripDate;

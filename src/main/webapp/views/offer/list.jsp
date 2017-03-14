@@ -57,11 +57,11 @@
 
 
 
-    <security:authorize access="isAuthenticated()">
-        <display:column>
-            <a href="offer/delete.do?offerId=${row.id}"> <spring:message
-                    code="offer.delete"/>
-            </a>
-        </display:column>
-    </security:authorize>
+    <%--<security:authorize access="isAuthenticated()">--%>
+        <%--<display:column>--%>
+            <%--<a href="offer/delete.do?offerId=${row.id}"> <spring:message--%>
+                    <%--code="offer.delete"/>--%>
+            <%--</a>--%>
+        <%--</display:column>--%>
+    <%--</security:authorize>--%>
 </display:table>

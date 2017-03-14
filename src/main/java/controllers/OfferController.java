@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Customer;
 import domain.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.CustomerService;
 import services.OfferService;
 
 import javax.validation.Valid;
@@ -25,7 +27,8 @@ public class OfferController extends AbstractController {
 	private OfferService offerService;
 
 
-
+    @Autowired
+    private CustomerService customerService;
 
 	//Constructors----------------------------------------------
 
@@ -105,6 +108,7 @@ public class OfferController extends AbstractController {
             result= createEditModelAndView(offer);
         }else{
             try{
+                offer.setOwnerO(customerService.findByPrincipal());
                 offerService.save(offer);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
