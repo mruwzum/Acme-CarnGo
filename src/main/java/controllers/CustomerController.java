@@ -104,7 +104,8 @@ public class CustomerController extends AbstractController {
     public ModelAndView create() {
 
         ModelAndView result;
-
+//If you're gonna use this shitty controller, you have to create a new one with a createEditModelAndView without the 2
+        //We're using this method to register as customer on da system.
 		Customer customer = customerService.create();
         result = createEditModelAndView2(customer);
 
