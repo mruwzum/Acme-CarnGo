@@ -49,7 +49,7 @@ public class CustomerController extends AbstractController {
     protected static ModelAndView createEditModelAndView(Customer customer, String message) {
         ModelAndView result;
 
-        result = new ModelAndView("customer/register");
+        result = new ModelAndView("customer/edit");
         result.addObject("customer", customer);
         result.addObject("message", message);
 
@@ -59,7 +59,27 @@ public class CustomerController extends AbstractController {
 
     //Create Method -----------------------------------------------------------
 
+    protected static ModelAndView createEditModelAndView2(Customer customer) {
+        ModelAndView result;
 
+        result= createEditModelAndView2(customer, null);
+
+        return result;
+    }
+
+
+    //Create Method -----------------------------------------------------------
+
+    protected static ModelAndView createEditModelAndView2(Customer customer, String message) {
+        ModelAndView result;
+
+        result = new ModelAndView("customer/register");
+        result.addObject("customer", customer);
+        result.addObject("message", message);
+
+        return result;
+
+    }
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
 	public ModelAndView commentList() {
@@ -91,7 +111,7 @@ public class CustomerController extends AbstractController {
     public ModelAndView register() {
         ModelAndView result;
         Customer customer = customerService.create();
-        result = createEditModelAndView(customer);
+        result = createEditModelAndView2(customer);
         return result;
     }
 

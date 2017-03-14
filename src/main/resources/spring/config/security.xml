@@ -54,6 +54,14 @@
 
 		<!--Allows a non registered customer to finish and save his/her sign up-->
 		<security:intercept-url pattern="/customer/finishRegistration.do" access="permitAll"/>
+
+
+
+
+
+
+
+
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

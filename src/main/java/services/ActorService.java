@@ -26,7 +26,7 @@ public class ActorService {
     private UserAccountService userAccountService;
 	@Autowired
 	private CustomerService customerService;
-	// Supporting services -----------------------
+    // Supporting services -----------------------
 
     // Constructor -------------------------------
     public ActorService() {
@@ -90,25 +90,24 @@ public class ActorService {
 
         return result;
     }
-
 	public Actor registerAsCustomer(Customer u) {
-		Assert.notNull(u);
-		Authority autoh = new Authority();
+    Assert.notNull(u);
+	Authority autoh = new Authority();
 		autoh.setAuthority("CUSTOMER");
-		UserAccount res = new UserAccount();
+	UserAccount res = new UserAccount();
 		res.addAuthority(autoh);
 		res.setUsername(u.getUserAccount().getUsername());
-		Md5PasswordEncoder encoder;
+	Md5PasswordEncoder encoder;
 		encoder = new Md5PasswordEncoder();
-		String hash = encoder.encodePassword(u.getUserAccount().getPassword(), null);
-		res.setPassword(hash);
-		UserAccount userAccount = userAccountService.save(res);
+	String hash = encoder.encodePassword(u.getUserAccount().getPassword(), null);
+        res.setPassword(hash);
+	UserAccount userAccount = userAccountService.save(res);
 
 
-		u.setUserAccount(userAccount);
+        u.setUserAccount(userAccount);
 
-		Customer resu = customerService.save(u);
-		return resu;
-	}
+	Customer resu = customerService.save(u);
+        return resu;
+}
 
 }
