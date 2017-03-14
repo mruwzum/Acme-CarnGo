@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.CustomerService;
 import services.RequestService;
 
 import javax.validation.Valid;
@@ -24,7 +25,8 @@ public class RequestController extends AbstractController {
 	@Autowired
 	private RequestService requestService;
 
-
+@Autowired
+private CustomerService customerService;
 
 
 	//Constructors----------------------------------------------
@@ -105,6 +107,7 @@ public class RequestController extends AbstractController {
             result= createEditModelAndView(request);
         }else{
             try{
+                request.setOwnerR(customerService.findByPrincipal());
                 requestService.save(request);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){

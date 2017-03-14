@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /**
@@ -24,7 +25,7 @@ public class Request extends Trip{
         super();
     }
 
-
+    @NotNull
     @ManyToOne
     public Customer getOwnerR() {
         return ownerR;
