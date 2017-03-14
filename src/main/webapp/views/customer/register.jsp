@@ -11,7 +11,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<form:form action="customer/finishRegistration.do" modelAttribute="customer">
+<form:form action="customer/register.do" modelAttribute="customer">
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>

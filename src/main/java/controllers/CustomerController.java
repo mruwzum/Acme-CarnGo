@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import security.Authority;
 import services.ActorService;
 import services.CustomerService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/customer")
@@ -44,7 +46,6 @@ public class CustomerController extends AbstractController {
     }
 
 
-	//Create Method -----------------------------------------------------------
 
     protected static ModelAndView createEditModelAndView(Customer customer, String message) {
         ModelAndView result;
@@ -57,8 +58,6 @@ public class CustomerController extends AbstractController {
 
     }
 
-    //Create Method -----------------------------------------------------------
-
     protected static ModelAndView createEditModelAndView2(Customer customer) {
         ModelAndView result;
 
@@ -68,7 +67,6 @@ public class CustomerController extends AbstractController {
     }
 
 
-    //Create Method -----------------------------------------------------------
 
     protected static ModelAndView createEditModelAndView2(Customer customer, String message) {
         ModelAndView result;
@@ -80,6 +78,13 @@ public class CustomerController extends AbstractController {
         return result;
 
     }
+    //Create Method -----------------------------------------------------------
+
+
+
+
+
+
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
 	public ModelAndView commentList() {
@@ -101,27 +106,27 @@ public class CustomerController extends AbstractController {
         ModelAndView result;
 
 		Customer customer = customerService.create();
-        result = createEditModelAndView(customer);
+        result = createEditModelAndView2(customer);
 
 		return result;
 
 		}
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView register() {
+    @RequestMapping(value="/register", method=RequestMethod.POST, params="save")
+    public ModelAndView register(@Valid Customer customer, BindingResult binding){
         ModelAndView result;
-        Customer customer = customerService.create();
-        result = createEditModelAndView2(customer);
+        if (!binding.hasErrors()) {
+            result= createEditModelAndView2(customer);
+        }else{
+            try{
+                actorService.registerAsCustomer(customer);
+                result= new ModelAndView("redirect:list.do");
+            }catch(Throwable oops){
+                result= createEditModelAndView2(customer, "customer.commit.error");
+            }
+        }
         return result;
     }
 
-    @RequestMapping(value = "/finishRegistration", method = RequestMethod.POST, params = "save")
-    public ModelAndView saveRegistration(@Valid Customer customer) {
-        ModelAndView result;
-        actorService.registerAsCustomer(customer);
-        result = new ModelAndView("redirect:list.do");
-        return result;
-    }
     // Ancillary methods ------------------------------------------------
 
 
