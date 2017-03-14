@@ -57,28 +57,8 @@ public class CustomerController extends AbstractController {
 
     }
 
-
-    protected static ModelAndView createEditModelAndView2(Customer customer) {
-        ModelAndView result;
-
-        result = createEditModelAndView2(customer, null);
-
-        return result;
-    }
-
-
     //Create Method -----------------------------------------------------------
 
-    protected static ModelAndView createEditModelAndView2(Customer customer, String message) {
-        ModelAndView result;
-
-        result = new ModelAndView("customer/register");
-        result.addObject("customer", customer);
-        result.addObject("message", message);
-
-        return result;
-
-    }
 
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
@@ -109,13 +89,18 @@ public class CustomerController extends AbstractController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
-
         ModelAndView result;
         Customer customer = customerService.create();
         result = createEditModelAndView(customer);
-
         return result;
+    }
 
+    @RequestMapping(value = "/finishRegistration", method = RequestMethod.POST, params = "save")
+    public ModelAndView saveRegistration(@Valid Customer customer) {
+        ModelAndView result;
+        actorService.registerAsCustomer(customer);
+        result = new ModelAndView("redirect:list.do");
+        return result;
     }
     // Ancillary methods ------------------------------------------------
 
@@ -133,13 +118,6 @@ public class CustomerController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/finishRegistration", method = RequestMethod.POST, params = "save")
-    public ModelAndView saveRegistration(@Valid Customer customer) {
-        ModelAndView result;
-        actorService.registerAsCustomer(customer);
-        result = new ModelAndView("redirect:list.do");
-        return result;
-    }
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Customer customer, BindingResult binding){
         ModelAndView result;
