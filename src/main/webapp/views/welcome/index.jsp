@@ -19,5 +19,9 @@
 
 
 <br>
-${banner}
+
 <br/>
+
+<security:authorize access="isAnonymous()">
+        ${banner}
+</security:authorize>

@@ -39,7 +39,8 @@
 		<value>/views/offer/messages</value>
 		<!-- Request -->
 		<value>/views/request/messages</value>
-
+		<!-- Banner -->
+		<value>/views/banner/messages</value>
 
 	</util:list>
 

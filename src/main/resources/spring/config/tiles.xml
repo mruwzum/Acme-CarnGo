@@ -37,7 +37,8 @@
 		<value>/views/request/tiles.xml</value>
 		<!-- Offer -->
 		<value>/views/offer/tiles.xml</value>
-
+		<!-- Banner -->
+		<value>/views/banner/tiles.xml</value>
 	</util:list>
 
 </beans>

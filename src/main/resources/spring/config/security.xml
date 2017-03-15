@@ -83,6 +83,17 @@
 		<!--Allows a customer to list all the requests-->
 		<security:intercept-url pattern="/request/list.do" access="hasRole('CUSTOMER')"/>
 
+
+
+
+		<!--Allows an administrator to list all the banners-->
+		<security:intercept-url pattern="/banner/list.do" access="hasRole('ADMINISTRATOR')"/>
+		<!--Allows an administrator to create banners-->
+		<security:intercept-url pattern="/banner/create.do" access="hasRole('ADMINISTRATOR')"/>
+		<!--Allows an administrator to edit the banners-->
+		<security:intercept-url pattern="/banner/edit.do" access="hasRole('ADMINISTRATOR')"/>
+		<!--Allows an administrator to delete the banners-->
+		<security:intercept-url pattern="/banner/delete.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 
