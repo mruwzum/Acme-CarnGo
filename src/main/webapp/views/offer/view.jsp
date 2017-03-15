@@ -31,8 +31,8 @@
 <jstl:out value="${tripDate}"/>
 
 <spring:message code="offer.banned" var="banned1"/>
-<h3><jstl:out value="${banned}"/></h3>
-<jstl:out value="${banned1}"/>
+<h3><jstl:out value="${banned1}"/></h3>
+<jstl:out value="${banned}"/>
 
 
 
