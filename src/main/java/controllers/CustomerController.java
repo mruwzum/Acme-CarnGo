@@ -87,6 +87,21 @@ public class CustomerController extends AbstractController {
 
 
 
+    @RequestMapping(value = "/applications", method = RequestMethod.GET)
+    public ModelAndView myApplications(){
+	    ModelAndView res;
+
+	    Collection<Application> applicationsAll  = customerService.getAllMyApplications();
+	    Collection<Application> applicationsP = customerService.getMyPendingApplications();
+
+        res = new ModelAndView("application/list");
+        res.addObject("applications", applicationsAll);
+        res.addObject("applicationsP", applicationsP);
+
+	    return res;
+
+
+    }
 
 
 
@@ -202,7 +217,7 @@ public class CustomerController extends AbstractController {
         return result;
     }
 
-    @RequestMapping(value="/edit/deny", method=RequestMethod.GET)
+    @RequestMapping(value="/app/deny", method=RequestMethod.GET)
     public ModelAndView deny(@RequestParam int applicationId){
         ModelAndView result;
         Boolean op;

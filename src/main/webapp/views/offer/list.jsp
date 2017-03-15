@@ -70,6 +70,13 @@
 
 
 
+    <security:authorize access="hasRole('CUSTOMER')">
+        <display:column>
+            <a href="offer/apply.do?offerId=${row.id}"> <spring:message
+                    code="request.apply"/></a>
+        </display:column>
+    </security:authorize>
+
     <%--<security:authorize access="isAuthenticated()">--%>
         <%--<display:column>--%>
             <%--<a href="offer/delete.do?offerId=${row.id}"> <spring:message--%>

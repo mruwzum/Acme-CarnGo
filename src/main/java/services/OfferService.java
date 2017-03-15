@@ -1,6 +1,8 @@
 package services;
 
+import domain.Application;
 import domain.Offer;
+import domain.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,8 @@ public class OfferService {
 
     @Autowired
     private OfferRepository offerRepository;
+    @Autowired
+    private ApplicationService applicationService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -66,5 +70,24 @@ public class OfferService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
+
+    public Boolean applyOffer(Offer offer, Application application){
+
+        Boolean res =  false;
+        Assert.notNull(offer);
+
+        try {
+            application.setRequestStatus(RequestStatus.PENDING);
+            applicationService.save(application);
+            offer.getApplications().add(application);
+            this.save(offer);
+            res=true;
+        }catch (Exception e){
+
+        }
+
+        return res;
+    }
+
 
 }

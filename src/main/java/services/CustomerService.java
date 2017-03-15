@@ -9,6 +9,8 @@ import repositories.CustomerRepository;
 import security.LoginService;
 import security.UserAccount;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -93,6 +95,50 @@ public class CustomerService {
         result = customerRepository.findByUserAccountId(userAccount.getId());
 
         return result;
+    }
+
+
+    public Collection<Application> getMyPendingApplications(){
+
+        Collection<Application> res =  new ArrayList<>();
+        Collection<Application> aux =  new ArrayList<>();
+        Customer c = findByPrincipal();
+        Assert.notNull(c,"Usuario autentificado nulo");
+        Collection<Trip> trips =  new ArrayDeque<>();
+        trips.addAll(c.getOffers());
+        trips.addAll(c.getRequests());
+
+        for(Trip t : trips){
+
+            aux.addAll(t.getApplications());
+        }
+
+        for(Application p: aux){
+            if(p.getRequestStatus().equals(RequestStatus.PENDING)){
+                res.add(p);
+            }
+        }
+
+        return res;
+
+    }
+
+    public Collection<Application> getAllMyApplications(){
+
+        Collection<Application> aux =  new ArrayList<>();
+        Customer c = findByPrincipal();
+        Assert.notNull(c,"Usuario autentificado nulo");
+        Collection<Trip> trips =  new ArrayDeque<>();
+        trips.addAll(c.getOffers());
+        trips.addAll(c.getRequests());
+
+        for(Trip t : trips){
+
+            aux.addAll(t.getApplications());
+        }
+
+        return aux;
+
     }
 
 

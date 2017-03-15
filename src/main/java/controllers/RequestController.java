@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Application;
 import domain.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ApplicationService;
 import services.CustomerService;
 import services.RequestService;
 
@@ -29,6 +31,8 @@ public class RequestController extends AbstractController {
 
 @Autowired
 private CustomerService customerService;
+@Autowired
+private ApplicationService applicationService;
 
 
 	//Constructors----------------------------------------------
@@ -199,6 +203,24 @@ private CustomerService customerService;
             result =  new ModelAndView("redirect:listAll.do");
         }
 
+
+        return result;
+    }
+
+    @RequestMapping(value="/apply", method=RequestMethod.GET)
+    public ModelAndView apply(@RequestParam int offerId){
+        ModelAndView result;
+
+        Request offer =  requestService.findOne(offerId);
+        Application application = applicationService.create();
+        application.setOwner(customerService.findByPrincipal());
+        Boolean op = requestService.applyOffer(offer,application);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("offer/error");
+        }else{
+            result =  new ModelAndView("administrator/success.do");
+        }
 
         return result;
     }
