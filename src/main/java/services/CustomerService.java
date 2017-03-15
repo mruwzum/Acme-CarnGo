@@ -123,7 +123,7 @@ public class CustomerService {
     public Boolean banOffer(Offer offer){
         Boolean res = false;
         if(offer.isBanned()){
-            res = true;
+            res = false;
         }else if(!offer.isBanned()){
             offer.setBanned(true);
             offerService.save(offer);
@@ -134,7 +134,7 @@ public class CustomerService {
     public Boolean banRequest(Request request){
         Boolean res = false;
         if(request.isBanned()){
-            res = true;
+            res = false;
         }else if(!request.isBanned()){
             request.setBanned(true);
             requestService.save(request);
