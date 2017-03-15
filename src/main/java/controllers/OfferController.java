@@ -16,7 +16,9 @@ import services.CustomerService;
 import services.OfferService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/offer")
@@ -79,18 +81,17 @@ public class OfferController extends AbstractController {
 	public ModelAndView offerList() {
 
 		ModelAndView result;
-		Collection<Offer> offers;
-        offers = offerService.findAll();
-
-
+		ArrayList<Offer> offers = new ArrayList<>(offerService.findAll());
+        Collection<Offer> offersRes = new HashSet<>();
         for(Offer o : offers){
-            if (o.isBanned()){
-                offers.remove(o);
+            if (!o.isBanned()){
+               offersRes.add(o);
             }
         }
+
         Assert.notEmpty(offers);
 		result = new ModelAndView("offer/list");
-		result.addObject("offers", offers);
+		result.addObject("offers", offersRes);
 		result.addObject("requestURI","offer/list.do");
 
 		return result;
@@ -204,7 +205,7 @@ public class OfferController extends AbstractController {
         if(op.equals(false)){
             result =  new ModelAndView("offer/error");
         }else{
-            result =  new ModelAndView("offer/list");
+            result =  new ModelAndView("redirect:listAll.do");
         }
 
 

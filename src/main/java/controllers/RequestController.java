@@ -14,7 +14,9 @@ import services.CustomerService;
 import services.RequestService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/request")
@@ -75,16 +77,16 @@ private CustomerService customerService;
 	public ModelAndView requestList() {
 
 		ModelAndView result;
-		Collection<Request> requests;
-        requests = requestService.findAll();
+        ArrayList<Request> requests = new ArrayList<>(requestService.findAll());
+        Collection<Request> requestRes = new HashSet<>();
         for(Request r : requests){
-            if (r.isBanned()){
-                requests.remove(r);
+            if (!r.isBanned()){
+                requestRes.add(r);
             }
         }
 
 		result = new ModelAndView("request/list");
-		result.addObject("requests", requests);
+		result.addObject("requests", requestRes);
 		result.addObject("requestURI","request/list.do");
 
 		return result;
@@ -194,7 +196,7 @@ private CustomerService customerService;
         if(op.equals(false)){
             result =  new ModelAndView("request/error");
         }else{
-            result =  new ModelAndView("request/list");
+            result =  new ModelAndView("redirect:listAll.do");
         }
 
 
