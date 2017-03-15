@@ -181,7 +181,7 @@ private CustomerService customerService;
         res.addObject("tripDate",o.getTripDate());
         res.addObject("comments",o.getComment());
         res.addObject("applications",o.getApplications());
-
+        res.addObject("banned",o.isBanned());
         return res;
 
     }

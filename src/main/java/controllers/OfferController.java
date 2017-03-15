@@ -73,6 +73,7 @@ public class OfferController extends AbstractController {
         result.addObject("offers", offers);
         result.addObject("requestURI","offer/list.do");
 
+
         return result;
     }
 
@@ -186,7 +187,7 @@ public class OfferController extends AbstractController {
         res.addObject("tripDate",o.getTripDate());
         res.addObject("comments",o.getComment());
         res.addObject("applications",o.getApplications());
-
+        res.addObject("banned",o.isBanned());
         return res;
 
     }
