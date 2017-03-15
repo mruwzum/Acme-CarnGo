@@ -159,21 +159,27 @@
 	<!-- Application -->
 	<bean id="application1" class="domain.Application">
 		<property name="requestStatus" value="ACCEPTED"/>
+		<property name="owner" ref="customer1"/>
 	</bean>
 	<bean id="application2" class="domain.Application">
 		<property name="requestStatus" value="ACCEPTED"/>
+		<property name="owner" ref="customer1"/>
 	</bean>
 	<bean id="application3" class="domain.Application">
 		<property name="requestStatus" value="PENDING"/>
+		<property name="owner" ref="customer2"/>
 	</bean>
 	<bean id="application4" class="domain.Application">
 		<property name="requestStatus" value="DENIED"/>
+		<property name="owner" ref="customer2"/>
 	</bean>
 	<bean id="application5" class="domain.Application">
 		<property name="requestStatus" value="DENIED"/>
+		<property name="owner" ref="customer2"/>
 	</bean>
 	<bean id="application6" class="domain.Application">
 	<property name="requestStatus" value="DENIED"/>
+		<property name="owner" ref="customer1"/>
 </bean>
 	<!-- /Application-->
 
@@ -289,6 +295,13 @@
 				<ref bean="request1"/>
 			</list>
 		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application1"/>
+				<ref bean="application2"/>
+				<ref bean="application6"/>
+			</list>
+		</property>
 
 	</bean>
 	<bean id="customer2" class="domain.Customer">
@@ -312,6 +325,14 @@
 				<ref bean="request2"/>
 			</list>
 		</property>
+		<property name="applications">
+			<list>
+				<ref bean="application3"/>
+				<ref bean="application4"/>
+				<ref bean="application5"/>
+			</list>
+		</property>
+
 	</bean>
 	<bean id="customer3" class="domain.Customer">
 		<property name="name" value="Customer3Name" />

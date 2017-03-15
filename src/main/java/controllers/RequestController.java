@@ -73,6 +73,23 @@ private CustomerService customerService;
 		return result;
 	}
 
+
+    //List the request of actor who is authenticated
+
+    @RequestMapping( value="/listMy", method = RequestMethod.GET)
+    public ModelAndView RequestsMyList() {
+
+        ModelAndView result;
+
+        Collection<Request> offers = customerService.findByPrincipal().getRequests();
+
+        result = new ModelAndView("request/list");
+        result.addObject("requests", offers);
+        result.addObject("requestURI","request/list.do");
+
+        return result;
+    }
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
@@ -130,4 +147,23 @@ private CustomerService customerService;
         return result;
     }
 
+
+    @RequestMapping(value = "/view" , method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam int requestId){
+
+        ModelAndView res;
+        Request o = requestService.findOne(requestId);
+
+        res = new ModelAndView("offer/view");
+        res.addObject("title",o.getTitle());
+        res.addObject("description",o.getDescription());
+        res.addObject("originAddress", o.getOriginAddress());
+        res.addObject("destinationAddress", o.getDestinationAddress());
+        res.addObject("tripDate",o.getTripDate());
+        res.addObject("comments",o.getComment());
+        res.addObject("applications",o.getApplications());
+
+        return res;
+
+    }
 }

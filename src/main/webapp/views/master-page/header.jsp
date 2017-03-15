@@ -31,6 +31,8 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
+
+
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -38,6 +40,18 @@
 					<li><a href="request/create.do"><spring:message code="master.page.customer.create.request" /></a></li>
 				</ul>
 			</li>
+
+			<li><a class="fNiv"><spring:message	code="master.page.trips" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="offer/listMy.do"><spring:message code="master.page.customer.list.my.offer" /></a></li>
+					<li><a href="request/listMy.do"><spring:message code="master.page.customer.list.my.request" /></a></li>
+				</ul>
+			</li>
+
+			<li><a href="offer/list.do"><spring:message code="master.page.customer.list.offer" /></a></li>
+			<li><a href="request/list.do"><spring:message code="master.page.customer.list.request" /></a></li>
+
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

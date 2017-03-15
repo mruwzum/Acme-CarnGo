@@ -58,7 +58,7 @@ public class OfferController extends AbstractController {
 
     }
 
-
+    //List all offers
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
 	public ModelAndView commentList() {
@@ -74,7 +74,24 @@ public class OfferController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	//List the offers of actor who is authenticated
+
+    @RequestMapping( value="/listMy", method = RequestMethod.GET)
+    public ModelAndView OfferMyList() {
+
+        ModelAndView result;
+
+        Collection<Offer> offers = customerService.findByPrincipal().getOffers();
+
+        result = new ModelAndView("offer/list");
+        result.addObject("offers", offers);
+        result.addObject("requestURI","offer/list.do");
+
+        return result;
+    }
+
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
         ModelAndView result;
@@ -129,6 +146,26 @@ public class OfferController extends AbstractController {
         }
 
         return result;
+    }
+
+
+    @RequestMapping(value = "/view" , method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam int offerId){
+
+        ModelAndView res;
+        Offer o = offerService.findOne(offerId);
+
+        res = new ModelAndView("offer/view");
+        res.addObject("title",o.getTitle());
+        res.addObject("description",o.getDescription());
+        res.addObject("originAddress", o.getOriginAddress());
+        res.addObject("destinationAddress", o.getDestinationAddress());
+        res.addObject("tripDate",o.getTripDate());
+        res.addObject("comments",o.getComment());
+        res.addObject("applications",o.getApplications());
+
+        return res;
+
     }
 
 }

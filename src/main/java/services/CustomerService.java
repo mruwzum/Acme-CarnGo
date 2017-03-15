@@ -1,7 +1,9 @@
 package services;
 
 import domain.Actor;
+import domain.Application;
 import domain.Customer;
+import domain.RequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,8 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private ApplicationService applicationService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -88,6 +92,32 @@ public class CustomerService {
         result = customerRepository.findByUserAccountId(userAccount.getId());
 
         return result;
+    }
+
+
+    public Boolean acceptApplication(Application application){
+
+        Boolean res = false;
+        if(!application.getRequestStatus().equals(RequestStatus.ACCEPTED)){
+            application.setRequestStatus(RequestStatus.ACCEPTED);
+            applicationService.save(application);
+                    res= true;
+        }
+
+        return res;
+    }
+
+
+    public Boolean deniedApplication(Application application){
+
+        Boolean res = false;
+        if(!application.getRequestStatus().equals(RequestStatus.DENIED)){
+            application.setRequestStatus(RequestStatus.DENIED);
+            applicationService.save(application);
+            res= true;
+        }
+
+        return res;
     }
 
 

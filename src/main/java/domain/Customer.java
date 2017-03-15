@@ -15,6 +15,7 @@ public class Customer extends Actor{
 
     public Collection<Offer> offers;
     public Collection<Request> requests;
+    public Collection<Application> applications;
 
 
     //Constructor
@@ -40,5 +41,14 @@ public class Customer extends Actor{
 
     public void setRequests(Collection<Request> requests) {
         this.requests = requests;
+    }
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
+    public Collection<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Collection<Application> applications) {
+        this.applications = applications;
     }
 }

@@ -64,6 +64,19 @@
 		<security:intercept-url pattern="/request/create.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/request/edit.do" access="hasRole('CUSTOMER')"/>
 
+		<!--Allows a customer and administrator to list requests anf offers -->
+		<security:intercept-url pattern="/request/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/offer/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+
+		<!--Allows a customer and administrator to view requests anf offers -->
+		<security:intercept-url pattern="/request/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/offer/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+
+		<!--Allows a customer to list his or her requests anf offers -->
+		<security:intercept-url pattern="/request/listMy.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/offer/listMy.do" access="hasRole('CUSTOMER')"/>
+
+
 
 		<!--Allows a customer to list all the offers-->
 		<security:intercept-url pattern="/offer/list.do" access="hasRole('CUSTOMER')"/>

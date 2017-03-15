@@ -14,4 +14,9 @@
         <put-attribute name="title" value="Peticiones: Editar"/>
         <put-attribute name="body" value="/views/request/edit.jsp"/>
     </definition>
+
+    <definition name="request/view" extends="master.page">
+        <put-attribute name="title" value="Peticiones: Vista"/>
+        <put-attribute name="body" value="/views/request/view.jsp"/>
+    </definition>
 </tiles-definitions>

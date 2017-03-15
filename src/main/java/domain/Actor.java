@@ -112,6 +112,11 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     public void setRecivedMessages(Collection<Message> recivedMessages) {
         this.recivedMessages = recivedMessages;
     }
+
+    @Override
+    public String toString() {
+        return name + " " +  surname;
+    }
 }
 
 

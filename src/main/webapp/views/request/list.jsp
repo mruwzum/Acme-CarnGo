@@ -53,6 +53,12 @@
     <display:column property="coordYL" title="${coordYL}" sortable="true"/>
 
 
+    <security:authorize access="isAuthenticated()">
+        <display:column>
+            <a href="request/view.do?requestId=${row.id}"> <spring:message
+                    code="request.view"/></a>
+        </display:column>
+    </security:authorize>
 
 
 

@@ -25,5 +25,15 @@
 		<put-attribute name="title" value="Administrator: List " />
 		<put-attribute name="body" value="/views/administrator/list.jsp" />
 	</definition>
+
+	<definition name="administrator/success" extends="master.page">
+		<put-attribute name="title" value="Sucess " />
+		<put-attribute name="body" value="/views/administrator/success.jsp" />
+	</definition>
+
+	<definition name="administrator/error" extends="master.page">
+		<put-attribute name="title" value="Ops..." />
+		<put-attribute name="body" value="/views/administrator/error.jsp" />
+	</definition>
 	
 </tiles-definitions>

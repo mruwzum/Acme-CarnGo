@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Application;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import security.Authority;
 import services.ActorService;
+import services.ApplicationService;
 import services.CustomerService;
 
 import javax.validation.Valid;
@@ -29,6 +31,8 @@ public class CustomerController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+    @Autowired
+    private ApplicationService applicationService;
 
 
 	//Constructors----------------------------------------------
@@ -100,6 +104,9 @@ public class CustomerController extends AbstractController {
 		return result;
 	}
 
+
+
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
@@ -169,6 +176,44 @@ public class CustomerController extends AbstractController {
         }catch(Throwable oops){
             result= createEditModelAndView(customer, "customer.commit.error");
         }
+
+        return result;
+    }
+
+
+
+    //Manage applications
+
+    @RequestMapping(value="/app/accept", method=RequestMethod.GET)
+    public ModelAndView accept(@RequestParam int applicationId){
+        ModelAndView result;
+        Boolean op;
+        Application application = applicationService.findOne(applicationId);
+        op = customerService.acceptApplication(application);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("administrator/error");
+        }else{
+            result =  new ModelAndView("administrator/success");
+        }
+
+
+        return result;
+    }
+
+    @RequestMapping(value="/edit/deny", method=RequestMethod.GET)
+    public ModelAndView deny(@RequestParam int applicationId){
+        ModelAndView result;
+        Boolean op;
+        Application application = applicationService.findOne(applicationId);
+        op = customerService.deniedApplication(application);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("administrator/error");
+        }else{
+            result =  new ModelAndView("administrator/success");
+        }
+
 
         return result;
     }
