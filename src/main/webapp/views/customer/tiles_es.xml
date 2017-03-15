@@ -18,15 +18,16 @@
 
 	<definition name="customer/edit" extends="master.page">
 		<put-attribute name="title" value="Cliente: Editar"/>
-		<put-attribute name="body" value="/views/administrator/edit.jsp" />
+		<put-attribute name="body" value="/views/customer/edit.jsp" />
 	</definition>
 
 	<definition name="customer/list" extends="master.page">
 		<put-attribute name="title" value="Cliente: Listar"/>
-		<put-attribute name="body" value="/views/administrator/list.jsp" />
+		<put-attribute name="body" value="/views/customer/list.jsp" />
 	</definition>
 	<definition name="customer/register" extends="master.page">
 		<put-attribute name="title" value="Cliente: Registro"/>
 		<put-attribute name="body" value="/views/customer/register.jsp"/>
 	</definition>
+
 </tiles-definitions>

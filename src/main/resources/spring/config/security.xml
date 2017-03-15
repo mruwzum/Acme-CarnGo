@@ -72,8 +72,9 @@
 		<security:intercept-url pattern="/request/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/offer/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 
-
-
+		<!--Allows a customer to list all customers and view their profiles-->
+		<security:intercept-url pattern="/customer/list.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/customer/view.do" access="hasRole('CUSTOMER')"/>
 		<!--Allows a customer and administrator to view requests anf offers -->
 		<security:intercept-url pattern="/request/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/offer/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
@@ -89,6 +90,10 @@
 		<security:intercept-url pattern="/request/ban.do" access="hasRole('ADMINISTRATOR')"/>
 
 
+		<!--Allows a customer to comment onto anothers customers profile-->
+		<security:intercept-url pattern="/comment/createCustomer.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/comment/edit.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/comment/list.do" access="hasRole('CUSTOMER')"/>
 
 
 		<!--Allows an administrator to list all the banners-->

@@ -27,6 +27,8 @@
 
 		<!-- Administrator -->
 		<value>/views/administrator/messages</value>
+		<!-- Actor -->
+		<value>/views/actor/message</value>
 		<!-- Application -->
 		<value>/views/application/messages</value>
 		<!-- Customer -->

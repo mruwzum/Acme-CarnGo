@@ -85,7 +85,7 @@ public abstract  class Actor extends DomainEntity implements Commentable {
 
 
     @Override
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Comment.class, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Comment.class)
     public Collection<Comment> getComment() {
         return comments;
     }

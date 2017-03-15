@@ -2,6 +2,7 @@ package controllers;
 
 
 import domain.Application;
+import domain.Comment;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -217,5 +218,17 @@ public class CustomerController extends AbstractController {
 
         return result;
     }
+    @RequestMapping(value = "/view" , method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam int customerId){
 
+        ModelAndView res;
+        Customer o = customerService.findOne(customerId);
+        res = new ModelAndView("actor/view");
+        res.addObject("name",o.getName());
+        res.addObject("surname",o.getSurname());
+        res.addObject("comments", o.getComment());
+        res.addObject("id",customerId);
+        return res;
+
+    }
 }

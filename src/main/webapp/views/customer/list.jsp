@@ -10,26 +10,10 @@
           uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 
-<security:authorize access="permitAll">
-    <div>
-        <H5>
-            <a href="customer/create.do"> <spring:message
-                    code="customer.create"/>
-            </a>
-        </H5>
-    </div>
-</security:authorize>
-
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
                name="customers" requestURI="${requestURI}" id="row">
 
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-        <display:column>
-            <a href="customer/edit.do?customerId=${row.id}"> <spring:message
-                    code="customer.edit"/></a>
-        </display:column>
-    </security:authorize>
 
     <!-- Attributes -->
 
@@ -44,10 +28,10 @@
 
 
 
-    <security:authorize access="isAuthenticated()">
+    <security:authorize access="hasRole('CUSTOMER')">
         <display:column>
-            <a href="customer/delete.do?customerId=${row.id}"> <spring:message
-                    code="customer.delete"/>
+            <a href="customer/view.do?customerId=${row.id}"> <spring:message
+                    code="customer.profile"/>
             </a>
         </display:column>
     </security:authorize>
