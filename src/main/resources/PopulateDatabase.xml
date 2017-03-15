@@ -152,9 +152,28 @@
 	<!--</bean>-->
 
 	<!--&lt;!&ndash; /Trip &ndash;&gt;-->
+	<!-- Banner -->
+	<bean id="banner1" class="domain.Banner">
+		<property name="url" value="http://www.ambientum.com/img_boletin/home/7-puntos-amovens.jpg"/>
+	</bean>
+
+	<bean id="banner2" class="domain.Banner">
+		<property name="url" value="http://blog.nasafcu.com/wp-content/uploads/2016/02/car_sharing_1.jpg"/>
+	</bean>
+
+	<bean id="banner3" class="domain.Banner">
+		<property name="url" value="http://www.altmedia.net.au/wp-content/uploads/2014/11/Silver_yaris_in_pod_car_share_bay_lower_res.jpeg"/>
+	</bean>
+
+	<bean id="banner4" class="domain.Banner">
+		<property name="url" value="http://www.businesstravellogue.com/files/2007/07/car-share.jpg"/>
+	</bean>
 
 
 
+
+
+	<!-- /Banner -->
 
 	<!-- Application -->
 	<bean id="application1" class="domain.Application">
