@@ -57,6 +57,18 @@ private CustomerService customerService;
 
     }
 
+    @RequestMapping( value="/listAll", method = RequestMethod.GET)
+    public ModelAndView requestListAll() {
+
+        ModelAndView result;
+        Collection<Request> requests;
+        requests = requestService.findAll();
+        result = new ModelAndView("request/list");
+        result.addObject("requests", requests);
+        result.addObject("requestURI","request/list.do");
+
+        return result;
+    }
 
 
 	@RequestMapping( value="/list", method = RequestMethod.GET)
@@ -64,8 +76,13 @@ private CustomerService customerService;
 
 		ModelAndView result;
 		Collection<Request> requests;
-
         requests = requestService.findAll();
+        for(Request r : requests){
+            if (r.isBanned()){
+                requests.remove(r);
+            }
+        }
+
 		result = new ModelAndView("request/list");
 		result.addObject("requests", requests);
 		result.addObject("requestURI","request/list.do");

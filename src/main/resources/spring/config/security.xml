@@ -64,9 +64,15 @@
 		<security:intercept-url pattern="/request/create.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/request/edit.do" access="hasRole('CUSTOMER')"/>
 
-		<!--Allows a customer and administrator to list requests anf offers -->
-		<security:intercept-url pattern="/request/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
-		<security:intercept-url pattern="/offer/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<!--Allows a customer and administrator to list requests anf offers wich are not banned-->
+		<security:intercept-url pattern="/request/list.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/offer/list.do" access="hasRole('CUSTOMER')"/>
+
+		<!--Allows an administrator to list all the requests anf offers -->
+		<security:intercept-url pattern="/request/listAll.do" access="hasRole('ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/offer/listAll.do" access="hasRole('ADMINISTRATOR')"/>
+
+
 
 		<!--Allows a customer and administrator to view requests anf offers -->
 		<security:intercept-url pattern="/request/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>

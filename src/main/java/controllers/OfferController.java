@@ -3,6 +3,7 @@ package controllers;
 
 import domain.Customer;
 import domain.Offer;
+import domain.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -60,13 +61,34 @@ public class OfferController extends AbstractController {
 
     //List all offers
 
+    @RequestMapping( value="/listAll", method = RequestMethod.GET)
+    public ModelAndView offerListAll() {
+
+        ModelAndView result;
+        Collection<Offer> offers;
+        offers = offerService.findAll();
+        result = new ModelAndView("offer/list");
+        result.addObject("offers", offers);
+        result.addObject("requestURI","offer/list.do");
+
+        return result;
+    }
+
+    //List all offers without banneds
 	@RequestMapping( value="/list", method = RequestMethod.GET)
-	public ModelAndView commentList() {
+	public ModelAndView offerList() {
 
 		ModelAndView result;
 		Collection<Offer> offers;
-
         offers = offerService.findAll();
+
+
+        for(Offer o : offers){
+            if (o.isBanned()){
+                offers.remove(o);
+            }
+        }
+        Assert.notEmpty(offers);
 		result = new ModelAndView("offer/list");
 		result.addObject("offers", offers);
 		result.addObject("requestURI","offer/list.do");
