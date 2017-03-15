@@ -1,9 +1,6 @@
 package services;
 
-import domain.Actor;
-import domain.Application;
-import domain.Customer;
-import domain.RequestStatus;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +29,10 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private ApplicationService applicationService;
+    @Autowired
+    private OfferService offerService;
+    @Autowired
+    private RequestService requestService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -119,6 +120,26 @@ public class CustomerService {
 
         return res;
     }
-
-
+    public Boolean banOffer(Offer offer){
+        Boolean res = false;
+        if(offer.isBanned()){
+            res = true;
+        }else if(!offer.isBanned()){
+            offer.setBanned(true);
+            offerService.save(offer);
+            res = true;
+        }
+        return res;
+    }
+    public Boolean banRequest(Request request){
+        Boolean res = false;
+        if(request.isBanned()){
+            res = true;
+        }else if(!request.isBanned()){
+            request.setBanned(true);
+            requestService.save(request);
+            res = true;
+        }
+        return res;
+    }
 }

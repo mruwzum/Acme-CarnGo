@@ -25,7 +25,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="banner/list.do"><spring:message code="master.page.banner.list" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
+					<li><a href="offer/list.do"><spring:message code="master.page.customer.list.offer" /></a></li>
+					<li><a href="request/list.do"><spring:message code="master.page.customer.list.request" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

@@ -168,4 +168,26 @@ public class OfferController extends AbstractController {
 
     }
 
+    //Manage applications
+
+
+
+    @RequestMapping(value="ban", method=RequestMethod.GET)
+    public ModelAndView ban(@RequestParam int offerId){
+        ModelAndView result;
+        Boolean op;
+        Offer offer = offerService.findOne(offerId);
+        op = customerService.banOffer(offer);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("offer/error");
+        }else{
+            result =  new ModelAndView("offer/list");
+        }
+
+
+        return result;
+    }
+
+
 }

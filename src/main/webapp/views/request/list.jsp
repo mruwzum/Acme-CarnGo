@@ -60,6 +60,14 @@
         </display:column>
     </security:authorize>
 
+    <security:authorize access="hasRole('ADMINISTRATOR')">
+        <display:column>
+            <a href="request/ban.do?requestId=${row.id}"> <spring:message
+                    code="request.ban"/></a>
+        </display:column>
+    </security:authorize>
+
+
 
 
 

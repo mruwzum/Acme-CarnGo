@@ -166,4 +166,21 @@ private CustomerService customerService;
         return res;
 
     }
+
+    @RequestMapping(value="ban", method=RequestMethod.GET)
+    public ModelAndView ban(@RequestParam int requestId){
+        ModelAndView result;
+        Boolean op;
+        Request request = requestService.findOne(requestId);
+        op = customerService.banRequest(request);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("request/error");
+        }else{
+            result =  new ModelAndView("request/list");
+        }
+
+
+        return result;
+    }
 }

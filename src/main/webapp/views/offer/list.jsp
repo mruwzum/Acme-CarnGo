@@ -60,6 +60,13 @@
         </display:column>
     </security:authorize>
 
+    <security:authorize access="hasRole('ADMINISTRATOR')">
+        <display:column>
+            <a href="offer/ban.do?offerId=${row.id}"> <spring:message
+                    code="offer.ban"/></a>
+        </display:column>
+    </security:authorize>
+
 
 
 
