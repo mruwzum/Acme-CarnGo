@@ -78,19 +78,6 @@ private CustomerService customerService;
 		}
 
 
-    @RequestMapping(value = "/createReqCom", method = RequestMethod.GET)
-    public ModelAndView create2(@RequestParam int id) {
-
-        ModelAndView result;
-
-        Comment comment = commentService.create();
-        comment.setObjectiveId(id);
-        result = createEditModelAndViewR(comment);
-
-        return result;
-
-    }
-
 
 
 	// Ancillary methods ------------------------------------------------
