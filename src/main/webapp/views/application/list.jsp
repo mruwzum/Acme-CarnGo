@@ -42,5 +42,21 @@
     <display:column property="owner" title="${owner}" sortable="true"/>
 
 
+    <security:authorize access="hasRole('CUSTOMER')">
+        <display:column>
+            <a href="customer/app/accept.do?applicationId=${row.id}"> <spring:message
+                    code="application.Accept"/>
+            </a>
+        </display:column>
+    </security:authorize>
+
+    <security:authorize access="hasRole('CUSTOMER')">
+        <display:column>
+            <a href="customer/app/deny.do?applicationId=${row.id}"> <spring:message
+                    code="application.Deny"/>
+            </a>
+        </display:column>
+    </security:authorize>
+
 
 </display:table>

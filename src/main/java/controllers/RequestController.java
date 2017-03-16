@@ -213,7 +213,6 @@ private ApplicationService applicationService;
 
         Request offer =  requestService.findOne(offerId);
         Application application = applicationService.create();
-        application.setOwner(customerService.findByPrincipal());
         Boolean op = requestService.applyOffer(offer,application);
 
         if(op.equals(false)){

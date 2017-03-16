@@ -67,6 +67,11 @@
 		<security:intercept-url pattern="/offer/apply.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/request/apply.do" access="hasRole('CUSTOMER')"/>
 
+		<!--Allows a customer to accept or deny applies-->
+		<security:intercept-url pattern="/customer/app/accept.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/customer/app/deny.do" access="hasRole('CUSTOMER')"/>
+
+
 
 		<!--Allows a customer to create a request for a trip-->
 		<security:intercept-url pattern="/request/create.do" access="hasRole('CUSTOMER')"/>

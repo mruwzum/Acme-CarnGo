@@ -86,7 +86,6 @@ public class CustomerController extends AbstractController {
     //Create Method -----------------------------------------------------------
 
 
-
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
     public ModelAndView myApplications(){
 	    ModelAndView res;

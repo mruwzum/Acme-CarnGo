@@ -30,6 +30,8 @@ public class OfferService {
     private OfferRepository offerRepository;
     @Autowired
     private ApplicationService applicationService;
+    @Autowired
+    private CustomerService customerService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -78,9 +80,9 @@ public class OfferService {
 
         try {
             application.setRequestStatus(RequestStatus.PENDING);
-            applicationService.save(application);
             offer.getApplications().add(application);
-            this.save(offer);
+            application.setOwner(customerService.findByPrincipal());
+            applicationService.save(application);
             res=true;
         }catch (Exception e){
 

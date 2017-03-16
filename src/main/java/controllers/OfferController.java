@@ -223,15 +223,13 @@ public class OfferController extends AbstractController {
 
         Offer offer =  offerService.findOne(offerId);
         Application application = applicationService.create();
-        application.setOwner(customerService.findByPrincipal());
         Boolean op = offerService.applyOffer(offer,application);
-        applicationService.save(application);
 
 
         if(op.equals(false)){
             result =  new ModelAndView("offer/error");
         }else{
-            result =  new ModelAndView("administrator/success.do");
+            result =  new ModelAndView("administrator/success");
         }
 
         return result;
