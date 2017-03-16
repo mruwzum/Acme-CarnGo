@@ -150,14 +150,13 @@ private CustomerService customerService;
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
-        Customer customer = customerService.findOne(comment.getObjectiveId());
+
         if (!binding.hasErrors()) {
             result= createEditModelAndView(comment);
         }else{
             try{
-                comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+
                 commentService.post(comment);
-                customer.getComment().add(comment);
                 commentService.save(comment);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){

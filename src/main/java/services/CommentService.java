@@ -1,6 +1,8 @@
 package services;
 
+import domain.Actor;
 import domain.Comment;
+import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,8 +76,10 @@ public class CommentService {
 
 
     public void post(Comment comment){
+        Actor actor = actorService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
-
+        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actor.getComment().add(comment);
     }
 }
