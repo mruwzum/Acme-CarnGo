@@ -113,6 +113,8 @@
 		<security:intercept-url pattern="/administrator/view.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/.do" access="hasRole('ADMINISTRATOR')"/>
 
+		<security:intercept-url pattern="/comment2/createOfferCom.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/comment2/edit.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/ban.do" access="hasRole('ADMINISTRATOR')"/>
 		<!--Allows an administrator to list all the banners-->
 		<security:intercept-url pattern="/banner/list.do" access="hasRole('ADMINISTRATOR')"/>

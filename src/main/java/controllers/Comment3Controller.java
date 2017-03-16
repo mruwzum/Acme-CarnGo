@@ -16,15 +16,13 @@ import services.CommentService;
 import services.CustomerService;
 
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.HashSet;
 
 @Controller
-@RequestMapping("/comment")
-public class CommentController extends AbstractController {
-	
+@RequestMapping("/comment3")
+public class Comment3Controller extends AbstractController {
+
 	//Services ----------------------------------------------------------------
-	
+
 	@Autowired
 	private CommentService commentService;
 @Autowired
@@ -34,17 +32,17 @@ private CustomerService customerService;
     private AdministratorService administratorService;
     @Autowired
     private ActorService actorService;
-	
+
 	//Constructors----------------------------------------------
-	
-	public CommentController(){
+
+	public Comment3Controller(){
 		super();
 	}
 	
-    protected static ModelAndView createEditModelAndView(Comment comment) {
+    protected static ModelAndView createEditModelAndViewR2(Comment comment) {
         ModelAndView result;
 
-        result= createEditModelAndView(comment, null);
+        result= createEditModelAndViewR2(comment, null);
 
         return result;
     }
@@ -52,7 +50,7 @@ private CustomerService customerService;
 	
 	//Create Method -----------------------------------------------------------
 	
-    protected static ModelAndView createEditModelAndView(Comment comment, String message) {
+    protected static ModelAndView createEditModelAndViewR2(Comment comment, String message) {
         ModelAndView result;
 
         result= new ModelAndView("comment/edit");
@@ -64,53 +62,22 @@ private CustomerService customerService;
     }
 
 
-    @RequestMapping( value="/list", method = RequestMethod.GET)
-    public ModelAndView commenNotBannedtList() {
+
+
+
+
+    @RequestMapping(value = "/createReqCom", method = RequestMethod.GET)
+    public ModelAndView create2(@RequestParam int id) {
 
         ModelAndView result;
-        Collection<Comment> comments;
-        comments = commentService.findAll();
-        Collection<Comment> returned = new HashSet<>();
-        for(Comment c : comments){
-            if (!c.isBanned()){
-                returned.add(c);
-            }
-        }
-        result = new ModelAndView("comment/list");
-        result.addObject("comments", returned);
-        result.addObject("requestURI","comment/list.do");
+
+        Comment comment = commentService.create();
+        comment.setObjectiveId(id);
+        result = createEditModelAndViewR2(comment);
 
         return result;
+
     }
-	@RequestMapping( value="/listAll", method = RequestMethod.GET)
-	public ModelAndView commentList() {
-
-		ModelAndView result;
-		Collection<Comment> comments;
-
-		comments = commentService.findAll();
-		result = new ModelAndView("comment/list");
-		result.addObject("comments", comments);
-		result.addObject("requestURI","comment/list.do");
-
-		return result;
-	}
-
-	@RequestMapping(value = "/createCustomerCom", method = RequestMethod.GET)
-    public ModelAndView create(@RequestParam int id) {
-
-        ModelAndView result;
-
-		Comment comment = commentService.create();
-        comment.setObjectiveId(id);
-        result = createEditModelAndView(comment);
-
-		return result;
-
-		}
-
-
-
 
 
 
@@ -123,41 +90,27 @@ private CustomerService customerService;
         Comment comment;
         comment= commentService.findOne(commentId);
         Assert.notNull(comment);
-        result= createEditModelAndView(comment);
+        result= createEditModelAndViewR2(comment);
 
         return result;
     }
 
 
-    @RequestMapping(value="ban", method=RequestMethod.GET)
-    public ModelAndView ban(@RequestParam int commentId){
-        ModelAndView result;
-        Boolean op;
-        Comment comment = commentService.findOne(commentId);
-        op = administratorService.banComment(comment);
 
-        if(op.equals(false)){
-            result =  new ModelAndView("comment/error");
-        }else{
-            result =  new ModelAndView("redirect:list.do");
-        }
-        return result;
-    }
 
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
         if (!binding.hasErrors()) {
-            result= createEditModelAndView(comment);
+            result= createEditModelAndViewR2(comment);
         }else{
             try{
-
-                commentService.post(comment);
+                commentService.postToRequest(comment);
                 commentService.save(comment);
-                result= new ModelAndView("redirect:list.do");
+                result= new ModelAndView("comment/list.do");
             }catch(Throwable oops){
-                result= createEditModelAndView(comment, "comment.commit.error");
+                result= createEditModelAndViewR2(comment, "comment.commit.error");
             }
         }
         return result;
@@ -168,9 +121,9 @@ private CustomerService customerService;
         ModelAndView result;
         try{
             commentService.delete(comment);
-            result=new ModelAndView("redirect:list.do");
+            result=new ModelAndView("comment/list.do");
         }catch(Throwable oops){
-            result= createEditModelAndView(comment, "comment.commit.error");
+            result= createEditModelAndViewR2(comment, "comment.commit.error");
         }
 
         return result;

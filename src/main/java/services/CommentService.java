@@ -2,7 +2,8 @@ package services;
 
 import domain.Actor;
 import domain.Comment;
-import domain.Customer;
+import domain.Offer;
+import domain.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,10 @@ public class CommentService {
     // Suporting services --------------------------------------------------------------------------------
     @Autowired
     private ActorService actorService;
-
+    @Autowired
+    private OfferService offerService;
+    @Autowired
+    private RequestService requestService;
     // Simple CRUD method --------------------------------------------------------------------------------
 
     public Comment create() {
@@ -79,7 +83,18 @@ public class CommentService {
         Actor actor = actorService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
-        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
         actor.getComment().add(comment);
+    }
+    public void postToOffer(Comment comment){
+        Offer offer = offerService.findOne(comment.getObjectiveId());
+        comment.setOwner(actorService.findByPrincipal());
+        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        offer.getComment().add(comment);
+    }
+    public void postToRequest(Comment comment){
+        Request request = requestService.findOne(comment.getObjectiveId());
+        comment.setOwner(actorService.findByPrincipal());
+        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        request.getComment().add(comment);
     }
 }

@@ -60,7 +60,7 @@
 <security:authorize access="hasRole('CUSTOMER')">
     <div>
         <H5>
-            <a href="comment/createOfferCom.do?id=${id}"> <spring:message
+            <a href="comment2/createOfferCom.do?id=${id}"> <spring:message
                     code="comment.create"/>
             </a>
         </H5>

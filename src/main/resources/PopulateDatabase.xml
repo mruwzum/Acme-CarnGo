@@ -289,7 +289,14 @@
 		<property name="owner" ref="customer1"/>
 	</bean>
 
-
+	<bean id="comment6" class="domain.Comment">
+		<property name="title" value="title6"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text6"/>
+		<property name="numberOfStars" value="4"/>
+		<property name="objectiveId" value="495"/>
+		<property name="owner" ref="customer1"/>
+	</bean>
 
 	<!-- Customer -->
 
@@ -492,7 +499,7 @@
         <property name="ownerR" ref="customer2"/>
 		<property name="comment">
 			<list>
-
+				<ref bean="comment6"/>
 			</list>
 		</property>
 		<property name="applications">
