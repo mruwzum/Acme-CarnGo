@@ -29,6 +29,8 @@
 					<li><a href="request/listAll.do"><spring:message code="master.page.customer.list.request" /></a></li>
 				</ul>
 			</li>
+			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
+			<li><a href="administrator/list.do"><spring:message code="master.page.administrator.list.all" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">

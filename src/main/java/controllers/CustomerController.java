@@ -237,11 +237,12 @@ public class CustomerController extends AbstractController {
 
         ModelAndView res;
         Customer o = customerService.findOne(customerId);
+        Collection<Comment> comm = new HashSet<>(o.comments);
         res = new ModelAndView("actor/view");
         res.addObject("name",o.getName());
         res.addObject("surname",o.getSurname());
-        res.addObject("comments", o.getComment());
-        res.addObject("id",customerId);
+        res.addObject("comments", comm);
+        res.addObject("id",o.getId());
         return res;
 
     }

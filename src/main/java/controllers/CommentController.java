@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Administrator;
 import domain.Comment;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.AdministratorService;
 import services.CommentService;
 import services.CustomerService;
 
@@ -31,6 +33,8 @@ public class CommentController extends AbstractController {
 @Autowired
 private CustomerService customerService;
 
+    @Autowired
+    private AdministratorService administratorService;
 
 	
 	//Constructors----------------------------------------------
@@ -95,7 +99,7 @@ private CustomerService customerService;
 
 
 
-    @RequestMapping(value = "/createCustomer", method = RequestMethod.GET)
+    @RequestMapping(value = "/createCustomerCom", method = RequestMethod.GET)
     public ModelAndView createFromCustomer(@RequestParam int id) {
 
         ModelAndView result;
@@ -103,7 +107,7 @@ private CustomerService customerService;
         Comment comment = commentService.create();
         comment.setObjectiveId(id);
         Customer customer = customerService.findOne(id);
-        List<Comment> commentsAn = new ArrayList<>(customer.getComment());
+        List<Comment> commentsAn = new ArrayList<>(customer.comments);
         commentsAn.add(comment);
         customerService.save(customer);
         result = createEditModelAndView(comment);
@@ -111,6 +115,27 @@ private CustomerService customerService;
         return result;
 
     }
+
+
+
+
+    @RequestMapping(value = "/createAdminCom", method = RequestMethod.GET)
+    public ModelAndView createFromAdmin(@RequestParam int id) {
+
+        ModelAndView result;
+
+        Comment comment = commentService.create();
+        comment.setObjectiveId(id);
+        Administrator administrator = administratorService.findOne(id);
+        List<Comment> commentsAn = new ArrayList<>(administrator.comments);
+        commentsAn.add(comment);
+        administratorService.save(administrator);
+        result = createEditModelAndView(comment);
+
+        return result;
+
+    }
+
 	// Ancillary methods ------------------------------------------------
 
 
@@ -135,6 +160,10 @@ private CustomerService customerService;
             try{
                 comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
                 comment.setOwner(customerService.findByPrincipal());
+                Customer customer = customerService.findByPrincipal();
+                List<Comment> commentsAn = new ArrayList<>(customer.comments);
+                commentsAn.add(comment);
+                customerService.save(customer);
                 //comment.setObjectiveId(comment.getObjectiveId());
                 commentService.save(comment);
 

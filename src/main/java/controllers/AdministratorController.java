@@ -2,6 +2,7 @@ package controllers;
 
 
 import domain.Administrator;
+import domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -14,6 +15,7 @@ import services.AdministratorService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/administrator")
@@ -76,7 +78,20 @@ public class AdministratorController extends AbstractController {
         return result;
     }
 
+    @RequestMapping(value = "/view" , method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam int administratorId){
 
+        ModelAndView res;
+        Administrator o = administratorService.findOne(administratorId);
+        Collection<Comment> comm = new HashSet<>(o.comments);
+        res = new ModelAndView("actor/view");
+        res.addObject("name",o.getName());
+        res.addObject("surname",o.getSurname());
+        res.addObject("comments", comm);
+        res.addObject("id",o.getId());
+        return res;
+
+    }
      
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Administrator administrator, BindingResult binding){

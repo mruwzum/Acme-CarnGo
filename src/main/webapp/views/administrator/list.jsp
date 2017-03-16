@@ -24,12 +24,7 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
                name="administrators" requestURI="${requestURI}" id="row">
 
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-        <display:column>
-            <a href="administrator/edit.do?administratorId=${row.id}"> <spring:message
-                    code="administrator.edit"/></a>
-        </display:column>
-    </security:authorize>
+
 
     <!-- Attributes -->
 
@@ -44,10 +39,10 @@
 
 
 
-    <security:authorize access="isAuthenticated()">
+    <security:authorize access="hasRole('ADMINISTRATOR')">
         <display:column>
-            <a href="administrator/delete.do?administratorId=${row.id}"> <spring:message
-                    code="administrator.delete"/>
+            <a href="administrator/view.do?administratorId=${row.id}"> <spring:message
+                    code="administrator.view"/>
             </a>
         </display:column>
     </security:authorize>

@@ -85,9 +85,9 @@
 		<security:intercept-url pattern="/request/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/offer/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 
-		<!--Allows a customer to list all customers and view their profiles-->
-		<security:intercept-url pattern="/customer/list.do" access="hasRole('CUSTOMER')"/>
-		<security:intercept-url pattern="/customer/view.do" access="hasRole('CUSTOMER')"/>
+		<!--Allows customers an administrators to list all customers and view their profiles-->
+		<security:intercept-url pattern="/customer/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/customer/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<!--Allows a customer and administrator to view requests anf offers -->
 		<security:intercept-url pattern="/request/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/offer/view.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
@@ -104,11 +104,13 @@
 
 
 		<!--Allows a customer to comment onto anothers customers profile-->
-		<security:intercept-url pattern="/comment/createCustomer.do" access="hasRole('CUSTOMER')"/>
-		<security:intercept-url pattern="/comment/edit.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/comment/createCustomerCom.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/comment/edit.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/list.do" access="hasRole('CUSTOMER')"/>
-
-
+		<!--Allows an administrator to list all the administrators profiles-->
+		<security:intercept-url pattern="/administrator/list.do" access="hasRole('ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/administrator/view.do" access="hasRole('ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/comment/createAdminCom.do" access="hasRole('ADMINISTRATOR')"/>
 		<!--Allows an administrator to list all the banners-->
 		<security:intercept-url pattern="/banner/list.do" access="hasRole('ADMINISTRATOR')"/>
 		<!--Allows an administrator to create banners-->

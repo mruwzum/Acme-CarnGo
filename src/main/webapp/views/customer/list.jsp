@@ -28,7 +28,7 @@
 
 
 
-    <security:authorize access="hasRole('CUSTOMER')">
+    <security:authorize access="hasAnyRole('CUSTOMER','ADMINISTRATOR')">
         <display:column>
             <a href="customer/view.do?customerId=${row.id}"> <spring:message
                     code="customer.profile"/>
