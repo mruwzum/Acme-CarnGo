@@ -19,7 +19,7 @@ public class Comment extends DomainEntity {
     private Date postedMoment;
     private int numberOfStars, objectiveId;
     private Actor owner;
-
+    private boolean banned;
 
     //Constructor
     public Comment() {
@@ -74,12 +74,20 @@ public class Comment extends DomainEntity {
     }
 
     @NotNull
-    @ManyToOne
+    @OneToOne
     public Actor getOwner() {
         return owner;
     }
 
     public void setOwner(Actor owner) {
         this.owner = owner;
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 }

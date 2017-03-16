@@ -186,6 +186,7 @@ private ApplicationService applicationService;
         res.addObject("comments",o.getComment());
         res.addObject("applications",o.getApplications());
         res.addObject("banned",o.isBanned());
+        res.addObject("id",o.getOwnerR().getId());
         return res;
 
     }

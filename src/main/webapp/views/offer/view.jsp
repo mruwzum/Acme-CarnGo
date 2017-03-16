@@ -57,7 +57,24 @@
     <display:column property="numberOfStars" title="${numberOfStars}" sortable="true"/>
 
 </display:table>
-
+<security:authorize access="hasRole('CUSTOMER')">
+    <div>
+        <H5>
+            <a href="comment/createCustomerCom.do?id=${id}"> <spring:message
+                    code="comment.create"/>
+            </a>
+        </H5>
+    </div>
+</security:authorize>
+<security:authorize access="hasRole('ADMINISTRATOR')">
+    <div>
+        <H5>
+            <a href="comment/createAdminCom.do?id=${id}"> <spring:message
+                    code="comment.create"/>
+            </a>
+        </H5>
+    </div>
+</security:authorize>
 
 <spring:message code="offer.applications" var="applications"/>
 <h3><jstl:out value="${applications}"/></h3>

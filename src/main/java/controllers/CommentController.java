@@ -12,15 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ActorService;
 import services.AdministratorService;
 import services.CommentService;
 import services.CustomerService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/comment")
@@ -35,7 +33,8 @@ private CustomerService customerService;
 
     @Autowired
     private AdministratorService administratorService;
-
+    @Autowired
+    private ActorService actorService;
 	
 	//Constructors----------------------------------------------
 	
@@ -66,8 +65,25 @@ private CustomerService customerService;
     }
 
 
-     
-	@RequestMapping( value="/list", method = RequestMethod.GET)
+    @RequestMapping( value="/list", method = RequestMethod.GET)
+    public ModelAndView commenNotBannedtList() {
+
+        ModelAndView result;
+        Collection<Comment> comments;
+        comments = commentService.findAll();
+        Collection<Comment> returned = new HashSet<>();
+        for(Comment c : comments){
+            if (!c.isBanned()){
+                returned.add(c);
+            }
+        }
+        result = new ModelAndView("comment/list");
+        result.addObject("comments", returned);
+        result.addObject("requestURI","comment/list.do");
+
+        return result;
+    }
+	@RequestMapping( value="/listAll", method = RequestMethod.GET)
 	public ModelAndView commentList() {
 
 		ModelAndView result;
@@ -81,16 +97,13 @@ private CustomerService customerService;
 		return result;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/createCustomerCom", method = RequestMethod.GET)
     public ModelAndView create(@RequestParam int id) {
 
         ModelAndView result;
 
 		Comment comment = commentService.create();
-		Customer customer = customerService.findOne(id);
-        comment.setOwner(customer);
-
-        commentService.save(comment);
+        comment.setObjectiveId(id);
         result = createEditModelAndView(comment);
 
 		return result;
@@ -99,42 +112,10 @@ private CustomerService customerService;
 
 
 
-    @RequestMapping(value = "/createCustomerCom", method = RequestMethod.GET)
-    public ModelAndView createFromCustomer(@RequestParam int id) {
-
-        ModelAndView result;
-
-        Comment comment = commentService.create();
-        comment.setObjectiveId(id);
-        Customer customer = customerService.findOne(id);
-        List<Comment> commentsAn = new ArrayList<>(customer.comments);
-        commentsAn.add(comment);
-        customerService.save(customer);
-        result = createEditModelAndView(comment);
-
-        return result;
-
-    }
 
 
 
 
-    @RequestMapping(value = "/createAdminCom", method = RequestMethod.GET)
-    public ModelAndView createFromAdmin(@RequestParam int id) {
-
-        ModelAndView result;
-
-        Comment comment = commentService.create();
-        comment.setObjectiveId(id);
-        Administrator administrator = administratorService.findOne(id);
-        List<Comment> commentsAn = new ArrayList<>(administrator.comments);
-        commentsAn.add(comment);
-        administratorService.save(administrator);
-        result = createEditModelAndView(comment);
-
-        return result;
-
-    }
 
 	// Ancillary methods ------------------------------------------------
 
@@ -143,7 +124,6 @@ private CustomerService customerService;
     public ModelAndView edit(@RequestParam int commentId){
         ModelAndView result;
         Comment comment;
-
         comment= commentService.findOne(commentId);
         Assert.notNull(comment);
         result= createEditModelAndView(comment);
@@ -151,22 +131,34 @@ private CustomerService customerService;
         return result;
     }
 
+
+    @RequestMapping(value="ban", method=RequestMethod.GET)
+    public ModelAndView ban(@RequestParam int commentId){
+        ModelAndView result;
+        Boolean op;
+        Comment comment = commentService.findOne(commentId);
+        op = administratorService.banComment(comment);
+
+        if(op.equals(false)){
+            result =  new ModelAndView("comment/error");
+        }else{
+            result =  new ModelAndView("redirect:list.do");
+        }
+        return result;
+    }
+
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
+        Customer customer = customerService.findOne(comment.getObjectiveId());
         if (!binding.hasErrors()) {
             result= createEditModelAndView(comment);
         }else{
             try{
                 comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
-                comment.setOwner(customerService.findByPrincipal());
-                Customer customer = customerService.findByPrincipal();
-                List<Comment> commentsAn = new ArrayList<>(customer.comments);
-                commentsAn.add(comment);
-                customerService.save(customer);
-                //comment.setObjectiveId(comment.getObjectiveId());
+                commentService.post(comment);
+                customer.getComment().add(comment);
                 commentService.save(comment);
-
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
                 result= createEditModelAndView(comment, "comment.commit.error");

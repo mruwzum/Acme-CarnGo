@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 import repositories.CommentRepository;
 
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by daviddelatorre on 12/3/17.
@@ -28,7 +29,11 @@ public class CommentService {
     private CommentRepository commentRepository;
 
 
+
+
     // Suporting services --------------------------------------------------------------------------------
+    @Autowired
+    private ActorService actorService;
 
     // Simple CRUD method --------------------------------------------------------------------------------
 
@@ -67,4 +72,10 @@ public class CommentService {
 
     // Other business methods -------------------------------------------------------------------------------
 
+
+    public void post(Comment comment){
+        comment.setOwner(actorService.findByPrincipal());
+        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+
+    }
 }

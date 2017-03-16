@@ -1,11 +1,15 @@
 package services;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import domain.Administrator;
+import domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.AdministratorRepository;
+import security.LoginService;
+import security.UserAccount;
 
 
 import java.util.Collection;
@@ -27,6 +31,8 @@ public class AdministratorService {
 
     @Autowired
     private AdministratorRepository administratorRepository;
+    @Autowired
+    private CommentService commentService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -67,5 +73,32 @@ public class AdministratorService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
+    public Administrator findByPrincipal() {
+        Administrator result;
+        UserAccount userAccount;
+        userAccount = LoginService.getPrincipal();
+        Assert.notNull(userAccount);
+        result = findByUserAccount(userAccount);
+        Assert.notNull(result);
+        return result;
+    }
+
+    private Administrator findByUserAccount(UserAccount userAccount) {
+        Assert.notNull(userAccount);
+        Administrator result;
+        result = administratorRepository.findByUserAccountId(userAccount.getId());
+        return result;
+    }
+    public Boolean banComment(Comment comment){
+        Boolean res;
+        if (comment.isBanned()){
+            res = false;
+        }else{
+            comment.setBanned(true);
+            commentService.save(comment);
+            res = true;
+        }
+        return res;
+    }
 
 }

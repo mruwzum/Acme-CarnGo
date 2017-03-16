@@ -10,15 +10,6 @@
           uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 
-<security:authorize access="permitAll">
-    <div>
-        <H5>
-            <a href="comment/create.do"> <spring:message
-                    code="comment.create"/>
-            </a>
-        </H5>
-    </div>
-</security:authorize>
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -26,8 +17,8 @@
 
     <security:authorize access="hasRole('ADMINISTRATOR')">
         <display:column>
-            <a href="comment/edit.do?commentId=${row.id}"> <spring:message
-                    code="comment.edit"/></a>
+            <a href="comment/ban.do?commentId=${row.id}"> <spring:message
+                    code="comment.ban"/></a>
         </display:column>
     </security:authorize>
 
@@ -41,14 +32,12 @@
     <display:column property="postedMoment" title="${postedMoment}" sortable="true"/>
     <spring:message code="comment.stars" var="numberOfStars"/>
     <display:column property="numberOfStars" title="${numberOfStars}" sortable="true"/>
-
-
-
-    <security:authorize access="isAuthenticated()">
+    <security:authorize access="hasRole('ADMINISTRATOR')">
         <display:column>
-            <a href="comment/delete.do?commentId=${row.id}"> <spring:message
-                    code="comment.delete"/>
-            </a>
+            <spring:message code="comment.banned" var="banned"/>
+            <display:column property="banned" title="${banned}" sortable="true"/>
         </display:column>
     </security:authorize>
+
+
 </display:table>
