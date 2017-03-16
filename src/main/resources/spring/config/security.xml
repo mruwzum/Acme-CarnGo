@@ -104,14 +104,14 @@
 
 
 		<!--Allows a customer to comment onto anothers customers profile-->
-		<security:intercept-url pattern="/comment/createCustomerCom.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/comment/createCustomerCom.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/edit.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/comment/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 		<!--Allows an administrator to list all the administrators profiles-->
 		<security:intercept-url pattern="/administrator/list.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/administrator/view.do" access="hasRole('ADMINISTRATOR')"/>
-		<security:intercept-url pattern="/comment/createAdminCom.do" access="hasRole('ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/comment/.do" access="hasRole('ADMINISTRATOR')"/>
 
 		<security:intercept-url pattern="/comment/ban.do" access="hasRole('ADMINISTRATOR')"/>
 		<!--Allows an administrator to list all the banners-->

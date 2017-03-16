@@ -66,7 +66,7 @@
 <security:authorize access="hasRole('ADMINISTRATOR')">
     <div>
         <H5>
-            <a href="comment/createAdminCom.do?id=${id}"> <spring:message
+            <a href="comment/createRequestCom.do?id=${id}"> <spring:message
                     code="comment.create"/>
             </a>
         </H5>

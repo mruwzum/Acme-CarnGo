@@ -70,7 +70,7 @@
     <security:authorize access="hasRole('CUSTOMER')">
         <display:column>
             <a href="request/apply.do?requestId=${row.id}"> <spring:message
-                    code="request.ban"/></a>
+                    code="request.apply"/></a>
         </display:column>
     </security:authorize>
 
