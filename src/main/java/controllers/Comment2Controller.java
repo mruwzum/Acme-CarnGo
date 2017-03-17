@@ -53,7 +53,7 @@ private CustomerService customerService;
     protected static ModelAndView createEditModelAndViewR(Comment comment, String message) {
         ModelAndView result;
 
-        result= new ModelAndView("comment/edit");
+        result= new ModelAndView("comment/edit2");
         result.addObject("comment", comment);
         result.addObject("message", message);
 
@@ -106,8 +106,8 @@ private CustomerService customerService;
         }else{
             try{
 
-                commentService.postT(comment);
-                //commentService.save(comment);
+                commentService.postToOffer(comment);
+                commentService.save(comment);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR(comment, "comment.commit.error");
