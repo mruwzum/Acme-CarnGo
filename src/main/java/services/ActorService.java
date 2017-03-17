@@ -114,7 +114,7 @@ public class ActorService {
 
 	public Actor findActorByEmail(String email){
     	Assert.notNull(email,"The email is null");
-    	Actor res = findActorByEmail(email);
+    	Actor res = actorRepository.findActorByEmail(email);
     	Assert.notNull(res);
     	return res;
 

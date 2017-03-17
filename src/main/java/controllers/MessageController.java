@@ -1,7 +1,6 @@
 package controllers;
 
 
-import domain.Actor;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import services.MessageService;
 
 import javax.validation.Valid;
 import java.util.Collection;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/message")
@@ -112,22 +110,10 @@ public class MessageController extends AbstractController {
         }else{
             try{
 
-                //Set the rest of values
-                message1.setSenderEmail(actorService.findByPrincipal().getEmail());
-                message1.setSentDate(new Date(System.currentTimeMillis()-1000));
-
-
-                //Associate message
-                Actor sender = actorService.findByPrincipal();
-                Assert.notNull(sender);
-                sender.getSendMessages().add(message1);
-                Actor recipient = actorService.findActorByEmail(message1.getReceiverEmail());
-                Assert.notNull(recipient);
-                recipient.getRecivedMessages().add(message1);
-
+                messageService.send(message1);
 
                 //Save Message
-                messageService.save(message1);
+
 
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){

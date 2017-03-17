@@ -1,5 +1,6 @@
 package services;
 
+import domain.Actor;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.util.Assert;
 import repositories.MessageRepository;
 
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by daviddelatorre on 12/3/17.
@@ -28,7 +30,8 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-
+@Autowired
+private  ActorService actorService;
     // Suporting services --------------------------------------------------------------------------------
 
     // Simple CRUD method --------------------------------------------------------------------------------
@@ -67,5 +70,21 @@ public class MessageService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
+    public void send(Message message){
+        //Set the rest of values
+        Actor a = actorService.findByPrincipal();
+        message.setSenderEmail(a.getEmail());
+        message.setSentDate(new Date(System.currentTimeMillis()-1000));
 
+
+        //Associate message
+        Actor sender = actorService.findByPrincipal();
+        Assert.notNull(sender);
+        sender.getSendMessages().add(message);
+        Actor recipient = actorService.findActorByEmail(message.getReceiverEmail());
+        Assert.notNull(recipient);
+        recipient.getRecivedMessages().add(message);
+        messageRepository.save(message);
+
+    }
 }
