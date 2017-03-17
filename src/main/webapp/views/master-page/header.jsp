@@ -77,6 +77,9 @@
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
+
+			<li><a href="actor/myMessages.do"><spring:message code="master.page.actor.my.messages" /></a></li>
+
 		</security:authorize>
 	</ul>
 </div>

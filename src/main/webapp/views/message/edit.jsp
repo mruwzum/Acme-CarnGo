@@ -12,18 +12,18 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<form:form action="message/edit.do" modelAttribute="message">
+<form:form action="message/edit.do" modelAttribute="message1">
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>
     <form:hidden path="sentDate"/>
-    <form:hidden path="sender"/>
+    <form:hidden path="senderEmail"/>
 
 
 
     <acme:textbox path="subject" code="message.subject"/>
     <acme:textbox path="body" code="message.body"/>
-    <acme:textbox path="recipient" code="message.recipient"/>
+    <acme:textbox path="receiverEmail" code="message.recipient"/>
     <acme:textbox path="attachments" code="message.attachments"/>
 
 

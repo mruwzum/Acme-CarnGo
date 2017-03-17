@@ -111,4 +111,13 @@ public class ActorService {
         return resu;
 }
 
+
+	public Actor findActorByEmail(String email){
+    	Assert.notNull(email,"The email is null");
+    	Actor res = findActorByEmail(email);
+    	Assert.notNull(res);
+    	return res;
+
+	}
+
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Actor;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ActorService;
 import services.MessageService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/message")
@@ -23,6 +26,8 @@ public class MessageController extends AbstractController {
 
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+    private ActorService actorService;
 
 
 
@@ -40,7 +45,7 @@ public class MessageController extends AbstractController {
 
         return result;
     }
-	
+
 	
 	//Create Method -----------------------------------------------------------
 	
@@ -76,9 +81,9 @@ public class MessageController extends AbstractController {
 
         ModelAndView result;
 
-		Message message = messageService.create();
+		Message message1 = messageService.create();
 
-        result = createEditModelAndView(message);
+        result = createEditModelAndView(message1);
 
 		return result;
 
@@ -100,17 +105,32 @@ public class MessageController extends AbstractController {
     }
 
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
-    public ModelAndView save(@Valid Message message, BindingResult binding){
+    public ModelAndView save(@Valid Message message1, BindingResult binding){
         ModelAndView result;
-        if (!binding.hasErrors()) {
-            result= createEditModelAndView(message);
+        if (binding.hasErrors()) {
+            result= createEditModelAndView(message1);
         }else{
             try{
 
-                messageService.save(message);
+                //Set the rest of values
+                message1.setSenderEmail(actorService.findByPrincipal().getEmail());
+                message1.setSentDate(new Date(System.currentTimeMillis()-1000));
+
+
+                //Associate message
+                Actor sender = actorService.findByPrincipal();
+                sender.getSendMessages().add(message1);
+                Assert.notNull(sender);
+                Actor recipient = actorService.findActorByEmail(message1.getReceiverEmail());
+                recipient.getRecivedMessages().add(message1);
+                Assert.notNull(recipient);
+
+                //Save Message
+                messageService.save(message1);
+
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
-                result= createEditModelAndView(message, "message.commit.error");
+                result= createEditModelAndView(message1, "message.commit.error");
             }
         }
         return result;

@@ -2,6 +2,7 @@ package controllers;
 
 
 import domain.Actor;
+import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -102,6 +103,22 @@ public class ActorController extends AbstractController {
         }
          
         return result;   
+    }
+
+
+    //Manage Messages
+
+    @RequestMapping(value = "/myMessages", method = RequestMethod.GET)
+    public ModelAndView myMessages(){
+        ModelAndView res;
+        Collection<Message> sendMessages = actorService.findByPrincipal().getSendMessages();
+        Collection<Message> recivedMessages = actorService.findByPrincipal().getRecivedMessages();
+
+        res = new ModelAndView("message/list");
+        res.addObject("sendMessages", sendMessages);
+        res.addObject("recivedMessage", recivedMessages);
+
+        return res;
     }
 	
 	// Ancillary methods ------------------------------------------------

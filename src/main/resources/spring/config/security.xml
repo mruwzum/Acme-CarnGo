@@ -81,6 +81,12 @@
 		<security:intercept-url pattern="/request/list.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/offer/list.do" access="hasRole('CUSTOMER')"/>
 
+		<!--Allows a customer and administrator to manage messages-->
+		<security:intercept-url pattern="/actor/myMessages.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/message/create.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/message/edit.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+
+
 		<!--Allows an administrator to list all the requests anf offers -->
 		<security:intercept-url pattern="/request/listAll.do" access="hasRole('ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/offer/listAll.do" access="hasRole('ADMINISTRATOR')"/>

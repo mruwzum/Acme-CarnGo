@@ -1,5 +1,6 @@
 package domain;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -22,9 +23,9 @@ public class Message extends DomainEntity {
     private Collection<String> attachments;
 
     // Relationships ---------------------------------------------------------
-    private Actor sender;
-    private Actor recipient;
 
+    private String senderEmail;
+    private String receiverEmail;
 
     //Constructor
     public Message(){
@@ -49,7 +50,6 @@ public class Message extends DomainEntity {
     public void setBody(String body) {
         this.body = body;
     }
-    @Past
     @Temporal(TemporalType.DATE)
     public Date getSentDate() {
         return sentDate;
@@ -68,23 +68,23 @@ public class Message extends DomainEntity {
         this.attachments = attachments;
     }
 
-    @NotNull
-    @ManyToOne
-    public Actor getSender() {
-        return sender;
+
+    @NotBlank
+    @Email
+    public String getSenderEmail() {
+        return senderEmail;
     }
 
-    public void setSender(Actor sender) {
-        this.sender = sender;
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
+    @NotBlank
+    @Email
+    public String getReceiverEmail() {
+        return receiverEmail;
     }
 
-    @NotNull
-    @ManyToOne
-    public Actor getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(Actor recipient) {
-        this.recipient = recipient;
+    public void setReceiverEmail(String receiverEmail) {
+        this.receiverEmail = receiverEmail;
     }
 }

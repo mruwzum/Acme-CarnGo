@@ -22,14 +22,8 @@
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-               name="messages" requestURI="${requestURI}" id="row">
+               name="recivedMessages" requestURI="${requestURI}" id="row">
 
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-        <display:column>
-            <a href="message/edit.do?messageId=${row.id}"> <spring:message
-                    code="message.edit"/></a>
-        </display:column>
-    </security:authorize>
 
     <!-- Attributes -->
 
@@ -44,6 +38,39 @@
     <spring:message code="message.recipient" var="recipient"/>
     <display:column property="recipient" title="${recipient}" sortable="true"/>
 
+
+    <%-- TODO Boton de replay aqui--%>
+
+
+    <security:authorize access="isAuthenticated()">
+        <display:column>
+            <a href="message/delete.do?messageId=${row.id}"> <spring:message
+                    code="message.delete"/>
+            </a>
+        </display:column>
+    </security:authorize>
+</display:table>
+
+
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+               name="sendMessages" requestURI="${requestURI}" id="row">
+
+
+    <!-- Attributes -->
+
+    <spring:message code="message.subject" var="subject"/>
+    <display:column property="subject" title="${subject}" sortable="true"/>
+    <spring:message code="message.body" var="body"/>
+    <display:column property="body" title="${body}" sortable="true"/>
+    <spring:message code="message.sentDate" var="sentDate"/>
+    <display:column property="sentDate" title="${sentDate}" sortable="true"/>
+    <spring:message code="message.sender" var="sender"/>
+    <display:column property="sender" title="${sender}" sortable="true"/>
+    <spring:message code="message.recipient" var="recipient"/>
+    <display:column property="recipient" title="${recipient}" sortable="true"/>
+
+
+    <%-- TODO El delete tiene que ser confirmado--%>
 
 
 
