@@ -26,6 +26,7 @@
     <acme:textbox path="text" code="comment.text"/>
     <acme:textbox path="numberOfStars" code="comment.stars"/>
 
+
     <br/>
 
 
@@ -42,6 +43,6 @@
 
     <input type="button" name="cancel"
            value="<spring:message code="comment.cancel" />"
-           onclick="javascript: window.location.replace('comment/list.do')"/>
+           onclick="window.location.replace('comment/list.do')"/>
 
 </form:form>

@@ -1,19 +1,20 @@
 package domain;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 
 /**
  * Created by daviddelatorre on 10/3/17.
  */
 @Entity
 @Access(AccessType.PROPERTY)
-public class Offer extends Trip implements Commentable{
+public class Offer extends Trip{
 
 
-    private Customer ownerO;
-    private Collection<Comment> comment;
+    public Customer ownerO;
 
     // Relationships ---------------------------------------------------------
 
@@ -33,15 +34,5 @@ public class Offer extends Trip implements Commentable{
 
     public void setOwnerO(Customer ownerO) {
         this.ownerO = ownerO;
-    }
-
-    @Override
-    @OneToMany(cascade = CascadeType.PERSIST)
-    public Collection<Comment> getComment() {
-        return comment;
-    }
-    @Override
-    public void setComment(Collection<Comment> comments) {
-        this.comment = comments;
     }
 }

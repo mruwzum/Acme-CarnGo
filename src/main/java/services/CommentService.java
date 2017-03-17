@@ -1,9 +1,6 @@
 package services;
 
-import domain.Actor;
-import domain.Comment;
-import domain.Offer;
-import domain.Request;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +38,8 @@ public class CommentService {
     private OfferService offerService;
     @Autowired
     private RequestService requestService;
+    @Autowired
+    private TripService tripService;
     // Simple CRUD method --------------------------------------------------------------------------------
 
     public Comment create() {
@@ -85,16 +84,30 @@ public class CommentService {
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
         actor.getComment().add(comment);
     }
+
+    public void postT(Comment comment){
+        Trip actor = tripService.findOne(comment.getObjectiveId());
+        comment.setOwner(actorService.findByPrincipal());
+        comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actor.getComment().add(comment);
+    }
+
+
     public void postToOffer(Comment comment){
         Offer offer = offerService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
         offer.getComment().add(comment);
+        offerService.save(offer);
+       tripService.save(offer);
     }
     public void postToRequest(Comment comment){
         Request request = requestService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
-        request.getComment().add(comment);
+        Comment comment1 = commentRepository.save(comment);
+        request.getComment().add(comment1);
+        requestService.save(request);
+     tripService.save(request);
     }
 }

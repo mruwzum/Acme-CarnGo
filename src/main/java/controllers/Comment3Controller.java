@@ -107,7 +107,7 @@ private CustomerService customerService;
         }else{
             try{
                 commentService.postToRequest(comment);
-                commentService.save(comment);
+               // commentService.save(comment);
                 result= new ModelAndView("comment/list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR2(comment, "comment.commit.error");

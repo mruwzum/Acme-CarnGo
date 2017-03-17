@@ -101,13 +101,14 @@ private CustomerService customerService;
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
-        if (binding.hasErrors()) {
+        if (!binding.hasErrors()) {
             result= createEditModelAndViewR(comment);
         }else{
             try{
-                commentService.postToOffer(comment);
-                commentService.save(comment);
-                result= new ModelAndView("comment/list.do");
+
+                commentService.postT(comment);
+                //commentService.save(comment);
+                result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR(comment, "comment.commit.error");
             }
