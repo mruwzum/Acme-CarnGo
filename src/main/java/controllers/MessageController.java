@@ -107,7 +107,7 @@ public class MessageController extends AbstractController {
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Message message1, BindingResult binding){
         ModelAndView result;
-        if (binding.hasErrors()) {
+        if (!binding.hasErrors()) {
             result= createEditModelAndView(message1);
         }else{
             try{
@@ -119,11 +119,12 @@ public class MessageController extends AbstractController {
 
                 //Associate message
                 Actor sender = actorService.findByPrincipal();
-                sender.getSendMessages().add(message1);
                 Assert.notNull(sender);
+                sender.getSendMessages().add(message1);
                 Actor recipient = actorService.findActorByEmail(message1.getReceiverEmail());
-                recipient.getRecivedMessages().add(message1);
                 Assert.notNull(recipient);
+                recipient.getRecivedMessages().add(message1);
+
 
                 //Save Message
                 messageService.save(message1);
