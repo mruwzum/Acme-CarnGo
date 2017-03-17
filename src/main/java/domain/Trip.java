@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-public abstract class Trip extends DomainEntity implements Commentable {
+public abstract class Trip extends DomainEntity {
 
     // Attributes ------------------------------------------------------------
     private String title, description, originAddress, destinationAddress;
@@ -22,7 +22,7 @@ public abstract class Trip extends DomainEntity implements Commentable {
     private boolean banned;
 
     //Relationship
-    public Collection<Comment> comments;
+
     public Collection<Application> applications;
 
 
@@ -122,17 +122,6 @@ public abstract class Trip extends DomainEntity implements Commentable {
         this.banned = banned;
     }
 
-
-    @Override
-    @OneToMany(cascade = CascadeType.PERSIST)
-    public Collection<Comment> getComment() {
-        return comments;
-    }
-
-    @Override
-    public void setComment(Collection<Comment> comment) {
-        this.comments=comment;
-    }
 
 
     @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Application.class)

@@ -9,10 +9,11 @@ import java.util.Collection;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-public class Offer extends Trip{
+public class Offer extends Trip implements Commentable{
 
 
-    public Customer ownerO;
+    private Customer ownerO;
+    private Collection<Comment> comment;
 
     // Relationships ---------------------------------------------------------
 
@@ -32,5 +33,15 @@ public class Offer extends Trip{
 
     public void setOwnerO(Customer ownerO) {
         this.ownerO = ownerO;
+    }
+
+    @Override
+    @OneToMany(cascade = CascadeType.PERSIST)
+    public Collection<Comment> getComment() {
+        return comment;
+    }
+    @Override
+    public void setComment(Collection<Comment> comments) {
+        this.comment = comments;
     }
 }

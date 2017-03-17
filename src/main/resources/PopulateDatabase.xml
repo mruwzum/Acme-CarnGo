@@ -297,7 +297,14 @@
 		<property name="objectiveId" value="495"/>
 		<property name="owner" ref="customer1"/>
 	</bean>
-
+	<bean id="comment7" class="domain.Comment">
+		<property name="title" value="title7"/>
+		<property name="postedMoment" value="2017/04/23 23:00:12"/>
+		<property name="text" value="text7"/>
+		<property name="numberOfStars" value="2"/>
+		<property name="objectiveId" value="610"/>
+		<property name="owner" ref="customer3"/>
+	</bean>
 	<!-- Customer -->
 
 	<bean id="customer1" class="domain.Customer">
@@ -438,7 +445,7 @@
         <property name="ownerO" ref="customer1"/>
 		<property name="comment">
 			<list>
-
+				<ref bean="comment7"/>
 			</list>
 		</property>
 		<property name="applications">
@@ -561,14 +568,7 @@
 		<!--<property name="objectiveId" value="29"/>-->
 		<!--<property name="owner" ref="customer3"/>-->
 	<!--</bean>-->
-	<!--<bean id="comment7" class="domain.Comment">-->
-		<!--<property name="title" value="title7"/>-->
-		<!--<property name="postedMoment" value="2017/04/23 23:00:12"/>-->
-		<!--<property name="text" value="text7"/>-->
-		<!--<property name="numberOfStars" value="2"/>-->
-		<!--<property name="objectiveId" value="29"/>-->
-		<!--<property name="owner" ref="customer1"/>-->
-	<!--</bean>-->
+
 	<!--<bean id="comment8" class="domain.Comment">-->
 		<!--<property name="title" value="title8"/>-->
 		<!--<property name="postedMoment" value="2017/04/23 23:00:12"/>-->

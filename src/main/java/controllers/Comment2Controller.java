@@ -101,7 +101,7 @@ private CustomerService customerService;
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
-        if (!binding.hasErrors()) {
+        if (binding.hasErrors()) {
             result= createEditModelAndViewR(comment);
         }else{
             try{
