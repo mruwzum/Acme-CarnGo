@@ -305,6 +305,90 @@
 		<property name="objectiveId" value="610"/>
 		<property name="owner" ref="customer3"/>
 	</bean>
+
+
+	<!-- Message -->
+	<bean id="message1" class="domain.Message">
+		<property name="subject" value="title1"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text1"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message2" class="domain.Message">
+		<property name="subject" value="title2"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text2"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message3" class="domain.Message">
+		<property name="subject" value="title3"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text3"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message4" class="domain.Message">
+		<property name="subject" value="title4"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text4"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message5" class="domain.Message">
+		<property name="subject" value="title5"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text5"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message6" class="domain.Message">
+		<property name="subject" value="title6"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text6"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message7" class="domain.Message">
+		<property name="subject" value="title7"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text7"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message8" class="domain.Message">
+		<property name="subject" value="title8"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text8"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message9" class="domain.Message">
+		<property name="subject" value="title9"/>
+		<property name="sentDate" value="2016/04/23 23:00:12"/>
+		<property name="body" value="text9"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<bean id="message10" class="domain.Message">
+		<property name="subject" value="title10"/>
+		<property name="sentDate" value="2017/01/23 23:00:12"/>
+		<property name="body" value="text10"/>
+		<property name="attachments" value="sdfasdfsdfsdfsd"/>
+		<property name="senderEmail" value="Customer1Email@gmail.com"/>
+		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
+	</bean>
+	<!-- /Message-->
 	<!-- Customer -->
 
 	<bean id="customer1" class="domain.Customer">
@@ -313,6 +397,19 @@
 		<property name="email" value="Customer1Email@gmail.com"/>
 		<property name="phone" value="+23-4536435655"/>
 		<property name="userAccount" ref="userAccountCustomer1" />
+		<!--<property name="recivedMessages">-->
+			<!--<list>-->
+				<!--<ref bean="message2"/>-->
+
+			<!--</list>-->
+
+		<!--</property>-->
+		<!--<property name="sendMessages">-->
+			<!--<list>-->
+				<!--<ref bean="message1"/>-->
+
+			<!--</list>-->
+		<!--</property>-->
 		<property name="comment">
 			<list>
 				<ref bean="comment5"/>
@@ -596,88 +693,6 @@
 	<!-- /Comment-->
 
 
-    <!-- Message -->
-    <bean id="message1" class="domain.Message">
-        <property name="subject" value="title1"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text1"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-        <property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message2" class="domain.Message">
-        <property name="subject" value="title2"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text2"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message3" class="domain.Message">
-        <property name="subject" value="title3"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text3"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message4" class="domain.Message">
-        <property name="subject" value="title4"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text4"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message5" class="domain.Message">
-        <property name="subject" value="title5"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text5"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message6" class="domain.Message">
-        <property name="subject" value="title6"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text6"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message7" class="domain.Message">
-        <property name="subject" value="title7"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text7"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message8" class="domain.Message">
-        <property name="subject" value="title8"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text8"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message9" class="domain.Message">
-        <property name="subject" value="title9"/>
-        <property name="sentDate" value="2016/04/23 23:00:12"/>
-        <property name="body" value="text9"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <bean id="message10" class="domain.Message">
-        <property name="subject" value="title10"/>
-        <property name="sentDate" value="2017/01/23 23:00:12"/>
-        <property name="body" value="text10"/>
-        <property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="senderEmail" value="Customer1Email@gmail.com"/>
-		<property name="receiverEmail" value="Customer2Email@gmail.com"/>
-    </bean>
-    <!-- /Message-->
 
 
 

@@ -12,7 +12,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<form:form action="comment3/edit.do" modelAttribute="comment">
+<form:form action="comment3/edit3.do" modelAttribute="comment">
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>

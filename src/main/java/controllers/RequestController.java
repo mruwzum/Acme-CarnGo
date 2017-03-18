@@ -177,7 +177,7 @@ private ApplicationService applicationService;
         ModelAndView res;
         Request o = requestService.findOne(requestId);
 
-        res = new ModelAndView("offer/view");
+        res = new ModelAndView("request/view");
         res.addObject("title",o.getTitle());
         res.addObject("description",o.getDescription());
         res.addObject("originAddress", o.getOriginAddress());
@@ -186,7 +186,7 @@ private ApplicationService applicationService;
         res.addObject("comments",o.getComment());
         res.addObject("applications",o.getApplications());
         res.addObject("banned",o.isBanned());
-        res.addObject("id",o.getOwnerR().getId());
+        res.addObject("id",o.getId());
         return res;
 
     }

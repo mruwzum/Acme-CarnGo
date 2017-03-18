@@ -192,7 +192,7 @@ public class OfferController extends AbstractController {
         res.addObject("comments",o.getComment());
         res.addObject("applications",o.getApplications());
         res.addObject("banned",o.isBanned());
-        res.addObject("id",o.getOwnerO().getId());
+        res.addObject("id",o.getId());
         return res;
 
     }

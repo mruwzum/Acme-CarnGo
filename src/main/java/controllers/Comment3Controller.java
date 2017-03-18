@@ -98,7 +98,7 @@ private CustomerService customerService;
 
 
 
-    @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
+    @RequestMapping(value="/edit3", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
@@ -108,7 +108,7 @@ private CustomerService customerService;
             try{
                 commentService.postToRequest(comment);
                 //commentService.save(comment);
-                result= new ModelAndView("comment/list.do");
+                result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR2(comment, "comment.commit.error");
             }

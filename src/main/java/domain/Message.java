@@ -70,7 +70,6 @@ public class Message extends DomainEntity {
 
 
     @NotBlank
-    @Email
     public String getSenderEmail() {
         return senderEmail;
     }
@@ -79,7 +78,6 @@ public class Message extends DomainEntity {
         this.senderEmail = senderEmail;
     }
     @NotBlank
-    @Email
     public String getReceiverEmail() {
         return receiverEmail;
     }

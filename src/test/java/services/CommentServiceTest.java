@@ -38,7 +38,7 @@ public class CommentServiceTest extends AbstractTest {
     @Test
     public void postToRequest() throws Exception {
         authenticate("customer1");
-            Request request = requestService.findOne(492);
+            Request request = requestService.findOne(509);
 
             Comment comment = commentService.create();
 
@@ -46,14 +46,14 @@ public class CommentServiceTest extends AbstractTest {
             comment.setText("sgfdfg");
             comment.setNumberOfStars(0);
             comment.setTitle("342343");
-            Comment comment1 = commentService.save(comment);
-        System.out.println(comment1);
+           // Comment comment1 = commentService.save(comment);
+        System.out.println(comment);
 
         commentService.postToRequest(comment);
-            System.out.println(comment.getOwner());
+        //System.out.println(comment.getOwner());
         System.out.println(request.getComment());
 
-        System.out.println(comment.getObjectiveId());
+       // System.out.println(comment.getObjectiveId());
             authenticate(null);
     }
 

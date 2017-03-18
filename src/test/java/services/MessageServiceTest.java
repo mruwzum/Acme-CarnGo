@@ -34,15 +34,12 @@ public class MessageServiceTest extends AbstractTest {
         message.setSubject("sgdgasdg");
         message.setBody("fasfsd");
         message.setReceiverEmail("Customer2Email@gmail.com");
-        System.out.println(message.getReceiverEmail());
-        System.out.println(customerService.findByPrincipal().getEmail());
-        message.setSenderEmail(customerService.findByPrincipal().getEmail());
-        messageService.save(message);
-        Actor c = actorService.findActorByEmail(message.getReceiverEmail());
 
         messageService.send(message);
+        messageService.save(message);
         System.out.println(message);
-        System.out.println(c.getRecivedMessages());
+        //Actor c = actorService.findActorByEmail(message.getReceiverEmail());
+       // System.out.println(c.getRecivedMessages());
         authenticate(null);
     }
 

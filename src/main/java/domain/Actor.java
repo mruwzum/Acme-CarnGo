@@ -1,5 +1,6 @@
 package domain;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -27,8 +29,8 @@ public abstract  class Actor extends DomainEntity implements Commentable {
 
     // Relationships ---------------------------------------------------------
 
-    private Collection<Message> sendMessages;
-    private Collection<Message> recivedMessages;
+    private Collection<Message> sendMessages = new ArrayList<>();
+    private Collection<Message> recivedMessages  = new ArrayList<>();
 
 
     // Constructors -----------------------------------------------------------
@@ -96,6 +98,7 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     }
 
     @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class)
+    
     public Collection<Message> getSendMessages() {
         return sendMessages;
     }

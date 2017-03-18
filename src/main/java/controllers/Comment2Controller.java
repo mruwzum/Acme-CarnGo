@@ -97,7 +97,7 @@ private CustomerService customerService;
 
 
 
-    @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
+    @RequestMapping(value="/edit2", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
