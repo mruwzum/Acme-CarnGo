@@ -97,17 +97,18 @@ public class CommentService {
         Offer offer = offerService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        //Comment comment1 = commentRepository.save(comment);
         offer.getComment().add(comment);
-        offerService.save(offer);
-       tripService.save(offer);
+        //offerService.save(offer);
+       //tripService.save(offer);
     }
     public void postToRequest(Comment comment){
         Request request = requestService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
-        Comment comment1 = commentRepository.save(comment);
-        request.getComment().add(comment1);
-        requestService.save(request);
-     tripService.save(request);
+        //Comment comment1 = commentRepository.save(comment);
+        request.getComment().add(comment);
+        //requestService.save(request);
+        //tripService.save(request);
     }
 }

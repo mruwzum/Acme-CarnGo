@@ -107,7 +107,7 @@ private CustomerService customerService;
             try{
 
                 commentService.postToOffer(comment);
-                commentService.save(comment);
+                //commentService.save(comment);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR(comment, "comment.commit.error");

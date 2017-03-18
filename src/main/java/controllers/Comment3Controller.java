@@ -102,12 +102,12 @@ private CustomerService customerService;
     public ModelAndView save(@Valid Comment comment, BindingResult binding){
         ModelAndView result;
 
-        if (binding.hasErrors()) {
+        if (!binding.hasErrors()) {
             result= createEditModelAndViewR2(comment);
         }else{
             try{
                 commentService.postToRequest(comment);
-                commentService.save(comment);
+                //commentService.save(comment);
                 result= new ModelAndView("comment/list.do");
             }catch(Throwable oops){
                 result= createEditModelAndViewR2(comment, "comment.commit.error");
