@@ -107,6 +107,47 @@ public class MessageController extends AbstractController {
         return result;
     }
 
+    @RequestMapping(value = "/reply", method = RequestMethod.GET)
+    public ModelAndView reply(@RequestParam int messageId){
+
+        ModelAndView res;
+
+        Message messageSelected = messageService.findOne(messageId);
+
+        Actor receiver = messageSelected.getSender();
+        Actor sender = messageSelected.getReceiver();
+
+        Message message1 = messageService.create();
+        message1.setReceiver(receiver);
+        message1.setSender(sender);
+
+        res = createEditModelAndView(message1);
+
+
+        return res;
+    }
+
+    @RequestMapping(value = "/forward", method = RequestMethod.GET)
+    public ModelAndView forward(@RequestParam int messageId){
+
+        ModelAndView res;
+
+        Message messageSelected = messageService.findOne(messageId);
+
+        Actor receiver = messageSelected.getSender();
+        Actor sender = messageSelected.getReceiver();
+
+        Message message1 = messageService.create();
+        message1.setReceiver(receiver);
+        message1.setSender(sender);
+        message1.setBody(messageSelected.getBody());
+
+        res = createEditModelAndView(message1);
+
+
+        return res;
+    }
+
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Message message1, BindingResult binding){
         ModelAndView result;

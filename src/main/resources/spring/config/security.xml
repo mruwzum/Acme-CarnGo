@@ -86,6 +86,10 @@
 		<security:intercept-url pattern="/message/create.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/message/edit.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/message/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/message/reply.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/message/forward.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+
+
 
 
 

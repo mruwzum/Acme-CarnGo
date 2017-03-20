@@ -53,6 +53,23 @@
             </a>
         </display:column>
     </security:authorize>
+
+    <security:authorize access="isAuthenticated()">
+        <display:column>
+            <a href="message/reply.do?messageId=${row.id}"> <spring:message
+                    code="message.reply"/>
+            </a>
+        </display:column>
+    </security:authorize>
+
+    <security:authorize access="isAuthenticated()">
+        <display:column>
+            <a href="message/forward.do?messageId=${row.id}"> <spring:message
+                    code="message.forward"/>
+            </a>
+        </display:column>
+    </security:authorize>
+
 </display:table>
 
 
@@ -85,6 +102,15 @@
         <display:column>
             <a href="message/delete.do?messageId=${row.id}"> <spring:message
                     code="message.delete"/>
+            </a>
+        </display:column>
+    </security:authorize>
+
+
+    <security:authorize access="isAuthenticated()">
+        <display:column>
+            <a href="message/forward.do?messageId=${row.id}"> <spring:message
+                    code="message.forward"/>
             </a>
         </display:column>
     </security:authorize>
