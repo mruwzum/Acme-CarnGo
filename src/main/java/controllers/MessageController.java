@@ -105,21 +105,17 @@ public class MessageController extends AbstractController {
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Message message1, BindingResult binding){
         ModelAndView result;
-        if (!binding.hasErrors()) {
+       /* if (!binding.hasErrors()) {
             result= createEditModelAndView(message1);
         }else{
-            try{
-
+            try{*/
                 messageService.send(message1);
-
                 //Save Message
-
-
                 result= new ModelAndView("redirect:list.do");
-            }catch(Throwable oops){
+           /* }catch(Throwable oops){
                 result= createEditModelAndView(message1, "message.commit.error");
             }
-        }
+        }*/
         return result;
     }
 

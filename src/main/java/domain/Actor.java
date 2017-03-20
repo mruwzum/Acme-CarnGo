@@ -1,6 +1,7 @@
 package domain;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Columns;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -97,8 +98,8 @@ public abstract  class Actor extends DomainEntity implements Commentable {
         this.comments=comment;
     }
 
+
     @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class)
-    
     public Collection<Message> getSendMessages() {
         return sendMessages;
     }
@@ -106,6 +107,7 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     public void setSendMessages(Collection<Message> sendMessages) {
         this.sendMessages = sendMessages;
     }
+
 
     @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class)
     public Collection<Message> getRecivedMessages() {
