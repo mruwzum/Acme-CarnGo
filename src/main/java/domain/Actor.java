@@ -99,7 +99,7 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     }
 
 
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class)
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class, mappedBy = "sender")
     public Collection<Message> getSendMessages() {
         return sendMessages;
     }
@@ -109,7 +109,7 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     }
 
 
-    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class)
+    @OneToMany(cascade = CascadeType.PERSIST, targetEntity = Message.class, mappedBy = "receiver")
     public Collection<Message> getRecivedMessages() {
         return recivedMessages;
     }

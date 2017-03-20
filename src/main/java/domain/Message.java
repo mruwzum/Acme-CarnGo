@@ -24,8 +24,8 @@ public class Message extends DomainEntity {
 
     // Relationships ---------------------------------------------------------
 
-    private String senderEmail;
-    private String receiverEmail;
+    private Actor sender;
+    private Actor receiver;
 
     //Constructor
     public Message(){
@@ -69,20 +69,20 @@ public class Message extends DomainEntity {
     }
 
 
-    @NotBlank
-    public String getSenderEmail() {
-        return senderEmail;
+    @ManyToOne
+    public Actor getSender() {
+        return sender;
     }
 
-    public void setSenderEmail(String senderEmail) {
-        this.senderEmail = senderEmail;
+    public void setSender(Actor sender) {
+        this.sender = sender;
     }
-    @NotBlank
-    public String getReceiverEmail() {
-        return receiverEmail;
+    @ManyToOne
+    public Actor getReceiver() {
+        return receiver;
     }
 
-    public void setReceiverEmail(String receiverEmail) {
-        this.receiverEmail = receiverEmail;
+    public void setReceiver(Actor receiver) {
+        this.receiver = receiver;
     }
 }

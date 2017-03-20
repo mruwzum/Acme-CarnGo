@@ -109,7 +109,7 @@ public class MessageController extends AbstractController {
             result= createEditModelAndView(message1);
         }else{
             try{*/
-                messageService.send(message1);
+                //messageService.send(message1);
                 //Save Message
                 result= new ModelAndView("redirect:list.do");
            /* }catch(Throwable oops){

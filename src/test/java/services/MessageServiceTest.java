@@ -27,20 +27,20 @@ public class MessageServiceTest extends AbstractTest {
     private CustomerService customerService;
 
 
-    @Test
-    public void send() throws Exception {
-        authenticate("customer1");
-        Message message = messageService.create();
-        message.setSubject("sgdgasdg");
-        message.setBody("fasfsd");
-        message.setReceiverEmail("Customer2Email@gmail.com");
-
-        messageService.send(message);
-        messageService.save(message);
-        System.out.println(message);
-        //Actor c = actorService.findActorByEmail(message.getReceiverEmail());
-       // System.out.println(c.getRecivedMessages());
-        authenticate(null);
-    }
+//    @Test
+//    public void send() throws Exception {
+//        authenticate("customer1");
+//        Message message = messageService.create();
+//        message.setSubject("sgdgasdg");
+//        message.setBody("fasfsd");
+//        message.setReceiverEmail("Customer2Email@gmail.com");
+//
+//        messageService.send(message);
+//        messageService.save(message);
+//        System.out.println(message);
+//        //Actor c = actorService.findActorByEmail(message.getReceiverEmail());
+//       // System.out.println(c.getRecivedMessages());
+//        authenticate(null);
+//    }
 
 }
