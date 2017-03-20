@@ -16,6 +16,8 @@ import services.CommentService;
 import services.CustomerService;
 
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/comment3")
@@ -62,7 +64,24 @@ private CustomerService customerService;
     }
 
 
+    @RequestMapping( value="/list", method = RequestMethod.GET)
+    public ModelAndView commenNotBannedtList() {
 
+        ModelAndView result;
+        Collection<Comment> comments;
+        comments = commentService.findAll();
+        Collection<Comment> returned = new HashSet<>();
+        for(Comment c : comments){
+            if (!c.isBanned()){
+                returned.add(c);
+            }
+        }
+        result = new ModelAndView("comment/list");
+        result.addObject("comments", returned);
+        result.addObject("requestURI","comment/list.do");
+
+        return result;
+    }
 
 
 
