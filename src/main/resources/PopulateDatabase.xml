@@ -385,8 +385,8 @@
 		<property name="sentDate" value="2017/01/23 23:00:12"/>
 		<property name="body" value="text10"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="sender" ref="customer1"/>
-		<property name="receiver" ref="customer2"/>
+		<property name="sender" ref="customer2"/>
+		<property name="receiver" ref="customer1"/>
 	</bean>
 	<!-- /Message-->
 	<!-- Customer -->
@@ -405,6 +405,10 @@
 				<ref bean="message6"/>
 				<ref bean="message7"/>
 				<ref bean="message9"/>
+			</list>
+		</property>
+		<property name="recivedMessages">
+			<list>
 				<ref bean="message10"/>
 			</list>
 		</property>
@@ -447,6 +451,7 @@
 		<property name="sendMessages">
 			<list>
 				<ref bean="message3"/>
+				<ref bean="message10"/>
 			</list>
 		</property>
 		<property name="recivedMessages">

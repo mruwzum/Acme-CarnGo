@@ -17,13 +17,13 @@
     <form:hidden path="id"/>
     <form:hidden path="version"/>
     <form:hidden path="sentDate"/>
-    <form:hidden path="senderEmail"/>
+    <form:hidden path="sender"/>
+    <form:hidden path="receiver"/>
 
 
 
     <acme:textbox path="subject" code="message.subject"/>
     <acme:textbox path="body" code="message.body"/>
-    <acme:textbox path="receiverEmail" code="message.recipient"/>
     <acme:textbox path="attachments" code="message.attachments"/>
 
 
@@ -37,7 +37,7 @@
     <input type="submit" name="save"
            value="<spring:message code="message.save" />"/>
 
-    <jstl:if test="\$\{message.id != 0}">
+    <jstl:if test="\$\{message1.id != 0}">
         <input type="submit" name="delete"
                value="<spring:message code="message.delete" />"
                onclick="return confirm('<spring:message code="message.confirm.delete"/>')"/>&nbsp;

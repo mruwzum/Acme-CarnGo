@@ -20,8 +20,12 @@
     </div>
 </security:authorize>
 
+<spring:message code="message.received" var="rec"/>
+<h3><jstl:out value="${rec}"/></h3>
+
+
 <!-- Listing grid -->
-<display:table pagesize="5" class="displaytag" keepStatus="true"
+<display:table pagesize="10" class="displaytag" keepStatus="true"
                name="recivedMessages" requestURI="${requestURI}" id="row">
 
 
@@ -36,7 +40,7 @@
     <spring:message code="message.sender" var="sender"/>
     <display:column property="sender" title="${sender}" sortable="true"/>
     <spring:message code="message.recipient" var="recipient"/>
-    <display:column property="recipient" title="${recipient}" sortable="true"/>
+    <display:column property="receiver" title="${recipient}" sortable="true"/>
 
 
     <%-- TODO Boton de replay aqui--%>
@@ -52,7 +56,10 @@
 </display:table>
 
 
-<display:table pagesize="5" class="displaytag" keepStatus="true"
+<spring:message code="message.senderInbox" var="sesd"/>
+<h3><jstl:out value="${sesd}"/></h3>
+
+<display:table pagesize="10" class="displaytag" keepStatus="true"
                name="sendMessages" requestURI="${requestURI}" id="row">
 
 
@@ -67,7 +74,7 @@
     <spring:message code="message.sender" var="sender"/>
     <display:column property="sender" title="${sender}" sortable="true"/>
     <spring:message code="message.recipient" var="recipient"/>
-    <display:column property="recipient" title="${recipient}" sortable="true"/>
+    <display:column property="receiver" title="${recipient}" sortable="true"/>
 
 
     <%-- TODO El delete tiene que ser confirmado--%>

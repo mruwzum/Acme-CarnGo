@@ -70,21 +70,20 @@ private  ActorService actorService;
     }
 
     // Other business methods -------------------------------------------------------------------------------
-//    public void send(Message message){
-//        //Set the rest of values
-//        Actor a = actorService.findByPrincipal();
-//        message.setSenderEmail(a.getEmail());
-//        message.setSentDate(new Date(System.currentTimeMillis()-1000));
-//
-//
-//        //Associate message
-//        Actor sender = actorService.findByPrincipal();
-//        Assert.notNull(sender);
-//        sender.getSendMessages().add(message);
-//        Actor recipient = actorService.findActorByEmail(message.getReceiverEmail());
-//        Assert.notNull(recipient);
-//        recipient.getRecivedMessages().add(message);
-//        messageRepository.save(message);
-//
-//    }
+    public void send(Message message){
+
+
+        //Set the rest of values
+        message.setSentDate(new Date(System.currentTimeMillis()-1000));
+
+
+        //Associate message
+        Actor sender = actorService.findByPrincipal();
+        Assert.notNull(sender);
+        sender.getSendMessages().add(message);
+        Actor recipient = message.getReceiver();
+        Assert.notNull(recipient);
+        recipient.getRecivedMessages().add(message);
+
+    }
 }

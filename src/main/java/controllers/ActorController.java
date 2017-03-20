@@ -116,7 +116,7 @@ public class ActorController extends AbstractController {
 
         res = new ModelAndView("message/list");
         res.addObject("sendMessages", sendMessages);
-        res.addObject("recivedMessage", recivedMessages);
+        res.addObject("recivedMessages", recivedMessages);
 
         return res;
     }

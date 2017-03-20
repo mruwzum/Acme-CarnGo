@@ -54,7 +54,7 @@
 
 </display:table>
 
-<security:authorize access="hasRole('CUSTOMER')">
+<security:authorize access="isAuthenticated()">
     <div>
         <H5>
             <a href="comment/createCustomerCom.do?id=${id}"> <spring:message
@@ -63,12 +63,17 @@
         </H5>
     </div>
 </security:authorize>
-<security:authorize access="hasRole('ADMINISTRATOR')">
+
+<security:authorize access="isAuthenticated()">
     <div>
         <H5>
-            <a href="comment/createCustomerCom.do?id=${id}"> <spring:message
-                    code="comment.create"/>
+            <a href="message/create.do?id=${id}"> <spring:message
+                    code="actor.message"/>
             </a>
         </H5>
     </div>
 </security:authorize>
+
+
+
+

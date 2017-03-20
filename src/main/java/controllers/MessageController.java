@@ -1,6 +1,7 @@
 package controllers;
 
 
+import domain.Actor;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,11 +76,15 @@ public class MessageController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView create() {
+    public ModelAndView create(@RequestParam int id) {
 
         ModelAndView result;
+        Actor receiver = actorService.findOne(id);
+        Actor sender = actorService.findByPrincipal();
 
 		Message message1 = messageService.create();
+        message1.setReceiver(receiver);
+        message1.setSender(sender);
 
         result = createEditModelAndView(message1);
 
@@ -105,17 +110,16 @@ public class MessageController extends AbstractController {
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Message message1, BindingResult binding){
         ModelAndView result;
-       /* if (!binding.hasErrors()) {
+        if (binding.hasErrors()) {
             result= createEditModelAndView(message1);
         }else{
-            try{*/
-                //messageService.send(message1);
-                //Save Message
+            try{
+                messageService.send(message1);
                 result= new ModelAndView("redirect:list.do");
-           /* }catch(Throwable oops){
+            }catch(Throwable oops){
                 result= createEditModelAndView(message1, "message.commit.error");
             }
-        }*/
+        }
         return result;
     }
 
