@@ -188,4 +188,7 @@ public class CustomerService {
         }
         return res;
     }
+    public void flush(){
+        customerRepository.flush();
+    }
 }

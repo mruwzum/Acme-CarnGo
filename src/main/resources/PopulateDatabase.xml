@@ -594,7 +594,7 @@
 		<property name="tripDate" value="2017/05/23 23:00:12"/>
 		<property name="originAddress" value="origen1" />
 		<property name="destinationAddress" value="destination1" />
-        <property name="ownerO" ref="customer3"/>
+        <property name="ownerO" ref="customer2"/>
 		<property name="comment">
 			<list>
 
