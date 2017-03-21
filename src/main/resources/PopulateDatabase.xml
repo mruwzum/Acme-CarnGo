@@ -464,6 +464,7 @@
 		<property name="offers">
 			<list>
 				<ref bean="offer2"/>
+				<ref bean="offer3"/>
 			</list>
 		</property>
 		<property name="requests">
@@ -493,7 +494,7 @@
 		</property>
 		<property name="offers">
 			<list>
-				<ref bean="offer3"/>
+
 			</list>
 		</property>
 		<property name="requests">
