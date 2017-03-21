@@ -189,7 +189,7 @@ public class CustomerServiceTest extends AbstractTest {
         customerService.flush();
     }
 
-    //06 - EDIT OK
+    //07 - EDIT OK
     /**
      * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
      a place to another place and would like to share his or
@@ -205,9 +205,9 @@ public class CustomerServiceTest extends AbstractTest {
         List<Offer> offers = new ArrayList<>(customerService.findByPrincipal().getOffers());
         Offer offer = offers.get(0);
         Offer offer1 = offer;
-        System.out.println("ANTIGUOS VALORES --------");
-        System.out.println(offer.getTitle());
-        System.out.println(offer.getDescription());
+//        System.out.println("ANTIGUOS VALORES --------");
+//        System.out.println(offer.getTitle());
+//        System.out.println(offer.getDescription());
         offer.setTitle("adsf");
         offer.setDescription("nos vamos para Graná");
         offer.setOriginAddress("Sevilla");
@@ -217,9 +217,71 @@ public class CustomerServiceTest extends AbstractTest {
         offer.setCoordYValue(-213.0);
         offer.setCoordXL("s".charAt(0));
         offer.setCoordYL("n".charAt(0));
-        System.out.println("NUEVOS VALORES --------");
-        System.out.println(offer.getTitle());
-        System.out.println(offer.getDescription());
+//        System.out.println("NUEVOS VALORES --------");
+//        System.out.println(offer.getTitle());
+//        System.out.println(offer.getDescription());
+        Assert.isTrue(offer.getTitle().equals(offer1.getTitle())||offer.getDescription().equals(offer1.getDescription())||offer.getDestinationAddress().equals(offer1.getDestinationAddress())||offer.getOriginAddress().equals(offer1.getOriginAddress()));
+        authenticate(null);
+        customerService.flush();
+    }
+
+
+//08 - EDIT NOT OK
+    /**
+     * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+     a place to another place and would like to share his or
+     her car with someone else.
+     * Precondition: The user is a customer and the offer that is trying to edit belongs to his offers. All the new offer data is not correct.
+     * Return: FALSE
+     * Postcondition: A old offer is not modified.
+     */
+
+    @Test(expected = ConstraintViolationException.class)
+    public void OfferEditNotOk(){
+        authenticate("customer1");
+        List<Offer> offers = new ArrayList<>(customerService.findByPrincipal().getOffers());
+        Offer offer = offers.get(0);
+        Offer offer1 = offer;
+        offer.setTitle("");
+        offer.setDescription("nos vamos para Graná");
+        offer.setOriginAddress("Sevilla");
+        offer.setDestinationAddress("Granada");
+        offer.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer.setCoordXValue(200.0);
+        offer.setCoordYValue(-213.0);
+        offer.setCoordXL("s".charAt(0));
+        offer.setCoordYL("n".charAt(0));
+        Assert.isTrue(offer.getTitle().equals(offer1.getTitle())||offer.getDescription().equals(offer1.getDescription())||offer.getDestinationAddress().equals(offer1.getDestinationAddress())||offer.getOriginAddress().equals(offer1.getOriginAddress()));
+        authenticate(null);
+        customerService.flush();
+    }
+
+
+//09 -  ADMIN EDIT NOT OK
+    /**
+     * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+     a place to another place and would like to share his or
+     her car with someone else.
+     * Precondition: The user is an administrator and the offer that is trying to edit belongs to his offers. All the new offer data is correct.
+     * Return: FALSE
+     * Postcondition: A old offer is not modified.
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void OfferAdminEditNotOk(){
+        authenticate("administrator1");
+        List<Offer> offers = new ArrayList<>(customerService.findByPrincipal().getOffers());
+        Offer offer = offers.get(0);
+        Offer offer1 = offer;
+        offer.setTitle("dsfasdf");
+        offer.setDescription("nos vamos para Graná");
+        offer.setOriginAddress("Sevilla");
+        offer.setDestinationAddress("Granada");
+        offer.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer.setCoordXValue(200.0);
+        offer.setCoordYValue(-213.0);
+        offer.setCoordXL("s".charAt(0));
+        offer.setCoordYL("n".charAt(0));
         Assert.isTrue(offer.getTitle().equals(offer1.getTitle())||offer.getDescription().equals(offer1.getDescription())||offer.getDestinationAddress().equals(offer1.getDestinationAddress())||offer.getOriginAddress().equals(offer1.getOriginAddress()));
         authenticate(null);
         customerService.flush();
@@ -227,12 +289,23 @@ public class CustomerServiceTest extends AbstractTest {
 
 
 
+//10 -  NON REGISTERED USER
+    /**
+     * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+     a place to another place and would like to share his or
+     her car with someone else.
+     * Precondition: The user not registered.
+     * Return: FALSE
+     * Postcondition: The offer list is not shown.
+     */
 
-
-
-
-
-
+    @Test(expected = IllegalArgumentException.class)
+    public void OfferAnonymous(){
+        authenticate(null);
+        List<Offer> offers = new ArrayList<>(offerService.findAll());
+        authenticate(null);
+        customerService.flush();
+    }
 
 
 
