@@ -1,7 +1,6 @@
 package services;
 
 import domain.Actor;
-import domain.Message;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,14 @@ import utilities.AbstractTest;
 @ContextConfiguration(locations = {"classpath:spring/datasource.xml",
         "classpath:spring/config/packages.xml"})
 @Transactional
-public class MessageServiceTest extends AbstractTest {
+
+public class CustomerServiceTest extends AbstractTest {
+    @Autowired
+    private CustomerService customerService;
+
+
 
     // System under test ------------------------------------------------------
-
-    @Autowired
-    private MessageService messageService;
 
     // Tests ------------------------------------------------------------------
 
@@ -42,5 +43,8 @@ public class MessageServiceTest extends AbstractTest {
     }
 
     // Ancillary methods ------------------------------------------------------
+
+
+
 
 }

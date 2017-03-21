@@ -1,7 +1,6 @@
 package services;
 
 import domain.Actor;
-import domain.Message;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,16 @@ import utilities.AbstractTest;
 @ContextConfiguration(locations = {"classpath:spring/datasource.xml",
         "classpath:spring/config/packages.xml"})
 @Transactional
-public class MessageServiceTest extends AbstractTest {
+
+public class ApplicationServiceTest extends AbstractTest {
 
     // System under test ------------------------------------------------------
 
     @Autowired
-    private MessageService messageService;
+    private ApplicationService applicationService;
 
     // Tests ------------------------------------------------------------------
+
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run
@@ -42,5 +43,7 @@ public class MessageServiceTest extends AbstractTest {
     }
 
     // Ancillary methods ------------------------------------------------------
+
+
 
 }
