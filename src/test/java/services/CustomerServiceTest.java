@@ -2,6 +2,7 @@ package services;
 
 import domain.Customer;
 import domain.Offer;
+import domain.Request;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import security.UserAccount;
 import utilities.AbstractTest;
 
 import javax.validation.ConstraintViolationException;
@@ -29,8 +31,10 @@ public class CustomerServiceTest extends AbstractTest {
     private CustomerService customerService;
     @Autowired
     private OfferService offerService;
-
-
+    @Autowired
+    private RequestService requestService;
+@Autowired
+private ActorService actorService;
     // System under test ------------------------------------------------------
 
     // Tests ------------------------------------------------------------------
@@ -309,9 +313,84 @@ public class CustomerServiceTest extends AbstractTest {
 
 
 
+//REQUEST POSITIVE
+
+    @Test
+    public void RequestCreateOk(){
+        authenticate("customer4");
+        Request request = requestService.create();
+        request.setTitle("dsfasdf");
+        request.setDescription("nos vamos para Graná");
+        request.setOriginAddress("Sevilla");
+        request.setDestinationAddress("Granada");
+        request.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request.setCoordXValue(200.0);
+        request.setCoordYValue(-213.0);
+        request.setCoordXL("s".charAt(0));
+        request.setCoordYL("n".charAt(0));
+        Assert.isTrue(!customerService.findByPrincipal().getOffers().isEmpty());
+        authenticate(null);
+        customerService.flush();
+    }
+//REQUEST NEGATIVE
+
+    @Test(expected = IllegalArgumentException.class)
+    public void RequestCreateNotOk(){
+        authenticate("customer4");
+        Request request = requestService.create();
+        request.setTitle("dsfasdf");
+        request.setDescription("nos vamos para Graná");
+        request.setOriginAddress("");
+        request.setDestinationAddress("Granada");
+        request.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request.setCoordXValue(200.0);
+        request.setCoordYValue(-213.0);
+        request.setCoordXL("s".charAt(0));
+        request.setCoordYL("n".charAt(0));
+        Assert.isTrue(!customerService.findByPrincipal().getOffers().isEmpty());
+        authenticate(null);
+        customerService.flush();
+    }
 
 
+    //REGISTER AS CUSTOMER
 
+
+    @Test
+    public void RegisterOk(){
+        Customer cu = customerService.create();
+        cu.setName("perri");
+        cu.setSurname("el Detective");
+        cu.setEmail("perridetective@gmail.com");
+        cu.setPhone("+34-656789221");
+        UserAccount res = new UserAccount();
+        res.setPassword("perriel");
+        res.setUsername("perri1");
+        cu.setUserAccount(res);
+       actorService.registerAsCustomer(cu);
+       authenticate("perri1");
+        Assert.isTrue(customerService.findByPrincipal().getName()=="perri");
+        customerService.flush();
+    }
+
+
+    //REGISTER AS CUSTOMER WITH BAD DATA
+    @Test(expected = ConstraintViolationException.class)
+    public void RegisterNotOk(){
+        Customer cu = customerService.create();
+        cu.setName("");
+        cu.setSurname("el Detective");
+        cu.setEmail("@gmail.com");
+        cu.setPhone("+34-656789221");
+        UserAccount res = new UserAccount();
+        res.setPassword("perriel");
+        res.setUsername("perri1");
+        cu.setUserAccount(res);
+        actorService.registerAsCustomer(cu);
+        authenticate("perri1");
+        Assert.isTrue(customerService.findByPrincipal().getName()=="perri");
+        customerService.flush();
+    }
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run
