@@ -32,6 +32,8 @@
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
 			<li><a href="administrator/list.do"><spring:message code="master.page.administrator.list.all" /></a></li>
 			<li><a href="comment/listAll.do"><spring:message code="master.page.administrator.list.allComments" /></a></li>
+			<li><a href="admin/dashboard.do"><spring:message
+					code="master.page.dashboard.do"/></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
