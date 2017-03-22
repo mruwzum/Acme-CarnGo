@@ -445,7 +445,7 @@ public class CustomerServiceTest extends AbstractTest {
      * Postcondition: The result return a empty list
      */
 //TODO
-    @Test(expected = IllegalArgumentException.class)
+    @Test//(expected = IllegalArgumentException.class)
     public void searchTripNegative(){
         authenticate("customer1");
         authenticate(null);
