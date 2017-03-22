@@ -87,7 +87,7 @@ public class FinderController extends AbstractController {
                 finder.setNumberOfFinderResults(properties.size());
                  finderService.save(finder);
                 result= new ModelAndView("trip/list");
-                result.addObject("propertys",properties);
+                result.addObject("trips",properties);
             }catch(Throwable oops){
                 result= createEditModelAndView(finder, "finder.commit.error");
             }
