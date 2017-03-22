@@ -355,6 +355,89 @@ private ActorService actorService;
 
     //REGISTER AS CUSTOMER
 
+    //CREATE REQUEST
+
+    /**
+     Post a request in which he or she informs that he or she wishes to move from a place to another one and would like to find someone with whom he or she can share the trip
+     her car with someone else.
+     * Precondition: The user is a customer and the request data is correct
+     * Return: TRUE
+     * Postcondition: A new request is created
+     */
+
+    @Test
+    public void createRequestPositive(){
+
+    }
+
+
+    /**
+     Post a request in which he or she informs that he or she wishes to move from a place to another one and would like to find someone with whom he or she can share the trip
+     her car with someone else.
+     * Precondition: The user is a customer and the request data is not correct
+     * Return: FALSE
+     * Postcondition: A new request is created
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createRequestNegative(){
+
+    }
+
+
+
+    //APPLY FOR A TRIP
+
+    /**
+     Apply for an offer or a request, which must be accepted by the customer who post- ed it. Applications can be pending, accepted, or denied.
+     * Precondition: The user is a customer and the trip is correct
+     * Return: TRUE
+     * Postcondition: A new application is created and associated with the corresponding trip
+     */
+
+    @Test
+    public void applyForATripPositive(){
+
+    }
+
+
+    /**
+     Apply for an offer or a request, which must be accepted by the customer who post- ed it. Applications can be pending, accepted, or denied.
+     * Precondition: The user is a administrator
+     * Return: FALSE
+     * Postcondition: The application is not created
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void applyForATripNegative(){
+
+    }
+
+    /**
+     Search for offers and requests using a single keyword that must appear somewhere in their titles, descriptions, or places.
+     * Precondition: The keyword is correct
+     * Return: TRUE
+     * Postcondition: The result return a list with the corresponding objects
+     */
+
+    @Test
+    public void searchTripPositive(){
+
+    }
+
+
+    /**
+     Search for offers and requests using a single keyword that must appear somewhere in their titles, descriptions, or places.
+     * Precondition: The keyword is not correct
+     * Return: TRUE
+     * Postcondition: The result return a empty list
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void searchTripNegative(){
+
+    }
+
 
     @Test
     public void RegisterOk(){
