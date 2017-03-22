@@ -108,6 +108,11 @@
 		<security:intercept-url pattern="/request/listMy.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/offer/listMy.do" access="hasRole('CUSTOMER')"/>
 
+
+
+		<!--Allows a customer to use the finder-->
+		<security:intercept-url pattern="/offer/find.do" access="hasRole('CUSTOMER')"/>
+
 		<!--Allows an administrator to ban an offer-->
 		<security:intercept-url pattern="/offer/ban.do" access="hasRole('ADMINISTRATOR')"/>
 

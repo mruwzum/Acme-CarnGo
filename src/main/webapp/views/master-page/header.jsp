@@ -58,6 +58,7 @@
 			<li><a href="customer/applications.do"><spring:message code="master.page.customer.list.applications" /></a></li>
 
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
+			<li><a href="offer/find.do"><spring:message code="master.page.customer.finder" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
