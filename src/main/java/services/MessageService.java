@@ -66,6 +66,8 @@ private  ActorService actorService;
     public void delete(Message a) {
         Assert.notNull(a);
         Assert.isTrue(a.getId() != 0);
+        a.getSender().getSendMessages().remove(a);
+        a.getReceiver().getRecivedMessages().remove(a);
         messageRepository.delete(a);
     }
 

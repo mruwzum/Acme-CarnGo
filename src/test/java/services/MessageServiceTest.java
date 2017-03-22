@@ -202,7 +202,39 @@ public class MessageServiceTest extends AbstractTest {
         messageService.flush();
     }
 
-
+    @Test
+    public void deleteMessageCustomer(){
+        authenticate("customer1");
+        Actor a = actorService.findByPrincipal();
+        List<Message> messages0 = new ArrayList<>(a.getRecivedMessages());
+        Message m = messages0.get(0);
+        Assert.notNull(m);
+        messageService.delete(m);
+        authenticate(null);
+        messageService.flush();
+    }
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void deleteMessageAdminWithoutIt(){
+        authenticate("administrator1");
+        Actor a = actorService.findByPrincipal();
+        List<Message> messages = new ArrayList<>(a.getRecivedMessages());
+        Message m = messages.get(0);
+        Assert.notNull(m);
+        messageService.delete(m);
+        authenticate(null);
+        messageService.flush();
+    }
+    @Test
+    public void deleteMessageCustomerOk(){
+        authenticate("customer2");
+        Actor a = actorService.findByPrincipal();
+        List<Message> messages0 = new ArrayList<>(a.getRecivedMessages());
+        Message m = messages0.get(0);
+        Assert.notNull(m);
+        messageService.delete(m);
+        authenticate(null);
+        messageService.flush();
+    }
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run

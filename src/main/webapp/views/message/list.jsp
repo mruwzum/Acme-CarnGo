@@ -78,8 +78,6 @@
     <spring:message code="message.recipient" var="recipient"/>
     <display:column property="receiver" title="${recipient}" sortable="true"/>
 
-
-    <%-- TODO El delete tiene que ser confirmado--%>
     <security:authorize access="isAuthenticated()">
         <display:column>
             <a href="message/delete.do?messageId=${row.id}" onclick="return confirm('<spring:message code="message.confirm.delete"/> ')"> <spring:message

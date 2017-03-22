@@ -67,7 +67,8 @@ public class MessageController extends AbstractController {
 		ModelAndView result;
 		Collection<Message> messages;
 
-        messages = messageService.findAll();
+        messages = actorService.findByPrincipal().getRecivedMessages();
+        messages.addAll(actorService.findByPrincipal().getSendMessages());
 		result = new ModelAndView("message/list");
 		result.addObject("messages", messages);
 		result.addObject("requestURI","message/list.do");
@@ -153,13 +154,14 @@ public class MessageController extends AbstractController {
         return result;
     }
 
-    @RequestMapping(value="/edit", method=RequestMethod.POST, params="delete")
-    public ModelAndView delete(Message message){
+    @RequestMapping(value="/delete", method=RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int messageId){
         ModelAndView result;
+        Message message = messageService.findOne(messageId);
         try{
             messageService.delete(message);
             result=new ModelAndView("redirect:list.do");
-        }catch(Throwable oops){
+       }catch(Throwable oops){
             result= createEditModelAndView(message, "message.commit.error");
         }
 
