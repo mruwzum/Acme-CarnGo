@@ -37,11 +37,4 @@
     <spring:message code="offer.coordYL" var="coordYL"/>
     <display:column property="coordYL" title="${coordYL}" sortable="true"/>
 
-
-    <security:authorize access="isAuthenticated()">
-        <display:column>
-            <a href="offer/view.do?offerId=${row.id}"> <spring:message
-                    code="request.view"/></a>
-        </display:column>
-    </security:authorize>
 </display:table>
