@@ -100,9 +100,14 @@
 
     <security:authorize access="isAuthenticated()">
         <display:column>
-            <a href="message/delete.do?messageId=${row.id}"> <spring:message
-                    code="message.delete"/>
-            </a>
+            <jstl:if test="${row.id!=0}">
+                <input type="submit" name="delete"
+                       value="<spring:message code="message.delete" />"
+                       onclick="return confirm('<spring:message code="message.confirm.delete"/>')"/>&nbsp;
+            </jstl:if>
+            <%--<a href="message/delete.do?messageId=${row.id}"> <spring:message--%>
+                    <%--code="message.delete"/>--%>
+            <%--</a>--%>
         </display:column>
     </security:authorize>
 
