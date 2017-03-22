@@ -197,21 +197,18 @@ public class OfferController extends AbstractController {
 
     //Manage applications
     @RequestMapping(value = "/find" , method = RequestMethod.GET)
-    public ModelAndView find(@RequestParam int offerId){
+    public ModelAndView find(){
 
         ModelAndView res;
-        Offer o = offerService.findOne(offerId);
 
-        res = new ModelAndView("offer/view");
+
+        res = new ModelAndView("offer/find");
+        Offer o = offerService.create();
         res.addObject("title",o.getTitle());
         res.addObject("description",o.getDescription());
         res.addObject("originAddress", o.getOriginAddress());
         res.addObject("destinationAddress", o.getDestinationAddress());
-        res.addObject("tripDate",o.getTripDate());
-        res.addObject("comments",o.getComment());
-        res.addObject("applications",o.getApplications());
-        res.addObject("banned",o.isBanned());
-        res.addObject("id",o.getId());
+
         return res;
 
     }
