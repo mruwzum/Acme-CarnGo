@@ -16,6 +16,7 @@ import services.MessageService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/message")
@@ -65,12 +66,16 @@ public class MessageController extends AbstractController {
 	public ModelAndView messageList() {
 
 		ModelAndView result;
-		Collection<Message> messages;
-
-        messages = actorService.findByPrincipal().getRecivedMessages();
-        messages.addAll(actorService.findByPrincipal().getSendMessages());
+		Collection<Message> sendMessages = new HashSet<>();
+        Collection<Message> recivedMessages = new HashSet<>();
+        Actor a = actorService.findByPrincipal();
+        sendMessages.addAll(a.getSendMessages());
+        recivedMessages.addAll(a.getRecivedMessages());
+        Assert.notNull(a);
 		result = new ModelAndView("message/list");
-		result.addObject("messages", messages);
+		result.addObject("sendMessages", sendMessages);
+        result.addObject("recivedMessages", recivedMessages);
+
 		result.addObject("requestURI","message/list.do");
 
 		return result;
