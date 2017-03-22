@@ -114,12 +114,7 @@ public class MessageController extends AbstractController {
 
         Message messageSelected = messageService.findOne(messageId);
 
-        Actor receiver = messageSelected.getSender();
-        Actor sender = messageSelected.getReceiver();
-
-        Message message1 = messageService.create();
-        message1.setReceiver(receiver);
-        message1.setSender(sender);
+      Message message1 = messageService.reply(messageSelected);
 
         res = createEditModelAndView(message1);
 
@@ -134,13 +129,7 @@ public class MessageController extends AbstractController {
 
         Message messageSelected = messageService.findOne(messageId);
 
-        Actor receiver = messageSelected.getSender();
-        Actor sender = messageSelected.getReceiver();
-
-        Message message1 = messageService.create();
-        message1.setReceiver(receiver);
-        message1.setSender(sender);
-        message1.setBody(messageSelected.getBody());
+       Message message1 = messageService.forward(messageSelected);
 
         res = createEditModelAndView(message1);
 

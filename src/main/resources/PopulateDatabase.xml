@@ -211,6 +211,11 @@
 		<property name="email" value="Administrator1Email@gmail.com"/>
 		<property name="phone" value="+23-6234456456"/>
 		<property name="userAccount" ref="userAccountAdministrator1" />
+		<property name="sendMessages">
+			<list>
+				<ref bean="message11"/>
+			</list>
+		</property>
 	</bean>
 	<bean id="administrator2" class="domain.Administrator">
 		<property name="name" value="Administrator2Name" />
@@ -218,6 +223,11 @@
 		<property name="email" value="Administrator2Email@gmail.com"/>
 		<property name="phone" value="+23-534745767"/>
 		<property name="userAccount" ref="userAccountAdministrator2" />
+		<property name="recivedMessages">
+			<list>
+				<ref bean="message11"/>
+			</list>
+		</property>
 	</bean>
 	<bean id="administrator3" class="domain.Administrator">
 		<property name="name" value="Administrator3Name" />
@@ -381,12 +391,20 @@
 		<property name="receiver" ref="customer2"/>
 	</bean>
 	<bean id="message10" class="domain.Message">
+	<property name="subject" value="title10"/>
+	<property name="sentDate" value="2017/01/23 23:00:12"/>
+	<property name="body" value="text10"/>
+	<property name="attachments" value="sdfasdfsdfsdfsd"/>
+	<property name="sender" ref="customer2"/>
+	<property name="receiver" ref="customer1"/>
+</bean>
+	<bean id="message11" class="domain.Message">
 		<property name="subject" value="title10"/>
 		<property name="sentDate" value="2017/01/23 23:00:12"/>
 		<property name="body" value="text10"/>
 		<property name="attachments" value="sdfasdfsdfsdfsd"/>
-		<property name="sender" ref="customer2"/>
-		<property name="receiver" ref="customer1"/>
+		<property name="sender" ref="administrator1"/>
+		<property name="receiver" ref="administrator2"/>
 	</bean>
 	<!-- /Message-->
 	<!-- Customer -->

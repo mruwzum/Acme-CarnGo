@@ -1,8 +1,6 @@
 package services;
 
-import domain.Customer;
-import domain.Offer;
-import domain.Request;
+import domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +31,12 @@ public class CustomerServiceTest extends AbstractTest {
     private OfferService offerService;
     @Autowired
     private RequestService requestService;
-@Autowired
-private ActorService actorService;
+    @Autowired
+    private ActorService actorService;
+    @Autowired
+    private TripService tripService;
+    @Autowired
+    private ApplicationService applicationService;
     // System under test ------------------------------------------------------
 
     // Tests ------------------------------------------------------------------
@@ -328,7 +330,7 @@ private ActorService actorService;
         request.setCoordYValue(-213.0);
         request.setCoordXL("s".charAt(0));
         request.setCoordYL("n".charAt(0));
-        Assert.isTrue(!customerService.findByPrincipal().getOffers().isEmpty());
+        Assert.isTrue(customerService.findByPrincipal().getOffers().isEmpty());
         authenticate(null);
         customerService.flush();
     }
@@ -362,12 +364,32 @@ private ActorService actorService;
      * Return: TRUE
      * Postcondition: A new application is created and associated with the corresponding trip
      */
-//TODO
     @Test
-    public void applyForATripPositive(){
+    public void applyForAOfferPositive(){
+        authenticate("customer1");
+        List<Offer> offers = new ArrayList<>(offerService.findAll());
+        Offer trip = offers.get(0);
+        Application application = applicationService.create();
+        application.setOwner(customerService.findByPrincipal());
+        application.setRequestStatus(RequestStatus.PENDING);
+        offerService.applyOffer(trip,application);
+        authenticate(null);
+        customerService.flush();
 
     }
+    @Test
+    public void applyForARequestPositive(){
+        authenticate("customer1");
+        List<Request> requests = new ArrayList<>(requestService.findAll());
+        Request trip = requests.get(0);
+        Application application = applicationService.create();
+        application.setOwner(customerService.findByPrincipal());
+        application.setRequestStatus(RequestStatus.PENDING);
+        requestService.applyOffer(trip,application);
+        authenticate(null);
+        customerService.flush();
 
+    }
 
     /**
      Apply for an offer or a request, which must be accepted by the customer who post- ed it. Applications can be pending, accepted, or denied.
@@ -375,9 +397,29 @@ private ActorService actorService;
      * Return: FALSE
      * Postcondition: The application is not created
      */
-//TODO
+
     @Test(expected = IllegalArgumentException.class)
-    public void applyForATripNegative(){
+    public void applyForAnOfferNegative(){
+        authenticate("adminsitrator1");
+        List<Offer> offers = new ArrayList<>(offerService.findAll());
+        Offer trip = offers.get(0);
+        Application application = applicationService.create();
+        application.setRequestStatus(RequestStatus.PENDING);
+        offerService.applyOffer(trip,application);
+        authenticate(null);
+        customerService.flush();
+
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void applyForARequestNegative(){
+        authenticate("adminsitrator1");
+        List<Request> requests = new ArrayList<>(requestService.findAll());
+        Request trip = requests.get(0);
+        Application application = applicationService.create();
+        application.setRequestStatus(RequestStatus.PENDING);
+        requestService.applyOffer(trip,application);
+        authenticate(null);
+        customerService.flush();
 
     }
 
@@ -390,7 +432,9 @@ private ActorService actorService;
 //TODO
     @Test
     public void searchTripPositive(){
-
+        authenticate("customer1");
+        authenticate(null);
+        customerService.flush();
     }
 
 
@@ -403,7 +447,9 @@ private ActorService actorService;
 //TODO
     @Test(expected = IllegalArgumentException.class)
     public void searchTripNegative(){
-
+        authenticate("customer1");
+        authenticate(null);
+        customerService.flush();
     }
 
 

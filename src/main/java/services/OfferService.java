@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.OfferRepository;
-import security.Authority;
 
 import java.util.Collection;
 
@@ -49,7 +48,7 @@ public class OfferService {
 
     public Collection<Offer> findAll() {
         Actor actor = actorService.findByPrincipal();
-        Assert.isTrue(!actor.getUserAccount().getAuthorities().contains(Authority.ADMINISTRATOR)||!actor.getUserAccount().getAuthorities().contains(Authority.CUSTOMER));
+       // Assert.isTrue(actor.getUserAccount().getAuthorities().contains(Authority.ADMINISTRATOR)||actor.getUserAccount().getAuthorities().contains(Authority.CUSTOMER));
         Collection<Offer> res;
         res = offerRepository.findAll();
         Assert.notNull(res);

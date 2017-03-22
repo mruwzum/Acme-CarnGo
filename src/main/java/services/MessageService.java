@@ -86,7 +86,27 @@ private  ActorService actorService;
         recipient.getRecivedMessages().add(message);
 
     }
+public Message reply(Message message){
+    Actor receiver = message.getSender();
+    Actor sender = message.getReceiver();
 
+    Message message1 = create();
+    message1.setReceiver(receiver);
+    message1.setSender(sender);
+    return message1;
+}
+
+public Message forward(Message message){
+    Actor receiver = message.getSender();
+    Actor sender = message.getReceiver();
+
+    Message message1 = create();
+    message1.setReceiver(receiver);
+    message1.setSender(sender);
+    message1.setBody(message.getBody());
+
+    return  message1;
+}
     public void flush(){
         messageRepository.flush();
     }

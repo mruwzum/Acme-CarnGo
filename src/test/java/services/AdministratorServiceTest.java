@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import utilities.AbstractTest;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class AdministratorServiceTest extends AbstractTest {
         authenticate("administrator1");
         List<Banner> bannerList = new ArrayList<>(bannerService.findAll());
         Banner banner = bannerList.get(0);
-        banner.setUrl("www.http://caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
+        banner.setUrl("http://www.caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
         Banner banner1 = bannerService.save(banner);
         Assert.isTrue(banner.getUrl().equals(banner1.getUrl()));
         authenticate(null);
@@ -49,7 +50,7 @@ public class AdministratorServiceTest extends AbstractTest {
     public void createBanner() throws Exception {
         authenticate("administrator1");
         Banner banner = bannerService.create();
-        banner.setUrl("www.http://caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
+        banner.setUrl("http://caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
         Assert.notNull(bannerService.save(banner));
         authenticate(null);
         bannerService.flush();
@@ -63,7 +64,7 @@ public class AdministratorServiceTest extends AbstractTest {
         authenticate(null);
         bannerService.flush();
     }
-    @Test
+    @Test(expected = ConstraintViolationException.class)
     public void changeBannerNot() throws Exception{
         authenticate("customer2");
         List<Banner> bannerList = new ArrayList<>(bannerService.findAll());
