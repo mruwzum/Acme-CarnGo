@@ -86,7 +86,7 @@ public class FinderController extends AbstractController {
                 List<Trip> properties = finderService.finder(finder.getTitle(),finder.getDescription(),finder.getOriginAddress(),finder.getDestinationAddress(),finder.getKeyword());
                 finder.setNumberOfFinderResults(properties.size());
                  finderService.save(finder);
-                result= new ModelAndView("property/list");
+                result= new ModelAndView("trip/list");
                 result.addObject("propertys",properties);
             }catch(Throwable oops){
                 result= createEditModelAndView(finder, "finder.commit.error");

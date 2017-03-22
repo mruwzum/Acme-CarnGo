@@ -113,7 +113,7 @@
 
 		<!--Allows a customer to use the finder-->
 		<security:intercept-url pattern="/finder/create.do" access="hasRole('CUSTOMER')"/>
-		<security:intercept-url pattern="/finder/list.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/trip/list.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/finder/edit.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/finder/find.do" access="hasRole('CUSTOMER')"/>
 		<!--Allows an administrator to ban an offer-->
