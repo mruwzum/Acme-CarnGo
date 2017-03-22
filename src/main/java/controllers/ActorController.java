@@ -49,17 +49,7 @@ public class ActorController extends AbstractController {
 	
 	//Create Method -----------------------------------------------------------
 	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(){
-		
-		ModelAndView result;
-		//TODO mirar como crear actores ahora que son abstractos.
-		//Actor actor = actorService.create();
-		//result = createEditModelAndView(actor);
-		
-		return null;
 
-		}
 	
 	 // Edition ---------------------------------------------------------
     
