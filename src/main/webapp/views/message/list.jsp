@@ -10,15 +10,6 @@
           uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 
-<security:authorize access="permitAll">
-    <div>
-        <H5>
-            <a href="message/create.do"> <spring:message
-                    code="message.create"/>
-            </a>
-        </H5>
-    </div>
-</security:authorize>
 
 <spring:message code="message.received" var="rec"/>
 <h3><jstl:out value="${rec}"/></h3>
@@ -48,21 +39,15 @@
 
     <security:authorize access="isAuthenticated()">
         <display:column>
-            <a href="message/delete.do?messageId=${row.id}"> <spring:message
-                    code="message.delete"/>
+            <a href="message/delete.do?messageId=${row.id}" onclick="return confirm('<spring:message code="message.confirm.delete"/> ')"> <spring:message
+                    code="message.delete" />
             </a>
         </display:column>
-    </security:authorize>
-
-    <security:authorize access="isAuthenticated()">
         <display:column>
             <a href="message/reply.do?messageId=${row.id}"> <spring:message
                     code="message.reply"/>
             </a>
         </display:column>
-    </security:authorize>
-
-    <security:authorize access="isAuthenticated()">
         <display:column>
             <a href="message/forward.do?messageId=${row.id}"> <spring:message
                     code="message.forward"/>
@@ -95,24 +80,12 @@
 
 
     <%-- TODO El delete tiene que ser confirmado--%>
-
-
-
     <security:authorize access="isAuthenticated()">
         <display:column>
-            <jstl:if test="${row.id!=0}">
-                <input type="submit" name="delete"
-                       value="<spring:message code="message.delete" />"
-                       onclick="return confirm('<spring:message code="message.confirm.delete"/>')"/>&nbsp;
-            </jstl:if>
-            <%--<a href="message/delete.do?messageId=${row.id}"> <spring:message--%>
-                    <%--code="message.delete"/>--%>
-            <%--</a>--%>
+            <a href="message/delete.do?messageId=${row.id}" onclick="return confirm('<spring:message code="message.confirm.delete"/> ')"> <spring:message
+                    code="message.delete" />
+            </a>
         </display:column>
-    </security:authorize>
-
-
-    <security:authorize access="isAuthenticated()">
         <display:column>
             <a href="message/forward.do?messageId=${row.id}"> <spring:message
                     code="message.forward"/>
