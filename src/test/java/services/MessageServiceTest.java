@@ -1,6 +1,8 @@
 package services;
 
 import domain.Actor;
+import domain.Administrator;
+import domain.Customer;
 import domain.Message;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +43,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test
     public void sendFromCustomerToCustomerOk(){
         authenticate("customer1");
-        Actor receiver = actorService.findOne(533);
+        List<Customer> customers = new ArrayList<>(customerService.findAll());
+        Actor receiver = customers.get(3);
         Actor sender = customerService.findByPrincipal();
         Message m = messageService.create();
         m.setSender(sender);
@@ -59,7 +62,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test
     public void sendFromCustomerToAdminOk(){
         authenticate("customer1");
-        Actor receiver = actorService.findOne(509);
+        List<Administrator> admins = new ArrayList<>(administratorService.findAll());
+        Actor receiver = admins.get(3);
         Actor sender = customerService.findByPrincipal();
         Message m = messageService.create();
         m.setSender(sender);
@@ -76,7 +80,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test
     public void sendFromAdminToCustomerOk(){
         authenticate("administrator1");
-        Actor receiver = actorService.findOne(533);
+        List<Customer> customers = new ArrayList<>(customerService.findAll());
+        Actor receiver = customers.get(3);
         Actor sender = administratorService.findByPrincipal();
         Message m = messageService.create();
         m.setSender(sender);
@@ -93,7 +98,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test
     public void sendFromAdminToAdminOk(){
         authenticate("administrator1");
-        Actor receiver = actorService.findOne(509);
+        List<Administrator> admins = new ArrayList<>(administratorService.findAll());
+        Actor receiver = admins.get(3);
         Actor sender = administratorService.findByPrincipal();
         Message m = messageService.create();
         m.setSender(sender);
@@ -110,7 +116,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test(expected = IllegalArgumentException.class)
     public void sendFromCustomerToCustomerNoOk(){
         authenticate("customer1");
-        Actor receiver = actorService.findOne(516);
+        List<Customer> customers = new ArrayList<>(customerService.findAll());
+        Actor receiver = customers.get(3);
         Actor sender = customerService.findByPrincipal();
         Message m = messageService.create();
         messageService.send(m);
@@ -120,7 +127,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test(expected = IllegalArgumentException.class)
     public void sendFromCustomerToAdminNoOk(){
         authenticate("customer1");
-        Actor receiver = actorService.findOne(495);
+        List<Administrator> admins = new ArrayList<>(administratorService.findAll());
+        Actor receiver = admins.get(3);
         Actor sender = customerService.findByPrincipal();
         Message m = messageService.create();
         Collection<String> att = new HashSet<>();
@@ -133,7 +141,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test(expected = IllegalArgumentException.class)
     public void sendFromAdminToCustomerNoOk(){
         authenticate("administrator1");
-        Actor receiver = actorService.findOne(516);
+        List<Customer> customers = new ArrayList<>(customerService.findAll());
+        Actor receiver = customers.get(3);
         Actor sender = administratorService.findByPrincipal();
         Message m = messageService.create();
         messageService.send(m);
@@ -143,7 +152,8 @@ public class MessageServiceTest extends AbstractTest {
     @Test(expected = IllegalArgumentException.class)
     public void sendFromAdminToAdminNoOk(){
         authenticate("administrator1");
-        Actor receiver = actorService.findOne(495);
+        List<Administrator> admins = new ArrayList<>(administratorService.findAll());
+        Actor receiver = admins.get(3);
         Actor sender = administratorService.findByPrincipal();
         Message m = messageService.create();
         messageService.send(m);

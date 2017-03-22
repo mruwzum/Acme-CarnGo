@@ -37,6 +37,8 @@ public class CustomerServiceTest extends AbstractTest {
     private TripService tripService;
     @Autowired
     private ApplicationService applicationService;
+    @Autowired
+    private FinderService finderService;
     // System under test ------------------------------------------------------
 
     // Tests ------------------------------------------------------------------
@@ -429,10 +431,14 @@ public class CustomerServiceTest extends AbstractTest {
      * Return: TRUE
      * Postcondition: The result return a list with the corresponding objects
      */
-//TODO
+
     @Test
     public void searchTripPositive(){
         authenticate("customer1");
+        List<Trip> trips = new ArrayList<>(tripService.findAll());
+        Trip t = trips.get(0);
+       List<Trip> encontrados = finderService.finder(t.getTitle(),t.getDescription(),null,null,t.getTitle());
+       Assert.notEmpty(encontrados);
         authenticate(null);
         customerService.flush();
     }
@@ -444,10 +450,14 @@ public class CustomerServiceTest extends AbstractTest {
      * Return: TRUE
      * Postcondition: The result return a empty list
      */
-//TODO
-    @Test//(expected = IllegalArgumentException.class)
+
+    @Test(expected = IllegalArgumentException.class)
     public void searchTripNegative(){
         authenticate("customer1");
+        List<Trip> trips = new ArrayList<>(tripService.findAll());
+        Trip t = trips.get(0);
+        List<Trip> encontrados = finderService.finder(t.getTitle(),null,null,null,null);
+        Assert.notEmpty(encontrados);
         authenticate(null);
         customerService.flush();
     }

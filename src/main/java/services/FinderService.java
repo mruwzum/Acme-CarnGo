@@ -66,6 +66,7 @@ public class FinderService {
 	// Other business methods -----------------------
 
 	public List<Trip> finder(String title, String description, String originAddress, String destinationAddress, String keyword){
+       Assert.notNull(keyword);
         List<Trip> properties = new ArrayList<>(tripService.findAll());
         List<Trip> aux = new ArrayList<>();
         for (Trip p : properties){
