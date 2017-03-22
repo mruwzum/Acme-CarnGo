@@ -32,7 +32,8 @@ public class CommentServiceTest extends AbstractTest {
     private CustomerService customerService;
     @Autowired
     private OfferService offerService;
-
+    @Autowired
+    private AdministratorService administratorService;
     // System under test ------------------------------------------------------
 
     @Autowired
@@ -181,7 +182,24 @@ public class CommentServiceTest extends AbstractTest {
         commentService.postToRequest(comment);
         authenticate(null);
     }
-
+    @Test
+    public void banComment() throws Exception {
+        authenticate("administrator1");
+        List<Comment> requestList = new ArrayList<>(commentService.findAll());
+        Comment comment = requestList.get(0);
+        administratorService.banComment(comment);
+        Assert.isTrue(comment.isBanned());
+        authenticate(null);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void banBannedComment() throws Exception {
+        authenticate("administrator1");
+        List<Comment> requestList = new ArrayList<>(commentService.findAll());
+        Comment comment = requestList.get(0);
+        administratorService.banComment(comment);
+        Assert.isTrue(administratorService.banComment(comment));
+        authenticate(null);
+    }
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run
     // it using JUnit.
