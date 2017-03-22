@@ -43,6 +43,8 @@
 		<value>/views/banner/tiles.xml</value>
 		<!-- Finder -->
 		<value>/views/finder/tiles.xml</value>
+		<!-- Trip -->
+		<value>/views/trip/tiles.xml</value>
 	</util:list>
 
 </beans>
