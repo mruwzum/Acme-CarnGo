@@ -28,7 +28,10 @@ public class AdministratorServiceTest extends AbstractTest {
     AdministratorService administratorService;
     @Autowired
     private BannerService bannerService;
-
+    @Autowired
+    private OfferService offerService;
+    @Autowired
+    private RequestService requestService;
     // Tests ------------------------------------------------------------------
 
     @Test
@@ -40,6 +43,7 @@ public class AdministratorServiceTest extends AbstractTest {
         Banner banner1 = bannerService.save(banner);
         Assert.isTrue(banner.getUrl().equals(banner1.getUrl()));
         authenticate(null);
+        bannerService.flush();
     }
     @Test
     public void createBanner() throws Exception {
@@ -47,8 +51,8 @@ public class AdministratorServiceTest extends AbstractTest {
         Banner banner = bannerService.create();
         banner.setUrl("www.http://caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
         Assert.notNull(bannerService.save(banner));
-
         authenticate(null);
+        bannerService.flush();
     }
     @Test(expected = IllegalArgumentException.class)
     public void createBannerNonReg() throws Exception {
@@ -56,10 +60,10 @@ public class AdministratorServiceTest extends AbstractTest {
         Banner banner = bannerService.create();
         banner.setUrl("www.http://caracolazo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
        bannerService.save(banner);
-
         authenticate(null);
+        bannerService.flush();
     }
-    @Test()
+    @Test
     public void changeBannerNot() throws Exception{
         authenticate("customer2");
         List<Banner> bannerList = new ArrayList<>(bannerService.findAll());
@@ -67,7 +71,9 @@ public class AdministratorServiceTest extends AbstractTest {
         banner.setUrl(null);
         bannerService.save(banner);
         authenticate(null);
+        bannerService.flush();
     }
+
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run

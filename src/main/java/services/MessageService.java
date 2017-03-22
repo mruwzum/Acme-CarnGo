@@ -86,4 +86,8 @@ private  ActorService actorService;
         recipient.getRecivedMessages().add(message);
 
     }
+
+    public void flush(){
+        messageRepository.flush();
+    }
 }

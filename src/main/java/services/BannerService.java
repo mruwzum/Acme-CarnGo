@@ -1,13 +1,11 @@
 package services;
 
 import domain.Banner;
-import domain.Banner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.BannerRepository;
-import repositories.CommentRepository;
 
 import java.util.Collection;
 
@@ -68,5 +66,7 @@ public class BannerService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
-
+    public void flush(){
+        bannerRepository.flush();
+    }
 }

@@ -65,6 +65,8 @@ public class ApplicationService {
     }
 
     // Other business methods -------------------------------------------------------------------------------
-
+    public void flush(){
+        applicationRepository.flush();
+    }
 
 }

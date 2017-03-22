@@ -54,6 +54,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.post(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
     @Test
     public void postPositiveTestAdmin() throws Exception {
@@ -68,6 +69,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.post(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
     @Test(expected = NullPointerException.class)
     public void postNegativeTest() throws Exception{
@@ -77,6 +79,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.post(comment);
         authenticate(null);
+        commentService.flush();
     }
 
     @Test(expected = NullPointerException.class)
@@ -87,6 +90,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.post(comment);
         authenticate(null);
+        commentService.flush();
     }
     @Test
     public void postToOfferPositiveTest() throws Exception {
@@ -101,6 +105,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.postToOffer(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
     @Test
     public void postToOfferPositiveTestAdmin() throws Exception {
@@ -115,6 +120,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.postToOffer(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
     @Test(expected = IllegalArgumentException.class)
     public void postToOfferNegativeTest() throws Exception {
@@ -124,6 +130,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.postToOffer(comment);
         authenticate(null);
+        commentService.flush();
     }
     @Test(expected = IllegalArgumentException.class)
     public void postToOfferNegativeTestAdministrator() throws Exception {
@@ -133,6 +140,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.postToOffer(comment);
         authenticate(null);
+        commentService.flush();
     }
 
 
@@ -149,6 +157,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.postToRequest(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
     @Test
     public void postToRequestPositiveTestAdministrator() throws Exception {
@@ -163,6 +172,7 @@ public class CommentServiceTest extends AbstractTest {
         commentService.postToRequest(comment);
         Assert.isTrue(!request.getComment().isEmpty());
         authenticate(null);
+        commentService.flush();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -173,6 +183,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.postToRequest(comment);
         authenticate(null);
+        commentService.flush();
     }
     @Test(expected = IllegalArgumentException.class)
     public void postToRequestNegativeTestAdministrator() throws Exception{
@@ -181,6 +192,7 @@ public class CommentServiceTest extends AbstractTest {
         Comment comment = commentService.create();
         commentService.postToRequest(comment);
         authenticate(null);
+        commentService.flush();
     }
     @Test
     public void banComment() throws Exception {
@@ -190,6 +202,7 @@ public class CommentServiceTest extends AbstractTest {
         administratorService.banComment(comment);
         Assert.isTrue(comment.isBanned());
         authenticate(null);
+        commentService.flush();
     }
     @Test(expected = IllegalArgumentException.class)
     public void banBannedComment() throws Exception {
@@ -199,6 +212,7 @@ public class CommentServiceTest extends AbstractTest {
         administratorService.banComment(comment);
         Assert.isTrue(administratorService.banComment(comment));
         authenticate(null);
+        commentService.flush();
     }
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run

@@ -119,5 +119,8 @@ public class ActorService {
     	return res;
 
 	}
+	public void flush(){
+		actorRepository.flush();
+	}
 
 }

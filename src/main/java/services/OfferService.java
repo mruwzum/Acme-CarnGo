@@ -96,5 +96,7 @@ public class OfferService {
         return res;
     }
 
-
+    public void flush(){
+        offerRepository.flush();
+    }
 }

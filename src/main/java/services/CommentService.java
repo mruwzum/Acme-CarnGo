@@ -111,4 +111,7 @@ public class CommentService {
         //requestService.save(request);
         //tripService.save(request);
     }
+    public void flush(){
+        commentRepository.flush();
+    }
 }

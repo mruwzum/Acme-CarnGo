@@ -1,6 +1,5 @@
 package services;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import domain.Administrator;
 import domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.util.Assert;
 import repositories.AdministratorRepository;
 import security.LoginService;
 import security.UserAccount;
-
 
 import java.util.Collection;
 
@@ -100,5 +98,7 @@ public class AdministratorService {
         }
         return res;
     }
-
+    public void flush(){
+        administratorRepository.flush();
+    }
 }
