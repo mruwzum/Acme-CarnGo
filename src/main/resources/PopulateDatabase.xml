@@ -692,6 +692,43 @@
 
 	<!-- /Request -->
 
+
+
+
+	<!-- Finder -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="originAddress" value="granada" />
+		<property name="destinationAddress" value="sevilla" />
+		<property name="title" value="De vuelta a sevilla" />
+		<property name="description" value="3 plazas libres" />
+		<property name="keyword" value="sevilla" />
+		<property name="numberOfFinderResults" value="3"/>
+	</bean>
+	<bean id="finder2" class="domain.Finder">
+		<property name="originAddress" value="Huesca" />
+		<property name="destinationAddress" value="Murcia" />
+		<property name="title" value="Para murcia que nos vamos" />
+		<property name="description" value="murcianicos" />
+		<property name="keyword" value="murcia" />
+	</bean>
+	<bean id="finder3" class="domain.Finder">
+		<property name="originAddress" value="Mérida" />
+		<property name="destinationAddress" value="Sevilla" />
+		<property name="title" value="De Mérida a sevilla" />
+		<property name="description" value="3 plazas libres" />
+		<property name="keyword" value="merida sevilla" />
+	</bean>
+
+	<!-- /Finder-->
+
+
+
+
+
+
+
+
+
 	<!--<bean id="comment6" class="domain.Comment">-->
 		<!--<property name="title" value="title6"/>-->
 		<!--<property name="postedMoment" value="2017/04/23 23:00:12"/>-->

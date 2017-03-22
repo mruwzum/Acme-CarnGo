@@ -35,12 +35,14 @@
 		</display:column>
 	</security:authorize>
 	
-			<spring:message code="finder.destinationcity" var="destinationCity" />
-			<display:column property="destinationCity" title="${destinationCity}" sortable="true" />
-			<spring:message code="finder.minimumpay" var="minimumPay" />
-			<display:column property="minimumPay" title="${minimumPay}" sortable="true" />
-			<spring:message code="finder.maximumpay" var="maximumPay" />
-			<display:column property="maximumPay" title="${maximumPay}" sortable="true" />
+			<spring:message code="finder.title" var="title" />
+			<display:column property="title" title="${title}" sortable="true" />
+			<spring:message code="finder.description" var="description" />
+			<display:column property="description" title="${description}" sortable="true" />
+			<spring:message code="finder.originAddress" var="originAddress" />
+			<display:column property="originAddress" title="${originAddress}" sortable="true" />
+			<spring:message code="finder.destinationAddress" var="destinationAddress" />
+			<display:column property="destinationAddress" title="${destinationAddress}" sortable="true" />
 			<spring:message code="finder.keyword" var="keyword" />
 			<display:column property="keyword" title="${keyword}" sortable="true" />
 
