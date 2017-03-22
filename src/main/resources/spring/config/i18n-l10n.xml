@@ -43,6 +43,8 @@
 		<value>/views/request/messages</value>
 		<!-- Banner -->
 		<value>/views/banner/messages</value>
+		<!-- Finder -->
+		<value>/views/finder/message</value>
 
 	</util:list>
 

@@ -41,6 +41,8 @@
 		<value>/views/offer/tiles.xml</value>
 		<!-- Banner -->
 		<value>/views/banner/tiles.xml</value>
+		<!-- Finder -->
+		<value>/views/finder/tiles.xml</value>
 	</util:list>
 
 </beans>

@@ -19,8 +19,4 @@
         <put-attribute name="title" value="offers: View"/>
         <put-attribute name="body" value="/views/offer/view.jsp"/>
     </definition>
-    <definition name="offer/find" extends="master.page">
-        <put-attribute name="title" value="Finder"/>
-        <put-attribute name="body" value="/views/offer/find.jsp"/>
-    </definition>
 </tiles-definitions>
