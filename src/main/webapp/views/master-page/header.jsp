@@ -32,8 +32,8 @@
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
 			<li><a href="administrator/list.do"><spring:message code="master.page.administrator.list.all" /></a></li>
 			<li><a href="comment/listAll.do"><spring:message code="master.page.administrator.list.allComments" /></a></li>
-			<li><a href="admin/dashboard.do"><spring:message
-					code="master.page.dashboard.do"/></a></li>
+			<li><a href="admin/dashboard.do"><spring:message code="master.page.administrator.dash" /></a></li>
+
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
@@ -60,7 +60,6 @@
 			<li><a href="customer/applications.do"><spring:message code="master.page.customer.list.applications" /></a></li>
 
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
-			<li><a href="finder/create.do"><spring:message code="master.page.customer.finder" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

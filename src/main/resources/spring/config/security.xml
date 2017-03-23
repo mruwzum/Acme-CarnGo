@@ -90,8 +90,11 @@
 		<security:intercept-url pattern="/message/forward.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 		<security:intercept-url pattern="/message/delete.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 
-		<!-- Allows an administrator to view the dashboard-->
+		<!--Allows a administrator to view the dashboard-->
 		<security:intercept-url pattern="/admin/dashboard.do" access="hasRole('ADMINISTRATOR')"/>
+
+
+
 
 
 		<!--Allows an administrator to list all the requests anf offers -->

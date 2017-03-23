@@ -27,18 +27,17 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 
     //Average number of offers and request per customer..........?
-    @Query("select avg(c.offers.size) from Customer c group by c")
-    Collection<Double> averageOfOfferPerConsumer2();
-    @Query("select avg(c.requests.size) from Customer c group by c")
-    Collection<Double> averageOfRequestPerConsumer2();
+    @Query("select avg(offers.size) from Customer ")
+    Double averageOfOfferPerConsumer2();
+    @Query("select avg(requests.size) from Customer")
+    Double averageOfRequestPerConsumer2();
 
     //Average number of applications per offer or request........?
-    @Query("select avg(c.applications.size) from Offer c group by c")
-    Collection<Double> averageNumberOfApplicationsPerOffers();
-    @Query("select avg(c.applications.size) from Request c group by c")
-    Collection<Double> averageNumberOfApplicationsPerRequests2();
+    @Query("select avg(applications.size) from Offer")
+    Double averageNumberOfApplicationsPerOffers();
+    @Query("select avg(applications.size) from Request")
+    Double averageNumberOfApplicationsPerRequests2();
 
-    //Esto no va a funcionar ni de coña
 
     //The customer who has more applications accepted.
     @Query("select max(c) from Customer c join c.offers o join o.applications p join c.requests r join r.applications l  where p.requestStatus = 0 and l.requestStatus=0")
@@ -48,25 +47,47 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Customer customerWithMoreApplicationsDenied();
 
     //Average number of comments per actor, offer, or request.
-    @Query("select avg(c.comment.size) from Actor c group by c")
-    Collection<Double> averageNumberOfCommentPerActor();
-    @Query("select avg(c.comment.size) from Offer c group by c")
-    Collection<Double> averageNumberOfCommentPerOffer();
-    @Query("select avg(c.comment.size) from Request c group by c")
-    Collection<Double> averageNumberOfCommentPerRequest();
+    @Query("select avg(comment.size) from Actor")
+    Double averageNumberOfCommentPerActor();
+    @Query("select avg(comment.size) from Offer")
+    Double averageNumberOfCommentPerOffer();
+    @Query("select avg(comment.size) from Request")
+    Double averageNumberOfCommentPerRequest();
 
 
     //Average number of comments posted by administrators and customers.
 
-
     //The actors who have posted ±10% the average number of comments per actor.
+
+
+
 
     //The minimum, the average, and the maximum number of messages sent per actor.
 
+    @Query("select avg(sendMessages.size) from Actor")
+    Double averageNumberOfSMesasgePerActor();
+    @Query("select max(sendMessages.size) from Actor")
+    Double maxNumberOfSMesasgePerActor();
+    @Query("select min(sendMessages.size) from Actor")
+    Double minNumberOfSMesasgePerActor();
+
+
+
     //The minimum, the average, and the maximum number of messages received per actor.
 
+    @Query("select avg(recivedMessages.size) from Actor")
+    Double averageNumberOfRMesasgePerActor();
+    @Query("select max(recivedMessages.size) from Actor")
+    Double maxNumberOfRMesasgePerActor();
+    @Query("select min(recivedMessages.size) from Actor")
+    Double minNumberOfRMesasgePerActor();
+
+
     //The actors who have sent more messages.
+    @Query("select a from Actor a order by max (a.sendMessages.size) asc")
+    Actor actorWhoHaveSentMoreMessage();
 
     //The actors who have got more messages.
-
+    @Query("select a from Actor a order by max (a.recivedMessages.size) asc")
+    Actor actorWhoHaveGetMoreMessage();
 }

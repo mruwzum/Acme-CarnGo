@@ -432,6 +432,8 @@ public class CustomerServiceTest extends AbstractTest {
      * Postcondition: The result return a list with the corresponding objects
      */
 
+    //SEARCH A TRIP
+
     @Test
     public void searchTripPositive(){
         authenticate("customer1");

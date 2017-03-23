@@ -1,7 +1,10 @@
 package services;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import domain.Actor;
 import domain.Administrator;
 import domain.Comment;
+import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -101,4 +104,75 @@ public class AdministratorService {
     public void flush(){
         administratorRepository.flush();
     }
+
+
+
+    public Double averageOfOfferPerConsumer2(){
+        return administratorRepository.averageOfOfferPerConsumer2();
+    }
+
+    public Double averageOfRequestPerConsumer2(){
+        return administratorRepository.averageOfRequestPerConsumer2();
+    }
+
+    public Double averageNumberOfApplicationsPerOffers(){
+        return administratorRepository.averageNumberOfApplicationsPerOffers();
+    }
+
+    public Double averageNumberOfApplicationsPerRequests2(){
+        return administratorRepository.averageNumberOfApplicationsPerRequests2();
+    }
+
+    public Customer customerWithMoreApplicationsAccepted(){
+        return administratorRepository.customerWithMoreApplicationsAccepted();
+    }
+
+    public Customer customerWithMoreApplicationsDenied(){
+        return administratorRepository.customerWithMoreApplicationsDenied();
+    }
+
+    public Double averageNumberOfCommentPerActor(){
+        return administratorRepository.averageNumberOfCommentPerActor();
+    }
+
+    public Double averageNumberOfCommentPerOffer(){
+        return administratorRepository.averageNumberOfCommentPerOffer();
+    }
+
+    public Double averageNumberOfCommentPerRequest(){
+        return administratorRepository.averageNumberOfCommentPerRequest();
+    }
+
+    public Double averageNumberOfSMesasgePerActor(){
+        return administratorRepository.averageNumberOfSMesasgePerActor();
+    }
+
+    public Double maxNumberOfSMesasgePerActor(){
+        return administratorRepository.maxNumberOfSMesasgePerActor();
+    }
+
+    public Double minNumberOfSMesasgePerActor(){
+        return administratorRepository.minNumberOfSMesasgePerActor();
+    }
+
+    public Double averageNumberOfRMesasgePerActor(){
+        return administratorRepository.averageNumberOfRMesasgePerActor();
+    }
+
+    public Double maxNumberOfRMesasgePerActor(){
+        return administratorRepository.maxNumberOfRMesasgePerActor();
+    }
+
+    public Double minNumberOfRMesasgePerActor(){
+        return administratorRepository.minNumberOfRMesasgePerActor();
+    }
+
+    public Actor actorWhoHaveSentMoreMessage(){
+        return administratorRepository.actorWhoHaveSentMoreMessage();
+    }
+
+    public Actor actorWhoHaveGetMoreMessage(){
+        return administratorRepository.actorWhoHaveGetMoreMessage();
+    }
+
 }
