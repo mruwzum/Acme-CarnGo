@@ -93,7 +93,19 @@ public class BannerControllerTest extends AbstractTest {
 
         //when(bannerService.save(isA(Banner.class))).thenReturn(new Banner());
 
-        mvc.perform(get("/create"));
+        mvc.perform(get("/banner/create"));
+
+        mvc.perform(get("/banner/list"));
+
+        mvc.perform(get("/banner/edit").param("int","bannerId"));
+
+        mvc.perform(post("/banner/edit").param("Banner","banner").param("BindingResult" ,"binding"));
+
+        mvc.perform(post("/banner/edit").param("int","bannerId"));
+
+        mvc.perform(get("/banner/delete").param("int","bannerId"));
+
+
     }
 
 }
