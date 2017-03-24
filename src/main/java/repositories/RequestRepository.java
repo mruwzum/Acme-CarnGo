@@ -1,6 +1,5 @@
 package repositories;
 
-import domain.Actor;
 import domain.Request;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

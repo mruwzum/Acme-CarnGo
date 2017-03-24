@@ -1,10 +1,7 @@
 package domain;
 
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Columns;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
 import security.UserAccount;
 
 import javax.persistence.*;

@@ -1,7 +1,6 @@
 package controllers;
 
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import domain.Application;
 import domain.Comment;
 import domain.Customer;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import security.Authority;
 import services.ActorService;
 import services.ApplicationService;
 import services.CustomerService;

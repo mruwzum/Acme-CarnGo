@@ -1,6 +1,5 @@
 package services;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import domain.Actor;
 import domain.Administrator;
 import domain.Comment;

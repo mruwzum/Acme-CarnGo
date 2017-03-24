@@ -10,11 +10,10 @@
 
 package utilities;
 
-import java.io.IOException;
-
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-
 import utilities.internal.ConsoleReader;
+
+import java.io.IOException;
 
 public class HashPassword {
 

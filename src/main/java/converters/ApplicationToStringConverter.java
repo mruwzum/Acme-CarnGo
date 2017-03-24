@@ -1,6 +1,5 @@
 package converters;
 
-import domain.Actor;
 import domain.Application;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
