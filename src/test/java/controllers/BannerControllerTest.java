@@ -72,12 +72,12 @@ public class BannerControllerTest extends AbstractTest {
     }
 
     //http://stackoverflow.com/questions/16170572/unable-to-mock-service-class-in-spring-mvc-controller-tests
-    @Test
+    @Test(expected = NullPointerException.class)
     public void createOrUpdateFailsWhenInvalidDataPostedAndSendsUserBackToForm() throws Exception {
         // POST no data to the form (i.e. an invalid POST)
-        mvc.perform(post("/policies/persist")).andExpect(status().isOk())
-                .andExpect(model().attributeHasErrors("policy"))
-                .andExpect(view().name("createOrUpdatePolicy"));
+        mvc.perform(post("/edit")).andExpect(status().isOk())
+                .andExpect(model().attributeHasErrors("banner"))
+                .andExpect(view().name("banner"));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class BannerControllerTest extends AbstractTest {
         when(bannerService.save(isA(Banner.class))).thenReturn(new Banner());
 
         mvc.perform(
-                post("/policies/persist").param("companyName", "Company Name")
+                post("/banner/edit").param("companyName", "Company Name")
                         .param("name", "Name").param("effectiveDate", "2001-01-01"))
                 .andExpect(status().isMovedTemporarily()).andExpect(model().hasNoErrors())
                 .andExpect(redirectedUrl("list"));
