@@ -143,7 +143,7 @@ private ApplicationService applicationService;
     @RequestMapping(value="/edit", method=RequestMethod.POST, params="save")
     public ModelAndView save(@Valid Request request, BindingResult binding){
         ModelAndView result;
-        if (binding.hasErrors()) {
+        if (!binding.hasErrors()) {
             result= createEditModelAndView(request);
         }else{
             try{

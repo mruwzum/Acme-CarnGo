@@ -35,6 +35,8 @@ public class CustomerService {
     private OfferService offerService;
     @Autowired
     private RequestService requestService;
+    @Autowired
+    private CommentService commentService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -190,5 +192,23 @@ public class CustomerService {
     }
     public void flush(){
         customerRepository.flush();
+    }
+
+
+    public Collection<Comment> bannedC(){
+
+        Collection<Comment> myC =  new ArrayList<>();
+
+
+        for (Comment c : commentService.findAll()){
+
+            if(c.getOwner()==findByPrincipal() && c.isBanned()){
+                myC.add(c);
+            }
+        }
+
+
+
+        return myC;
     }
 }

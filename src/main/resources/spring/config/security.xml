@@ -71,6 +71,9 @@
 		<security:intercept-url pattern="/customer/app/accept.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/customer/app/deny.do" access="hasRole('CUSTOMER')"/>
 
+		<!--Allows a customer to view the banned comment-->
+		<security:intercept-url pattern="/customer/mybannedC.do" access="hasRole('CUSTOMER')"/>
+
 
 
 		<!--Allows a customer to create a request for a trip-->

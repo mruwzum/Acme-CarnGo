@@ -1,6 +1,7 @@
 package controllers;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import domain.Application;
 import domain.Comment;
 import domain.Customer;
@@ -196,6 +197,20 @@ public class CustomerController extends AbstractController {
     }
 
 
+    @RequestMapping(value = "/mybannedC", method = RequestMethod.GET)
+    public ModelAndView bannedC (){
+
+        ModelAndView res;
+
+        Collection<Comment> comments = customerService.bannedC();
+        res = new ModelAndView("comment/list");
+        res.addObject("comments", comments);
+
+        return res;
+
+
+
+    }
 
     //Manage applications
 

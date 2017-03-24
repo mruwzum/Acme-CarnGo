@@ -58,6 +58,8 @@
 			<li><a href="offer/list.do"><spring:message code="master.page.customer.list.offer" /></a></li>
 			<li><a href="request/list.do"><spring:message code="master.page.customer.list.request" /></a></li>
 			<li><a href="customer/applications.do"><spring:message code="master.page.customer.list.applications" /></a></li>
+			<li><a href="customer/mybannedC.do"><spring:message code="master.page.customer.banned" /></a></li>
+
 
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
 		</security:authorize>
