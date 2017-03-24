@@ -1,6 +1,8 @@
 package services;
 
 import domain.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import utilities.AbstractTest;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -43,10 +46,192 @@ public class CustomerServiceTest extends AbstractTest {
 
     // Tests ------------------------------------------------------------------
 
+
+
+    @Before
+    public void setUp() {
+        authenticate("customer1");
+        Request request = requestService.create();
+        request.setOwnerR(customerService.findByPrincipal());
+        request.setTitle("Viaje a granada");
+        request.setDescription("nos vamos para Graná");
+        request.setOriginAddress("Sevilla");
+        request.setDestinationAddress("Granada");
+        request.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request.setCoordXValue(200.0);
+        request.setCoordYValue(-213.0);
+        request.setCoordXL("s".charAt(0));
+        request.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getRequests().add(request);
+        request.setOwnerR(customerService.findByPrincipal());
+
+
+
+        Offer offer = offerService.create();
+        offer.setOwnerO(customerService.findByPrincipal());
+        offer.setTitle("Viaje a granada");
+        offer.setDescription("nos vamos para Graná");
+        offer.setOriginAddress("Sevilla");
+        offer.setDestinationAddress("Granada");
+        offer.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer.setCoordXValue(200.0);
+        offer.setCoordYValue(-213.0);
+        offer.setCoordXL("s".charAt(0));
+        offer.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getOffers().add(offer);
+        unauthenticate();
+
+        authenticate("customer2");
+        Request request2 = requestService.create();
+        request2.setOwnerR(customerService.findByPrincipal());
+        request2.setTitle("Viaje a granada");
+        request2.setDescription("nos vamos para Graná");
+        request2.setOriginAddress("Sevilla");
+        request2.setDestinationAddress("Granada");
+        request2.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request2.setCoordXValue(200.0);
+        request2.setCoordYValue(-213.0);
+        request2.setCoordXL("s".charAt(0));
+        request2.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getRequests().add(request2);
+        request2.setOwnerR(customerService.findByPrincipal());
+
+
+
+        Offer offer2 = offerService.create();
+        offer2.setOwnerO(customerService.findByPrincipal());
+        offer2.setTitle("Viaje a granada");
+        offer2.setDescription("nos vamos para Graná");
+        offer2.setOriginAddress("Sevilla");
+        offer2.setDestinationAddress("Granada");
+        offer2.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer2.setCoordXValue(200.0);
+        offer2.setCoordYValue(-213.0);
+        offer2.setCoordXL("s".charAt(0));
+        offer2.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getOffers().add(offer2);
+        unauthenticate();
+
+        authenticate("customer5");
+
+        Collection<Request> requests = customerService.findByPrincipal().getRequests();
+        customerService.findByPrincipal().getRequests().removeAll(requests);
+        Collection<Offer> offers = customerService.findByPrincipal().getOffers();
+        customerService.findByPrincipal().getOffers().removeAll(offers);
+
+        Request request3 = requestService.create();
+        request3.setOwnerR(customerService.findByPrincipal());
+        request3.setTitle("Viaje a granada");
+        request3.setDescription("nos vamos para Graná");
+        request3.setOriginAddress("Sevilla");
+        request3.setDestinationAddress("Granada");
+        request3.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request3.setCoordXValue(200.0);
+        request3.setCoordYValue(-213.0);
+        request3.setCoordXL("s".charAt(0));
+        request3.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getRequests().add(request3);
+        request3.setOwnerR(customerService.findByPrincipal());
+
+
+
+        Offer offer3 = offerService.create();
+        offer3.setOwnerO(customerService.findByPrincipal());
+        offer3.setTitle("Viaje a granada");
+        offer3.setDescription("nos vamos para Graná");
+        offer3.setOriginAddress("Sevilla");
+        offer3.setDestinationAddress("Granada");
+        offer3.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer3.setCoordXValue(200.0);
+        offer3.setCoordYValue(-213.0);
+        offer3.setCoordXL("s".charAt(0));
+        offer3.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getOffers().add(offer3);
+        unauthenticate();
+
+
+        authenticate("customer4");
+
+        Collection<Request> requests1 = customerService.findByPrincipal().getRequests();
+        customerService.findByPrincipal().getRequests().removeAll(requests1);
+        Collection<Offer> offers1 = customerService.findByPrincipal().getOffers();
+        customerService.findByPrincipal().getOffers().removeAll(offers1);
+
+
+        unauthenticate();
+    }
+
+
+    @After
+    public void tearDown() {
+
+    }
+
+
+
+    @Test
+    public void driver(){
+        List<Offer> offerList = new ArrayList<>();
+
+        Object testingData[][]={
+                //01 - EMPTY LIST
+                /**
+                 * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+                a place to another place and would like to share his or
+                her car with someone else.
+                 * Precondition: The user is a customer with an empty offer list.
+                 * Return: TRUE
+                 * Postcondition: The offer list is shown empty.
+                */
+                {"customer4", offerList.isEmpty(),null},
+                //02 - REGULAR CUSTOMER WITH A OFFER
+                /**
+                 * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+                a place to another place and would like to share his or
+                her car with someone else.
+                 * Precondition: The user is a customer with an offer list with one item.
+                 * Return: TRUE
+                 * Postcondition: The offer list is shown with one single item.
+                */
+                {"customer5", offerList.size()==1,IllegalArgumentException.class},
+                //03 - ALL OFFERS
+                /**
+                 * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
+                a place to another place and would like to share his or
+                her car with someone else.
+                 * Precondition: The user is a customer with an offer list with more than one item.
+                 * Return: TRUE
+                 * Postcondition: The offer list is shown with multiple items.
+                */
+                {"customer2",offerList.size()>=2,IllegalArgumentException.class}
+        };
+        for (int i=0; i<testingData.length;i++){
+            template((String) testingData[i][0], (Boolean) testingData[i][1], (Class<?>) testingData[i][2]);
+        }
+    }
+
+    protected void template(String user, Boolean ass, Class<?> exc){
+        Class<?> caught;
+        caught=null;
+        try {
+            authenticate(user);
+            List<Offer> offerList = new ArrayList<>();
+            Customer customer = customerService.findByPrincipal();
+            offerList.addAll(customer.getOffers());
+            Assert.isTrue(ass);
+            authenticate(null);
+            customerService.flush();
+        } catch (Throwable oops){
+            caught = oops.getClass();
+        }
+
+        checkExceptions(exc, caught);
+    }
+
     // USE CASE THAT INVOLVES A LISTING & EDITION REQ.
 
 
-    //01 - EMPTY LIST
+    //01B - EMPTY LIST
     /**
      * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
      a place to another place and would like to share his or
@@ -57,7 +242,7 @@ public class CustomerServiceTest extends AbstractTest {
      */
     @Test
     public void OfferListEmpty(){
-        authenticate("customer5");
+        authenticate("customer4");
         List<Offer> offerList = new ArrayList<>();
         Customer customer = customerService.findByPrincipal();
         offerList.addAll(customer.getOffers());
@@ -69,7 +254,7 @@ public class CustomerServiceTest extends AbstractTest {
     }
 
 
-    //02 - REGULAR CUSTOMER WITH A OFFER
+    //02B - REGULAR CUSTOMER WITH A OFFER
     /**
      * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
      a place to another place and would like to share his or
@@ -80,17 +265,18 @@ public class CustomerServiceTest extends AbstractTest {
      */
     @Test
     public void OfferListOne(){
-        authenticate("customer1");
+        authenticate("customer5");
         List<Offer> offerList = new ArrayList<>();
         Customer customer = customerService.findByPrincipal();
         offerList.addAll(customer.getOffers());
+
         Assert.isTrue(offerList.size()==1);
       //  System.out.println(offerList);
         authenticate(null);
         customerService.flush();
     }
 
-    //03 - ALL OFFERS
+    //03B - ALL OFFERS
     /**
      * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
      a place to another place and would like to share his or
@@ -122,16 +308,16 @@ public class CustomerServiceTest extends AbstractTest {
      */
     @Test
     public void OfferCreateOk(){
-        authenticate("customer1");
+        authenticate("customer5");
         Offer offer = offerService.create();
         offer.setOwnerO(customerService.findByPrincipal());
-        offer.setTitle("Viaje a granada");
-        offer.setDescription("nos vamos para Graná");
+        offer.setTitle("Viaje a peru");
+        offer.setDescription("nus");
         offer.setOriginAddress("Sevilla");
         offer.setDestinationAddress("Granada");
         offer.setTripDate(new Date(System.currentTimeMillis() - 1000));
-        offer.setCoordXValue(200.0);
-        offer.setCoordYValue(-213.0);
+        offer.setCoordXValue(100.0);
+        offer.setCoordYValue(-113.0);
         offer.setCoordXL("s".charAt(0));
         offer.setCoordYL("n".charAt(0));
         customerService.findByPrincipal().getOffers().add(offer);
@@ -505,15 +691,15 @@ public class CustomerServiceTest extends AbstractTest {
     // JUnit works well in this project.  Just righ-click this class and run
     // it using JUnit.
 
-    @Test
-    public void samplePositiveTest() {
-        Assert.isTrue(true);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void sampleNegativeTest() {
-        Assert.isTrue(false);
-    }
+//    @Test
+//    public void samplePositiveTest() {
+//        Assert.isTrue(true);
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void sampleNegativeTest() {
+//        Assert.isTrue(false);
+//    }
 
     // Ancillary methods ------------------------------------------------------
 
