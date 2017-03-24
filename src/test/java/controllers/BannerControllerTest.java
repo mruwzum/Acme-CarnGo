@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,12 +15,12 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 import services.BannerService;
 import utilities.AbstractTest;
 
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -40,13 +39,9 @@ public class BannerControllerTest extends AbstractTest {
 
 
 
-    @Autowired
-    private WebApplicationContext context;
-
     @Mock
     private BannerService bannerService;
-
-
+    @Mock
     private BannerController controller;
 
     private MockMvc mvc;
@@ -92,5 +87,13 @@ public class BannerControllerTest extends AbstractTest {
                 .andExpect(redirectedUrl("list"));
     }
 
+
+    @Test
+    public void create() throws Exception {
+
+        //when(bannerService.save(isA(Banner.class))).thenReturn(new Banner());
+
+        mvc.perform(get("/create"));
+    }
 
 }
