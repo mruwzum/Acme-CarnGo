@@ -24,6 +24,13 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Collection<Request> allRequestInTheSystem2();
 
 
+    //Average number of comments posted by administrators and customers.
+    @Query("select avg(commentsPosted) from Actor ")
+    Double averageNumberOfCommentsPostedByActors();
+
+    //The actors who have posted ±10% the average number of comments per actor.
+
+
 
 
     //Average number of offers and request per customer..........?
@@ -55,9 +62,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Double averageNumberOfCommentPerRequest();
 
 
-    //Average number of comments posted by administrators and customers.
 
-    //The actors who have posted ±10% the average number of comments per actor.
 
 
 

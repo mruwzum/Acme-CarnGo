@@ -82,6 +82,7 @@ public class CommentService {
         Actor actor = actorService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actorService.findByPrincipal().setCommentsPosted(actorService.findByPrincipal().getCommentsPosted()+1);
         actor.getComment().add(comment);
     }
 
@@ -89,6 +90,7 @@ public class CommentService {
         Trip actor = tripService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actorService.findByPrincipal().setCommentsPosted(actorService.findByPrincipal().getCommentsPosted()+1);
         actor.getComment().add(comment);
     }
 
@@ -97,6 +99,7 @@ public class CommentService {
         Offer offer = offerService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actorService.findByPrincipal().setCommentsPosted(actorService.findByPrincipal().getCommentsPosted()+1);
         Comment comment1 = commentRepository.save(comment);
         offer.getComment().add(comment1);
         //offerService.save(offer);
@@ -106,6 +109,7 @@ public class CommentService {
         Request request = requestService.findOne(comment.getObjectiveId());
         comment.setOwner(actorService.findByPrincipal());
         comment.setPostedMoment(new Date(System.currentTimeMillis() - 1000));
+        actorService.findByPrincipal().setCommentsPosted(actorService.findByPrincipal().getCommentsPosted()+1);
         Comment comment1 = commentRepository.save(comment);
         request.getComment().add(comment1);
         //requestService.save(request);

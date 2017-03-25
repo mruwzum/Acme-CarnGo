@@ -27,8 +27,8 @@ public class CommentController extends AbstractController {
 	
 	@Autowired
 	private CommentService commentService;
-@Autowired
-private CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
     @Autowired
     private AdministratorService administratorService;

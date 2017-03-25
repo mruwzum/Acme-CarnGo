@@ -25,6 +25,9 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     public Collection<Comment> comments;
 
 
+    private int commentsPosted;
+
+
     // Relationships ---------------------------------------------------------
 
     private Collection<Message> sendMessages = new ArrayList<>();
@@ -119,6 +122,16 @@ public abstract  class Actor extends DomainEntity implements Commentable {
     public String toString() {
         return name + " " +  surname;
     }
+
+
+    public int getCommentsPosted() {
+        return commentsPosted;
+    }
+
+    public void setCommentsPosted(int commentsPosted) {
+        this.commentsPosted = commentsPosted;
+    }
+
 }
 
 

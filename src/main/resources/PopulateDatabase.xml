@@ -415,6 +415,7 @@
 		<property name="email" value="Customer1Email@gmail.com"/>
 		<property name="phone" value="+23-4536435655"/>
 		<property name="userAccount" ref="userAccountCustomer1" />
+		<property name="commentsPosted" value="2"/>
 		<property name="sendMessages">
 			<list>
 				<ref bean="message2"/>
@@ -461,6 +462,7 @@
 		<property name="email" value="Customer2Email@gmail.com"/>
 		<property name="phone" value="+23-324523452345"/>
 		<property name="userAccount" ref="userAccountCustomer2" />
+		<property name="commentsPosted" value="1"/>
 		<property name="comment">
 			<list>
 				<ref bean="comment2"/>
@@ -505,6 +507,7 @@
 		<property name="email" value="Customer3Email@gmail.com"/>
 		<property name="phone" value="+23-34564563456"/>
 		<property name="userAccount" ref="userAccountCustomer3" />
+		<property name="commentsPosted" value="2"/>
 		<property name="comment">
 			<list>
 				<ref bean="comment1"/>
@@ -527,6 +530,7 @@
 	<property name="email" value="Customer4Email@gmail.com"/>
 	<property name="phone" value="+23-34564563456"/>
 	<property name="userAccount" ref="userAccountCustomer4" />
+		<property name="commentsPosted" value="1"/>
 	<property name="comment">
 		<list>
 			<ref bean="comment3"/>
@@ -549,6 +553,7 @@
 		<property name="email" value="Customer5Email@gmail.com"/>
 		<property name="phone" value="+23-34564563456"/>
 		<property name="userAccount" ref="userAccountCustomer5" />
+		<property name="commentsPosted" value="1"/>
 		<property name="comment">
 			<list>
 				<ref bean="comment4"/>
