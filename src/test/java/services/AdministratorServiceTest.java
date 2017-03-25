@@ -1,6 +1,8 @@
 package services;
 
+import domain.Actor;
 import domain.Banner;
+import domain.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +15,7 @@ import utilities.AbstractTest;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -88,13 +91,58 @@ public class AdministratorServiceTest extends AbstractTest {
     public void dashboardtest(){
         authenticate("administrator1");
 
-
-
+        Double q1 = administratorService.ratioOfferVsRequest();
+        Double q2 = administratorService.averageNumberOfCommentsPostedByActors();
+        Collection<Actor> q3 = administratorService.actorWhoHavePosted10TheAverageNumberOfCommentsPerActor();
+        Double q4 = administratorService.averageOfOfferPerConsumer2();
+        Double q5 = administratorService.averageOfRequestPerConsumer2();
+        Double q6 = administratorService.averageNumberOfApplicationsPerOffers();
+        Double q7 = administratorService.averageNumberOfApplicationsPerRequests2();
+        Customer q8 = administratorService.customerWithMoreApplicationsAccepted();
+        Customer q9 = administratorService.customerWithMoreApplicationsDenied();
+        Double q10 = administratorService.averageNumberOfCommentPerActor();
+        Double q11 = administratorService.averageNumberOfCommentPerOffer();
+        Double q12 = administratorService.averageNumberOfCommentPerRequest();
+        Double q13 = administratorService.averageNumberOfSMesasgePerActor();
+        Double q14 = administratorService.averageNumberOfRMesasgePerActor();
+        Double q15 = administratorService.maxNumberOfRMesasgePerActor();
+        Double q16 = administratorService.maxNumberOfSMesasgePerActor();
+        Double q17 = administratorService.minNumberOfRMesasgePerActor();
+        Double q18 = administratorService.minNumberOfSMesasgePerActor();
+        Actor q19 = administratorService.actorWhoHaveGetMoreMessage();
+        Actor q20 = administratorService.actorWhoHaveSentMoreMessage();
 
         authenticate(null);
         administratorService.flush();
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void dashboardtestNegative(){
+        authenticate(null);
+
+        Double q1 = administratorService.ratioOfferVsRequest();
+        Double q2 = administratorService.averageNumberOfCommentsPostedByActors();
+        Collection<Actor> q3 = administratorService.actorWhoHavePosted10TheAverageNumberOfCommentsPerActor();
+        Double q4 = administratorService.averageOfOfferPerConsumer2();
+        Double q5 = administratorService.averageOfRequestPerConsumer2();
+        Double q6 = administratorService.averageNumberOfApplicationsPerOffers();
+        Double q7 = administratorService.averageNumberOfApplicationsPerRequests2();
+        Customer q8 = administratorService.customerWithMoreApplicationsAccepted();
+        Customer q9 = administratorService.customerWithMoreApplicationsDenied();
+        Double q10 = administratorService.averageNumberOfCommentPerActor();
+        Double q11 = administratorService.averageNumberOfCommentPerOffer();
+        Double q12 = administratorService.averageNumberOfCommentPerRequest();
+        Double q13 = administratorService.averageNumberOfSMesasgePerActor();
+        Double q14 = administratorService.averageNumberOfRMesasgePerActor();
+        Double q15 = administratorService.maxNumberOfRMesasgePerActor();
+        Double q16 = administratorService.maxNumberOfSMesasgePerActor();
+        Double q17 = administratorService.minNumberOfRMesasgePerActor();
+        Double q18 = administratorService.minNumberOfSMesasgePerActor();
+        Actor q19 = administratorService.actorWhoHaveGetMoreMessage();
+        Actor q20 = administratorService.actorWhoHaveSentMoreMessage();
+
+        administratorService.flush();
+    }
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run
