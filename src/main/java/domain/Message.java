@@ -3,6 +3,7 @@ package domain;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
 
@@ -48,6 +49,7 @@ public class Message extends DomainEntity {
         this.body = body;
     }
     @Temporal(TemporalType.DATE)
+    @NotNull
     public Date getSentDate() {
         return sentDate;
     }

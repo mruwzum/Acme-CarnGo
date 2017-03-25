@@ -4,6 +4,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by daviddelatorre on 10/3/17.

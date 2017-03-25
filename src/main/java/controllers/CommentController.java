@@ -100,7 +100,6 @@ public class CommentController extends AbstractController {
     public ModelAndView create(@RequestParam int id) {
 
         ModelAndView result;
-
 		Comment comment = commentService.create();
         comment.setObjectiveId(id);
         result = createEditModelAndView(comment);
@@ -157,6 +156,7 @@ public class CommentController extends AbstractController {
                 commentService.save(comment);
                 result= new ModelAndView("redirect:list.do");
             }catch(Throwable oops){
+                comment.setObjectiveId(comment.getObjectiveId());
                 result= createEditModelAndView(comment, "comment.commit.error");
             }
         }
