@@ -84,6 +84,17 @@ public class AdministratorServiceTest extends AbstractTest {
         bannerService.flush();
     }
 
+    @Test
+    public void dashboardtest(){
+        authenticate("administrator1");
+
+
+
+
+        authenticate(null);
+        administratorService.flush();
+    }
+
 
     // The following are fictitious test cases that are intended to check that
     // JUnit works well in this project.  Just righ-click this class and run

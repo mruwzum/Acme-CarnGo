@@ -140,22 +140,35 @@ public class AdministratorService {
 
 
     public Double averageOfOfferPerConsumer2(){
+
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageOfOfferPerConsumer2();
     }
 
     public Double averageOfRequestPerConsumer2(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
+
         return administratorRepository.averageOfRequestPerConsumer2();
     }
 
     public Double averageNumberOfApplicationsPerOffers(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
+
         return administratorRepository.averageNumberOfApplicationsPerOffers();
     }
 
     public Double averageNumberOfApplicationsPerRequests2(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfApplicationsPerRequests2();
     }
 
     public Customer customerWithMoreApplicationsAccepted(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         List<Actor> actors = new ArrayList<>(actorService.findAll());
         Customer res;
         if(administratorRepository.customerWithMoreApplicationsAccepted() == null){
@@ -168,6 +181,8 @@ public class AdministratorService {
     }
 
     public Customer customerWithMoreApplicationsDenied(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         List<Actor> actors = new ArrayList<>(actorService.findAll());
         Customer res;
         if(administratorRepository.customerWithMoreApplicationsDenied() == null){
@@ -178,46 +193,70 @@ public class AdministratorService {
         return res;    }
 
     public Double averageNumberOfCommentPerActor(){
+
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfCommentPerActor();
     }
 
     public Double averageNumberOfCommentPerOffer(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfCommentPerOffer();
     }
 
     public Double averageNumberOfCommentPerRequest(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfCommentPerRequest();
     }
 
     public Double averageNumberOfSMesasgePerActor(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfSMesasgePerActor();
     }
 
     public Double maxNumberOfSMesasgePerActor(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.maxNumberOfSMesasgePerActor();
     }
 
     public Double minNumberOfSMesasgePerActor(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.minNumberOfSMesasgePerActor();
     }
 
     public Double averageNumberOfRMesasgePerActor(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.averageNumberOfRMesasgePerActor();
     }
 
     public Double maxNumberOfRMesasgePerActor(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.maxNumberOfRMesasgePerActor();
     }
 
-    public Double minNumberOfRMesasgePerActor(){
+    public Double minNumberOfRMesasgePerActor()
+    {
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.minNumberOfRMesasgePerActor();
     }
 
     public Actor actorWhoHaveSentMoreMessage(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.actorWhoHaveSentMoreMessage();
     }
 
     public Actor actorWhoHaveGetMoreMessage(){
+        Administrator a = findByPrincipal();
+        Assert.notNull(a);
         return administratorRepository.actorWhoHaveGetMoreMessage();
     }
 
