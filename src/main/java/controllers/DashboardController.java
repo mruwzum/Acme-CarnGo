@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 
+import java.util.Collection;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -37,12 +39,16 @@ public class DashboardController extends AbstractController {
        Customer q5 = administratorService.customerWithMoreApplicationsAccepted();
        Customer q6 = administratorService.customerWithMoreApplicationsDenied();
 
+       Double q18 = administratorService.ratioOfferVsRequest();
+
 
        //DASHBOARD B
 
        Double q7 = administratorService.averageNumberOfCommentPerActor();
        Double q8 = administratorService.averageNumberOfCommentPerOffer();
        Double q9 = administratorService.averageNumberOfCommentPerRequest();
+       Double q19 = administratorService.averageNumberOfCommentsPostedByActors();
+       Collection<Actor> q20 = administratorService.actorWhoHavePosted10TheAverageNumberOfCommentsPerActor();
 
 
 
@@ -90,6 +96,10 @@ public class DashboardController extends AbstractController {
         res.addObject("q15",q15);
         res.addObject("q16",q16);
         res.addObject("q17",q17);
+        res.addObject("q18",q18);
+        res.addObject("q19",q19);
+        res.addObject("q20",q20);
+
 
 
 

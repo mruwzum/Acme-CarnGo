@@ -32,7 +32,6 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 
 
-
     //Average number of offers and request per customer..........?
     @Query("select avg(offers.size) from Customer ")
     Double averageOfOfferPerConsumer2();

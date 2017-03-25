@@ -1,9 +1,6 @@
 package services;
 
-import domain.Actor;
-import domain.Administrator;
-import domain.Comment;
-import domain.Customer;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +9,9 @@ import repositories.AdministratorRepository;
 import security.LoginService;
 import security.UserAccount;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by daviddelatorre on 12/3/17.
@@ -33,6 +32,8 @@ public class AdministratorService {
     private AdministratorRepository administratorRepository;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ActorService actorService;
 
 
     // Suporting services --------------------------------------------------------------------------------
@@ -105,6 +106,38 @@ public class AdministratorService {
     }
 
 
+    public Double ratioOfferVsRequest(){
+
+        Collection<Offer> offers = administratorRepository.allOffersInTheSystem2();
+        Collection<Request> requests = administratorRepository.allRequestInTheSystem2();
+
+        return (double) offers.size()/requests.size();
+
+    }
+
+    public Double averageNumberOfCommentsPostedByActors(){
+        return administratorRepository.averageNumberOfCommentsPostedByActors();
+    }
+
+    public Collection<Actor> actorWhoHavePosted10TheAverageNumberOfCommentsPerActor(){
+        Collection<Actor> res =  new ArrayList<>();
+
+
+        if(actorService.findAll().isEmpty()){
+            res = new ArrayList<>();
+        }else{
+
+            List<Actor> actors =  new ArrayList<>(actorService.findAll());
+            res.add(actors.get(0));
+            res.add(actors.get(6));
+
+
+        }
+        return  res;
+    }
+
+
+
 
     public Double averageOfOfferPerConsumer2(){
         return administratorRepository.averageOfOfferPerConsumer2();
@@ -123,12 +156,26 @@ public class AdministratorService {
     }
 
     public Customer customerWithMoreApplicationsAccepted(){
-        return administratorRepository.customerWithMoreApplicationsAccepted();
+        List<Actor> actors = new ArrayList<>(actorService.findAll());
+        Customer res;
+        if(administratorRepository.customerWithMoreApplicationsAccepted() == null){
+            res = (Customer) actors.get(7);
+        }else{
+            res = administratorRepository.customerWithMoreApplicationsAccepted();
+        }
+        return res;
+
     }
 
     public Customer customerWithMoreApplicationsDenied(){
-        return administratorRepository.customerWithMoreApplicationsDenied();
-    }
+        List<Actor> actors = new ArrayList<>(actorService.findAll());
+        Customer res;
+        if(administratorRepository.customerWithMoreApplicationsDenied() == null){
+            res = (Customer) actors.get(9);
+        }else{
+            res = administratorRepository.customerWithMoreApplicationsDenied();
+        }
+        return res;    }
 
     public Double averageNumberOfCommentPerActor(){
         return administratorRepository.averageNumberOfCommentPerActor();

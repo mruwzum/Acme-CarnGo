@@ -102,6 +102,24 @@
 <jstl:out value="${q17}"/>
 <br>
 <br/>
+<spring:message code="dashboard.q18" var="q9b"/>
+<jstl:out value="${q9b}"/>:
+<jstl:out value="${q18}"/>
+<br>
+<br/>
+
+<spring:message code="dashboard.q19" var="q9b"/>
+<jstl:out value="${q9b}"/>:
+<jstl:out value="${q19}"/>
+<br>
+<br/>
+
+<spring:message code="dashboard.q20" var="q9b"/>
+<jstl:out value="${q9b}"/>:
+<jstl:out value="${q20}"/>
+<br>
+<br/>
+
 
 
 
