@@ -1,6 +1,7 @@
 package services;
 
 import domain.Banner;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,14 @@ public class AdministratorServiceTest extends AbstractTest {
     private RequestService requestService;
     // Tests ------------------------------------------------------------------
 
+    @Before
+    public void setUp(){
+        authenticate("administrator1");
+        Banner b = bannerService.create();
+        b.setUrl("http://www.zo.com/wp-content/uploads/2014/12/asdasdasd.jpg");
+        bannerService.save(b);
+        unauthenticate();
+    }
     @Test
     public void changeBanner() throws Exception {
         authenticate("administrator1");

@@ -4,6 +4,7 @@ import domain.Comment;
 import domain.Customer;
 import domain.Offer;
 import domain.Request;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +42,80 @@ public class CommentServiceTest extends AbstractTest {
     private CommentService commentService;
 
     // Tests ------------------------------------------------------------------
+    @Before
+    public void setUp() {
+        authenticate("customer1");
+        Request request = requestService.create();
+        request.setOwnerR(customerService.findByPrincipal());
+        request.setTitle("Viaje a granada");
+        request.setDescription("nos vamos para Graná");
+        request.setOriginAddress("Sevilla");
+        request.setDestinationAddress("Granada");
+        request.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        request.setCoordXValue(200.0);
+        request.setCoordYValue(-213.0);
+        request.setCoordXL("s".charAt(0));
+        request.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getRequests().add(request);
+        request.setOwnerR(customerService.findByPrincipal());
+
+
+
+        Offer offer = offerService.create();
+        offer.setOwnerO(customerService.findByPrincipal());
+        offer.setTitle("Viaje a granada");
+        offer.setDescription("nos vamos para Graná");
+        offer.setOriginAddress("Sevilla");
+        offer.setDestinationAddress("Granada");
+        offer.setTripDate(new Date(System.currentTimeMillis() - 1000));
+        offer.setCoordXValue(200.0);
+        offer.setCoordYValue(-213.0);
+        offer.setCoordXL("s".charAt(0));
+        offer.setCoordYL("n".charAt(0));
+        customerService.findByPrincipal().getOffers().add(offer);
+
+        Comment comment = commentService.create();
+        comment.setNumberOfStars(2);
+        comment.setOwner(customerService.findByPrincipal());
+        List<Customer> requestList = new ArrayList<>(customerService.findAll());
+        Customer obje = requestList.get(0);
+        comment.setObjectiveId(obje.getId());
+        comment.setText("sgfdfg");
+        comment.setTitle("342343");
+        commentService.post(comment);
+        unauthenticate();
+
+
+        authenticate("customer4");
+
+        Comment comment1 = commentService.create();
+        comment1.setNumberOfStars(2);
+        comment1.setOwner(customerService.findByPrincipal());
+        List<Customer> requestList1 = new ArrayList<>(customerService.findAll());
+        Customer obje1 = requestList1.get(0);
+        comment1.setObjectiveId(obje1.getId());
+        comment1.setText("sgfdfg");
+        comment1.setTitle("342343");
+        commentService.post(comment1);
+        unauthenticate();
+
+        authenticate("administrator1");
+
+
+        Comment comment12 = commentService.create();
+        comment12.setNumberOfStars(2);
+        comment12.setOwner(administratorService.findByPrincipal());
+        List<Customer> requestList12 = new ArrayList<>(customerService.findAll());
+        Customer obje12 = requestList12.get(0);
+        comment12.setObjectiveId(obje12.getId());
+        comment12.setText("sgfdfg");
+        comment12.setTitle("342343");
+        commentService.post(comment12);
+        unauthenticate();
+    }
+
+
+
 
     @Test
     public void postPositiveTest() throws Exception {
