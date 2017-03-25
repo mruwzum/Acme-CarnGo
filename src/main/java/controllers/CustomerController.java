@@ -1,9 +1,7 @@
 package controllers;
 
 
-import domain.Application;
-import domain.Comment;
-import domain.Customer;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -209,6 +207,35 @@ public class CustomerController extends AbstractController {
 
 
     }
+
+
+    @RequestMapping(value = "/mybannedR", method = RequestMethod.GET)
+    public ModelAndView bannedR(){
+
+        ModelAndView res;
+
+        Collection<Request> comments = customerService.bannedR();
+        res = new ModelAndView("request/list");
+        res.addObject("requests", comments);
+
+        return res;
+
+    }
+
+
+    @RequestMapping(value = "/mybannedO", method = RequestMethod.GET)
+    public ModelAndView bannedO(){
+
+        ModelAndView res;
+
+        Collection<Offer> comments = customerService.bannedO();
+        res = new ModelAndView("offer/list");
+        res.addObject("offers", comments);
+
+        return res;
+
+    }
+
 
     //Manage applications
 

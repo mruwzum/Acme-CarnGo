@@ -224,7 +224,7 @@ public class OfferController extends AbstractController {
         if(op.equals(false)){
             result =  new ModelAndView("offer/error");
         }else{
-            result =  new ModelAndView("redirect:listAll.do");
+            result =  new ModelAndView("redirect:list.do");
         }
 
 

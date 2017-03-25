@@ -25,8 +25,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="banner/list.do"><spring:message code="master.page.banner.list" /></a></li>
-					<li><a href="offer/listAll.do"><spring:message code="master.page.customer.list.offer" /></a></li>
-					<li><a href="request/listAll.do"><spring:message code="master.page.customer.list.request" /></a></li>
+					<li><a href="offer/list.do"><spring:message code="master.page.customer.list.offer" /></a></li>
+					<li><a href="request/list.do"><spring:message code="master.page.customer.list.request" /></a></li>
 				</ul>
 			</li>
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>
@@ -58,7 +58,16 @@
 			<li><a href="offer/list.do"><spring:message code="master.page.customer.list.offer" /></a></li>
 			<li><a href="request/list.do"><spring:message code="master.page.customer.list.request" /></a></li>
 			<li><a href="customer/applications.do"><spring:message code="master.page.customer.list.applications" /></a></li>
-			<li><a href="customer/mybannedC.do"><spring:message code="master.page.customer.banned" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.customer.banned.content" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="customer/mybannedC.do"><spring:message code="master.page.customer.banned.c" /></a></li>
+					<li><a href="customer/mybannedR.do"><spring:message code="master.page.customer.banned.r" /></a></li>
+					<li><a href="customer/mybannedO.do"><spring:message code="master.page.customer.banned.o" /></a></li>
+
+
+				</ul>
+			</li>
 
 
 			<li><a href="customer/list.do"><spring:message code="master.page.customer.list.all" /></a></li>

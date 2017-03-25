@@ -34,9 +34,6 @@
     <display:column property="receiver" title="${recipient}" sortable="true"/>
 
 
-    <%-- TODO Boton de replay aqui--%>
-
-
     <security:authorize access="isAuthenticated()">
         <display:column>
             <a href="message/delete.do?messageId=${row.id}" onclick="return confirm('<spring:message code="message.confirm.delete"/> ')"> <spring:message

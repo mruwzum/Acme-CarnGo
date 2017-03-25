@@ -59,7 +59,8 @@
                     code="request.view"/></a>
         </display:column>
     </security:authorize>
-    <%--TODO check if its already banned or not --%>
+
+
     <security:authorize access="hasRole('ADMINISTRATOR')">
         <display:column>
             <a href="offer/ban.do?offerId=${row.id}"> <spring:message

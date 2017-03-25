@@ -71,8 +71,11 @@
 		<security:intercept-url pattern="/customer/app/accept.do" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/customer/app/deny.do" access="hasRole('CUSTOMER')"/>
 
-		<!--Allows a customer to view the banned comment-->
+		<!--Allows a customer to view the banned content-->
 		<security:intercept-url pattern="/customer/mybannedC.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/customer/mybannedR.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/customer/mybannedO.do" access="hasRole('CUSTOMER')"/>
+
 
 
 
@@ -81,8 +84,8 @@
 		<security:intercept-url pattern="/request/edit.do" access="hasRole('CUSTOMER')"/>
 
 		<!--Allows a customer and administrator to list requests anf offers wich are not banned-->
-		<security:intercept-url pattern="/request/list.do" access="hasRole('CUSTOMER')"/>
-		<security:intercept-url pattern="/offer/list.do" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/request/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
+		<security:intercept-url pattern="/offer/list.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>
 
 		<!--Allows a customer and administrator to manage messages-->
 		<security:intercept-url pattern="/actor/myMessages.do" access="hasAnyRole('CUSTOMER','ADMINISTRATOR')"/>

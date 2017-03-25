@@ -201,7 +201,7 @@ private ApplicationService applicationService;
         if(op.equals(false)){
             result =  new ModelAndView("request/error");
         }else{
-            result =  new ModelAndView("redirect:listAll.do");
+            result =  new ModelAndView("redirect:list.do");
         }
 
 

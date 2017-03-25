@@ -207,8 +207,39 @@ public class CustomerService {
             }
         }
 
+        return myC;
+    }
 
+    public Collection<Request> bannedR(){
+
+        Collection<Request> myC =  new ArrayList<>();
+
+
+        for (Request c : requestService.findAll()){
+
+            if(c.getOwnerR()==findByPrincipal() && c.isBanned()){
+                myC.add(c);
+            }
+        }
 
         return myC;
     }
+
+    public Collection<Offer> bannedO(){
+
+        Collection<Offer> myC =  new ArrayList<>();
+
+
+        for (Offer c : offerService.findAll()){
+
+            if(c.getOwnerO()==findByPrincipal() && c.isBanned()){
+                myC.add(c);
+            }
+        }
+
+        return myC;
+    }
+
+
+
 }
