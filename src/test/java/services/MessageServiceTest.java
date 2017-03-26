@@ -51,6 +51,7 @@ public class MessageServiceTest extends AbstractTest {
         m.setReceiver(receiver);
         m.setBody("BODYZ");
         m.setSubject("SUBJECT");
+        m.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att = new HashSet<>();
         att.add("dsf");
         m.setAttachments(att);
@@ -66,6 +67,7 @@ public class MessageServiceTest extends AbstractTest {
         m1.setReceiver(receiver1);
         m1.setBody("BODYZ");
         m1.setSubject("SUBJECT");
+        m1.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att1 = new HashSet<>();
         att1.add("dsf");
         m.setAttachments(att1);
@@ -185,6 +187,7 @@ public class MessageServiceTest extends AbstractTest {
         m.setReceiver(receiver);
         m.setBody("BODYZ");
         m.setSubject("SUBJECT");
+        m.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att = new HashSet<>();
         att.add("dsf");
         m.setAttachments(att);
@@ -204,6 +207,7 @@ public class MessageServiceTest extends AbstractTest {
         m.setReceiver(receiver);
         m.setBody("BODY");
         m.setSubject("SUBJECT");
+        m.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att = new HashSet<>();
         att.add("dsf");
         m.setAttachments(att);
@@ -222,6 +226,7 @@ public class MessageServiceTest extends AbstractTest {
         m.setReceiver(receiver);
         m.setBody("BODIES");
         m.setSubject("SUBJECTS");
+        m.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att = new HashSet<>();
         att.add("dsfs");
         m.setAttachments(att);
@@ -240,6 +245,7 @@ public class MessageServiceTest extends AbstractTest {
         m.setReceiver(receiver);
         m.setBody("BODYY");
         m.setSubject("SUBJECTT");
+        m.setSentDate(new Date(System.currentTimeMillis() - 1000));
         Collection<String> att = new HashSet<>();
         att.add("dsfff");
         m.setAttachments(att);
