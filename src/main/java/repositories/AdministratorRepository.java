@@ -28,9 +28,6 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select avg(commentsPosted) from Actor ")
     Double averageNumberOfCommentsPostedByActors();
 
-    //The actors who have posted ±10% the average number of comments per actor.
-
-
 
     //Average number of offers and request per customer..........?
     @Query("select avg(offers.size) from Customer ")
