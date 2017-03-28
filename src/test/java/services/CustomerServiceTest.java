@@ -297,6 +297,8 @@ public class CustomerServiceTest extends AbstractTest {
         customerService.flush();
     }
 
+
+
 //04 - CREATE OK
     /**
      * Description: An actor who is authenticated as a customer must be able to: Post an offer in which he or she advertises that he?s going to move from
@@ -500,8 +502,6 @@ public class CustomerServiceTest extends AbstractTest {
         authenticate(null);
         customerService.flush();
     }
-
-
 
 //REQUEST POSITIVE
 

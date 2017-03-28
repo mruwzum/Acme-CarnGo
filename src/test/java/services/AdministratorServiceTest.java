@@ -109,8 +109,8 @@ public class AdministratorServiceTest extends AbstractTest {
         Double q16 = administratorService.maxNumberOfSMesasgePerActor();
         Double q17 = administratorService.minNumberOfRMesasgePerActor();
         Double q18 = administratorService.minNumberOfSMesasgePerActor();
-        Actor q19 = administratorService.actorWhoHaveGetMoreMessage();
-        Actor q20 = administratorService.actorWhoHaveSentMoreMessage();
+        Double q19 = administratorService.averageOfOfferPerConsumer2();
+        Double q20 = administratorService.averageNumberOfCommentPerOffer();
 
         authenticate(null);
         administratorService.flush();
